@@ -1,0 +1,14 @@
+test {
+	typedef int *IntPtr;
+	typedef IntPtr IntPtrTab[];
+	
+	int x = 3;
+	IntPtr px = &x;
+	
+	IntPtrTab t = new IntPtr[4];
+	t[1] = px;
+	
+	int a = *(t[1]);
+	
+	print(a==3);
+}

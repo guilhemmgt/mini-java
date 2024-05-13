@@ -1,0 +1,9 @@
+test {
+	typedef int Entier;
+	Entier a = 1;
+	int b = 3;
+	a = b;
+	b = a;
+	
+	print(a==3 && b ==3);
+}

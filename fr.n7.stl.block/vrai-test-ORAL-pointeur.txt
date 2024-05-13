@@ -1,0 +1,23 @@
+test {
+	// pointeur simple
+	int x = 3;
+	int * px = &x;
+	int y = (*px);
+	
+	print(x==3 && y==3);
+	print " ; ";
+	
+	// tableau de pointeurs
+	typedef int *IntPtr;
+	typedef IntPtr IntPtrTab[];
+	
+	int z = 3;
+	IntPtr pz = &z;
+	
+	IntPtrTab t = new IntPtr[4];
+	t[1] = pz;
+	
+	int a = *(t[1]);
+	
+	print(a==3);
+}

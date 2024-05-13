@@ -1,0 +1,145 @@
+;< int, int> paireInt = < 1, 2>;
+PUSH 2
+LOADL 1
+LOADL 2
+STORE (2) 0[SB]
+;print "paireInt = <";
+LOADL 34
+LOADL 60
+LOADL 32
+LOADL 61
+LOADL 32
+LOADL 116
+LOADL 110
+LOADL 73
+LOADL 101
+LOADL 114
+LOADL 105
+LOADL 97
+LOADL 112
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@4cc0edeb
+;(fst paireInt)
+;print (fst paireInt);
+LOAD (2) 0[SB]
+POP (0) 1
+SUBR IOut
+;print ",";
+LOADL 34
+LOADL 44
+SUBR COut
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@457e2f02
+;(sndpaireInt)
+;print (sndpaireInt);
+LOAD (2) 0[SB]
+POP (1) 1
+SUBR IOut
+;print "> ; ";
+LOADL 34
+LOADL 32
+LOADL 59
+LOADL 32
+LOADL 62
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+; paireInt  = < 3, (sndpaireInt)>;
+LOADL 3
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@5c7fa833
+;(sndpaireInt)
+LOAD (2) 0[SB]
+POP (1) 1
+LOADA 0[SB]
+STOREI (2)
+;print "paireInt = <";
+LOADL 34
+LOADL 60
+LOADL 32
+LOADL 61
+LOADL 32
+LOADL 116
+LOADL 110
+LOADL 73
+LOADL 101
+LOADL 114
+LOADL 105
+LOADL 97
+LOADL 112
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@39aeed2f
+;(fst paireInt)
+;print (fst paireInt);
+LOAD (2) 0[SB]
+POP (0) 1
+SUBR IOut
+;print ",";
+LOADL 34
+LOADL 44
+SUBR COut
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@724af044
+;(sndpaireInt)
+;print (sndpaireInt);
+LOAD (2) 0[SB]
+POP (1) 1
+SUBR IOut
+;print "> ; ";
+LOADL 34
+LOADL 32
+LOADL 59
+LOADL 32
+LOADL 62
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+;< int, < < char, < int, int>>, boolean>> paireCompliquee = < 1, < < 'a', < 2, 3>>, true>>;
+PUSH 5
+LOADL 1
+LOADL 97
+LOADL 2
+LOADL 3
+LOADL 1
+STORE (5) 2[SB]
+;int deux = (fst (snd(fst (sndpaireCompliquee))));
+PUSH 1
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@4678c730
+;(sndpaireCompliquee)
+;(fst (sndpaireCompliquee))
+;(snd(fst (sndpaireCompliquee)))
+;(fst (snd(fst (sndpaireCompliquee))))
+LOAD (5) 2[SB]
+POP (4) 1
+POP (0) 1
+POP (2) 1
+POP (0) 1
+STORE (1) 7[SB]
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@6767c1fc
+;print deux;
+LOAD (1) 7[SB]
+SUBR IOut
+POP (0) 8
+HALT
+

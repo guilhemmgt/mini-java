@@ -1,0 +1,24 @@
+test {
+	int a = 0;
+	int b = 4;
+	if (b == -1) {
+		a = 1;
+		if (b == -1) {
+			a = 2;
+		}
+	} else {
+		a = 4;
+		if (false) {
+			if (true) {
+			
+			}
+		}
+		if (a==4) {
+			a=3;
+		} else {
+		
+		}
+	}
+	
+	print(a==3 && b==4);
+}

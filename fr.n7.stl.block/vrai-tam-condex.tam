@@ -1,0 +1,56 @@
+;int i = 1;
+PUSH 1
+LOADL 1
+STORE (1) 0[SB]
+;int j = ((i == 1) ? 2 : 1);
+PUSH 1
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@2cb4c3ab
+;(i == 1)
+LOAD (1) 0[SB]
+LOADL 1
+SUBR IEq
+JUMPIF (0) condexElse10
+LOADL 2
+JUMP condexEnd10
+condexElse10
+LOADL 1
+condexEnd10
+STORE (1) 1[SB]
+;char k = ((i == 5) ? 'l' : 'm');
+PUSH 1
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@13c78c0b
+;(i == 5)
+LOAD (1) 0[SB]
+LOADL 5
+SUBR IEq
+JUMPIF (0) condexElse11
+LOADL 108
+JUMP condexEnd11
+condexElse11
+LOADL 109
+condexEnd11
+STORE (1) 2[SB]
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@12843fce
+;(i == 1)
+;((i == 1) && (j == 2))
+;(((i == 1) && (j == 2)) && (k == 'm'))
+;print (((i == 1) && (j == 2)) && (k == 'm'));
+LOAD (1) 0[SB]
+LOADL 1
+SUBR IEq
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@3dd3bcd
+;(j == 2)
+LOAD (1) 1[SB]
+LOADL 2
+SUBR IEq
+SUBR BAnd
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@97e1986
+;(k == 'm')
+LOAD (1) 2[SB]
+LOADL 109
+SUBR IEq
+SUBR BAnd
+SUBR BOut
+POP (0) 3
+HALT
+

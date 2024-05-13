@@ -1,0 +1,34 @@
+;int i = 2;
+PUSH 1
+LOADL 2
+STORE (1) 0[SB]
+;int j = 4;
+PUSH 1
+LOADL 4
+STORE (1) 1[SB]
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@56ac3a89
+;(j * i)
+; i  = (j * i);
+LOAD (1) 1[SB]
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@27c20538
+LOAD (1) 0[SB]
+SUBR IMul
+LOADA 0[SB]
+STOREI (1)
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@72d818d1
+;(i == 8)
+;((i == 8) && (j == 4))
+;print ((i == 8) && (j == 4));
+LOAD (1) 0[SB]
+LOADL 8
+SUBR IEq
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@6e06451e
+;(j == 4)
+LOAD (1) 1[SB]
+LOADL 4
+SUBR IEq
+SUBR BAnd
+SUBR BOut
+POP (0) 2
+HALT
+

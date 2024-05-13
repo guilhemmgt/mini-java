@@ -1,0 +1,13 @@
+test {
+	int a = 0;
+	int b = a;
+	while (a < 5) {
+		b = a;
+		a = a + 1;
+		while (b < 7) {
+			b = b + 1;
+		}
+	}
+	
+	print (a==5 && b==7);
+}

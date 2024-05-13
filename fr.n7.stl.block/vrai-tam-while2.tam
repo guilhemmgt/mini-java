@@ -1,0 +1,69 @@
+;int a = 0;
+PUSH 1
+LOADL 0
+STORE (1) 0[SB]
+;int b = a;
+PUSH 1
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@cb644e
+LOAD (1) 0[SB]
+STORE (1) 1[SB]
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@13805618
+;(a < 5)
+;while
+while26
+LOAD (1) 0[SB]
+LOADL 5
+SUBR ILss
+JUMPIF (0) endwhile26
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@56ef9176
+; b  = a;
+LOAD (1) 0[SB]
+LOADA 1[SB]
+STOREI (1)
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@4566e5bd
+;(a + 1)
+; a  = (a + 1);
+LOAD (1) 0[SB]
+LOADL 1
+SUBR IAdd
+LOADA 0[SB]
+STOREI (1)
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@1ed4004b
+;(b < 7)
+;while
+while27
+LOAD (1) 1[SB]
+LOADL 7
+SUBR ILss
+JUMPIF (0) endwhile27
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@ff5b51f
+;(b + 1)
+; b  = (b + 1);
+LOAD (1) 1[SB]
+LOADL 1
+SUBR IAdd
+LOADA 1[SB]
+STOREI (1)
+POP (0) 0
+JUMP while27
+endwhile27
+POP (0) 0
+JUMP while26
+endwhile26
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@25bbe1b6
+;(a == 5)
+;((a == 5) && (b == 7))
+;print ((a == 5) && (b == 7));
+LOAD (1) 0[SB]
+LOADL 5
+SUBR IEq
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@5702b3b1
+;(b == 7)
+LOAD (1) 1[SB]
+LOADL 7
+SUBR IEq
+SUBR BAnd
+SUBR BOut
+POP (0) 2
+HALT
+

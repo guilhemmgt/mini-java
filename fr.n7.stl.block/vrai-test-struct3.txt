@@ -1,0 +1,15 @@
+test {
+	typedef struct Truci { int a; character b; <int, <int, int>> c; int d; boolean e; } Truc;
+	Truc p = {5,']',<1,<2,3>>,6,true};
+
+	int pa = p.a;
+	character pb = p.b;
+	<int, <int, int>> pc = p.c;
+	int pc1 = fst pc;
+	int pc2 = fst snd pc;
+	int pc3 = snd snd pc;
+	int pd = p.d;
+	boolean pe = p.e;
+	
+	print (pa==5 && pb==']' && pc1==1 && pc2==2 && pc3==3 && pd==6 && pe==true);
+}
