@@ -9,12 +9,27 @@ class Driver {
 		if (args.length == 0) {
 			String tests_vrais_prefixe = "vrai-test-";
 			String tests_faux_prefixe = "faux-test-";
-			String tests_suffixe = ".txt";
+			String tests_suffixe = ".bloc";
 			
-			boolean lancer_tests_vrais = true;
+			boolean lancer_tests_vrais = false;
 			boolean lancer_tests_faux = false;
+			boolean lancer_tests_prof = true;
 			
 			 File[] dirFiles = new File(".").listFiles();
+
+			 if (lancer_tests_prof) { 
+				for (File file : dirFiles) {
+					String name = file.getName();
+					if (name.startsWith("test") && name.endsWith(tests_suffixe)) {
+						parser = new Parser(name);
+						try {
+							parser.parse();
+						} catch (Exception e) {
+							e.printStackTrace();
+						}					
+					}
+				}
+			}
 			 
 			 if (lancer_tests_vrais) {
 				 for (File file : dirFiles) {

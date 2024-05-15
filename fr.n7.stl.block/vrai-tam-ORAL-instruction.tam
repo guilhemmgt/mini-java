@@ -6,19 +6,19 @@ STORE (1) 0[SB]
 PUSH 1
 LOADL 0
 STORE (1) 1[SB]
-;fr.n7.stl.block.ast.expression.accessible.VariableAccess@675d3402
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@2c13da15
 ;(i < 5)
 ;while
-while20
+while31
 LOAD (1) 0[SB]
 LOADL 5
 SUBR ILss
-JUMPIF (0) endwhile20
-;fr.n7.stl.block.ast.expression.accessible.VariableAccess@51565ec2
+JUMPIF (0) endwhile31
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@77556fd
 ;if else
 LOAD (1) 1[SB]
-JUMPIF (0) else21
-;fr.n7.stl.block.ast.expression.accessible.VariableAccess@482f8f11
+JUMPIF (0) else32
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@368239c8
 ;(i + 1)
 ; i  = (i + 1);
 LOAD (1) 0[SB]
@@ -27,12 +27,12 @@ SUBR IAdd
 LOADA 0[SB]
 STOREI (1)
 POP (0) 0
-JUMP endif21
-else21
+JUMP endif32
+else32
 ;while
-while22
+while33
 LOADL 0
-JUMPIF (0) endwhile22
+JUMPIF (0) endwhile33
 ;print "ne s'affiche pas";
 LOADL 34
 LOADL 115
@@ -68,11 +68,11 @@ SUBR COut
 SUBR COut
 SUBR COut
 POP (0) 0
-JUMP while22
-endwhile22
+JUMP while33
+endwhile33
 POP (0) 0
-endif21
-;fr.n7.stl.block.ast.expression.accessible.VariableAccess@1593948d
+endif32
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@9e89d68
 ;(! switch)
 ; switch  = (! switch);
 LOAD (1) 1[SB]
@@ -80,12 +80,12 @@ SUBR BNeg
 LOADA 1[SB]
 STOREI (1)
 POP (0) 0
-JUMP while20
-endwhile20
-;fr.n7.stl.block.ast.expression.accessible.VariableAccess@1b604f19
+JUMP while31
+endwhile31
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@3b192d32
 ;if
 LOAD (1) 1[SB]
-JUMPIF (0) endif23
+JUMPIF (0) endif34
 ;print "ne s'affiche pas non plus";
 LOADL 34
 LOADL 115
@@ -139,7 +139,7 @@ SUBR COut
 SUBR COut
 SUBR COut
 POP (0) 0
-endif23
+endif34
 ;print "c'est écrit false -> ";
 LOADL 34
 LOADL 32
@@ -184,7 +184,7 @@ SUBR COut
 SUBR COut
 SUBR COut
 SUBR COut
-;fr.n7.stl.block.ast.expression.accessible.VariableAccess@7823a2f9
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@16f65612
 ;print switch;
 LOAD (1) 1[SB]
 SUBR BOut

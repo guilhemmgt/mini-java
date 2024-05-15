@@ -4,19 +4,19 @@ LOADL 1
 STORE (1) 0[SB]
 ;if
 LOADL 1
-JUMPIF (0) endif24
+JUMPIF (0) endif54
 ;Entier b = 5;
 PUSH 1
 LOADL 5
 STORE (1) 1[SB]
-;fr.n7.stl.block.ast.expression.accessible.VariableAccess@1e397ed7
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@3ab39c39
 ; a  = b;
 LOAD (1) 1[SB]
 LOADA 0[SB]
 STOREI (1)
 POP (0) 1
-endif24
-;fr.n7.stl.block.ast.expression.accessible.VariableAccess@490ab905
+endif54
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@2eee9593
 ;(a == 5)
 ;print (a == 5);
 LOAD (1) 0[SB]

@@ -1,6 +1,6 @@
 ;(PInt []) tab = new PInt[ t ];
 PUSH 1
-;fr.n7.stl.block.ast.expression.accessible.ConstantAccess@2ac1fdc4
+;fr.n7.stl.block.ast.expression.accessible.ConstantAccess@136432db
 ;new PInt[ t ]
 LOADL 11
 LOADL 1
@@ -23,37 +23,37 @@ STORE (1) 3[SB]
 PUSH 1
 LOADL 0
 STORE (1) 4[SB]
-;fr.n7.stl.block.ast.expression.accessible.VariableAccess@1c53fd30
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@7382f612
 ;(i < t)
 ;while
-while1
+while35
 LOAD (1) 4[SB]
-;fr.n7.stl.block.ast.expression.accessible.ConstantAccess@50cbc42f
+;fr.n7.stl.block.ast.expression.accessible.ConstantAccess@1055e4af
 LOADL 11
 SUBR ILss
-JUMPIF (0) endwhile1
-;fr.n7.stl.block.ast.expression.accessible.VariableAccess@75412c2f
+JUMPIF (0) endwhile35
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@3caeaf62
 ;(pair == true)
-; tab [ i ] = ((pair == true) ? fr.n7.stl.block.ast.expression.accessible.AddressAccess@d70c109 : fr.n7.stl.block.ast.expression.accessible.AddressAccess@17ed40e0);
+; tab [ i ] = ((pair == true) ? fr.n7.stl.block.ast.expression.accessible.AddressAccess@7b3300e5 : fr.n7.stl.block.ast.expression.accessible.AddressAccess@2e5c649);
 LOAD (1) 1[SB]
 LOADL 1
 SUBR IEq
-JUMPIF (0) condexElse2
+JUMPIF (0) condexElse36
 LOADA 2[SB]
-JUMP condexEnd2
-condexElse2
+JUMP condexEnd36
+condexElse36
 LOADA 3[SB]
-condexEnd2
+condexEnd36
 ;ArrayAssignement:  tab [ i ]
 LOADA 0[SB]
 LOADI (1)
-;fr.n7.stl.block.ast.expression.accessible.VariableAccess@282ba1e
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@e6ea0c6
 LOAD (1) 4[SB]
 LOADL 1
 SUBR IMul
 SUBR IAdd
 STOREI (1)
-;fr.n7.stl.block.ast.expression.accessible.VariableAccess@13b6d03
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@6a38e57f
 ;(pair == false)
 ; pair  = (pair == false);
 LOAD (1) 1[SB]
@@ -61,7 +61,7 @@ LOADL 0
 SUBR IEq
 LOADA 1[SB]
 STOREI (1)
-;fr.n7.stl.block.ast.expression.accessible.VariableAccess@f5f2bb7
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@5577140b
 ;(i + 1)
 ; i  = (i + 1);
 LOAD (1) 4[SB]
@@ -70,8 +70,8 @@ SUBR IAdd
 LOADA 4[SB]
 STOREI (1)
 POP (0) 0
-JUMP while1
-endwhile1
+JUMP while35
+endwhile35
 ;print "une suite de 0 et de 1: ";
 LOADL 34
 LOADL 32
@@ -126,20 +126,20 @@ SUBR COut
 PUSH 1
 LOADL 0
 STORE (1) 5[SB]
-;fr.n7.stl.block.ast.expression.accessible.VariableAccess@73035e27
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@1c6b6478
 ;(j < t)
 ;while
-while3
+while37
 LOAD (1) 5[SB]
-;fr.n7.stl.block.ast.expression.accessible.ConstantAccess@64c64813
+;fr.n7.stl.block.ast.expression.accessible.ConstantAccess@67f89fa3
 LOADL 11
 SUBR ILss
-JUMPIF (0) endwhile3
-;fr.n7.stl.block.ast.expression.accessible.VariableAccess@3ecf72fd
+JUMPIF (0) endwhile37
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@4ac68d3e
 ;ArrayAccess: tab[ j ]
 ;print (*tab[ j ]);
 LOAD (1) 0[SB]
-;fr.n7.stl.block.ast.expression.accessible.VariableAccess@483bf400
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@277c0f21
 LOAD (1) 5[SB]
 LOADL 1
 SUBR IMul
@@ -147,7 +147,7 @@ SUBR IAdd
 LOADI (1)
 LOADI (1)
 SUBR IOut
-;fr.n7.stl.block.ast.expression.accessible.VariableAccess@21a06946
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@6073f712
 ;(j + 1)
 ; j  = (j + 1);
 LOAD (1) 5[SB]
@@ -156,8 +156,8 @@ SUBR IAdd
 LOADA 5[SB]
 STOREI (1)
 POP (0) 0
-JUMP while3
-endwhile3
+JUMP while37
+endwhile37
 POP (0) 6
 HALT
 

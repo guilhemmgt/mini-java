@@ -1,0 +1,18 @@
+;int i = 1;
+PUSH 1
+LOADL 1
+STORE (1) 0[SB]
+;while
+while10
+LOADL 1
+JUMPIF (0) endwhile10
+;int i = 1;
+PUSH 1
+LOADL 1
+STORE (1) 1[SB]
+POP (0) 1
+JUMP while10
+endwhile10
+POP (0) 1
+HALT
+

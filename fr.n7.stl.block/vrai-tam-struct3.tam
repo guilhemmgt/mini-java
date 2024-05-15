@@ -10,35 +10,35 @@ LOADL 1
 STORE (7) 0[SB]
 ;int pa = p.a;
 PUSH 1
-;fr.n7.stl.block.ast.expression.accessible.VariableAccess@5c3bd550
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@5c0369c4
 LOAD (7) 0[SB]
 POP (0) 6
 POP (1) 0
 STORE (1) 7[SB]
 ;char pb = p.b;
 PUSH 1
-;fr.n7.stl.block.ast.expression.accessible.VariableAccess@91161c7
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@2be94b0f
 LOAD (7) 0[SB]
 POP (0) 5
 POP (1) 1
 STORE (1) 8[SB]
 ;< int, < int, int>> pc = p.c;
 PUSH 3
-;fr.n7.stl.block.ast.expression.accessible.VariableAccess@604ed9f0
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@d70c109
 LOAD (7) 0[SB]
 POP (0) 2
 POP (3) 2
 STORE (3) 9[SB]
 ;int pc1 = (fst pc);
 PUSH 1
-;fr.n7.stl.block.ast.expression.accessible.VariableAccess@6a4f787b
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@17ed40e0
 ;(fst pc)
 LOAD (3) 9[SB]
 POP (0) 2
 STORE (1) 12[SB]
 ;int pc2 = (fst (sndpc));
 PUSH 1
-;fr.n7.stl.block.ast.expression.accessible.VariableAccess@685cb137
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@50675690
 ;(sndpc)
 ;(fst (sndpc))
 LOAD (3) 9[SB]
@@ -47,7 +47,7 @@ POP (0) 1
 STORE (1) 13[SB]
 ;int pc3 = (snd(sndpc));
 PUSH 1
-;fr.n7.stl.block.ast.expression.accessible.VariableAccess@6a41eaa2
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@31b7dea0
 ;(sndpc)
 ;(snd(sndpc))
 LOAD (3) 9[SB]
@@ -56,19 +56,19 @@ POP (1) 1
 STORE (1) 14[SB]
 ;int pd = p.d;
 PUSH 1
-;fr.n7.stl.block.ast.expression.accessible.VariableAccess@7cd62f43
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@3ac42916
 LOAD (7) 0[SB]
 POP (0) 1
 POP (1) 5
 STORE (1) 15[SB]
 ;boolean pe = p.e;
 PUSH 1
-;fr.n7.stl.block.ast.expression.accessible.VariableAccess@6d4b1c02
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@47d384ee
 LOAD (7) 0[SB]
 POP (0) 0
 POP (1) 6
 STORE (1) 16[SB]
-;fr.n7.stl.block.ast.expression.accessible.VariableAccess@6093dd95
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@2d6a9952
 ;(pa == 5)
 ;((pa == 5) && (pb == ']'))
 ;(((pa == 5) && (pb == ']')) && (pc1 == 1))
@@ -80,37 +80,37 @@ STORE (1) 16[SB]
 LOAD (1) 7[SB]
 LOADL 5
 SUBR IEq
-;fr.n7.stl.block.ast.expression.accessible.VariableAccess@5622fdf
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@22a71081
 ;(pb == ']')
 LOAD (1) 8[SB]
 LOADL 93
 SUBR IEq
 SUBR BAnd
-;fr.n7.stl.block.ast.expression.accessible.VariableAccess@4883b407
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@3930015a
 ;(pc1 == 1)
 LOAD (1) 12[SB]
 LOADL 1
 SUBR IEq
 SUBR BAnd
-;fr.n7.stl.block.ast.expression.accessible.VariableAccess@7d9d1a19
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@629f0666
 ;(pc2 == 2)
 LOAD (1) 13[SB]
 LOADL 2
 SUBR IEq
 SUBR BAnd
-;fr.n7.stl.block.ast.expression.accessible.VariableAccess@39c0f4a
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@1bc6a36e
 ;(pc3 == 3)
 LOAD (1) 14[SB]
 LOADL 3
 SUBR IEq
 SUBR BAnd
-;fr.n7.stl.block.ast.expression.accessible.VariableAccess@1794d431
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@1ff8b8f
 ;(pd == 6)
 LOAD (1) 15[SB]
 LOADL 6
 SUBR IEq
 SUBR BAnd
-;fr.n7.stl.block.ast.expression.accessible.VariableAccess@42e26948
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@387c703b
 ;(pe == true)
 LOAD (1) 16[SB]
 LOADL 1

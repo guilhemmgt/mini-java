@@ -776,7 +776,7 @@ class CUP$Parser$actions {
 							System.out.println("Code generated.");
 							
 							try {
-								File tamFile = new File (parser.name.replaceAll(".txt", "").replaceAll("test","tam") + ".tam");
+								File tamFile = new File (parser.name.replaceAll(".bloc", ".tam"));
 								PrintStream stream = new PrintStream(new FileOutputStream(tamFile));
 								stream.println(code);
 							} catch (Exception e) {

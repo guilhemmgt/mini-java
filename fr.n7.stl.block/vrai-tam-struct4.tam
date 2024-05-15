@@ -7,7 +7,7 @@ LOADL 3
 STORE (4) 0[SB]
 ;int x1 = s.ext1.x;
 PUSH 1
-;fr.n7.stl.block.ast.expression.accessible.VariableAccess@343f4d3d
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@c39f790
 LOAD (4) 0[SB]
 POP (0) 2
 POP (2) 0
@@ -16,7 +16,7 @@ POP (1) 0
 STORE (1) 4[SB]
 ;int y1 = s.ext1.y;
 PUSH 1
-;fr.n7.stl.block.ast.expression.accessible.VariableAccess@53b32d7
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@71e7a66b
 LOAD (4) 0[SB]
 POP (0) 2
 POP (2) 0
@@ -25,7 +25,7 @@ POP (1) 1
 STORE (1) 5[SB]
 ;int x2 = s.ext2.x;
 PUSH 1
-;fr.n7.stl.block.ast.expression.accessible.VariableAccess@5442a311
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@2ac1fdc4
 LOAD (4) 0[SB]
 POP (0) 0
 POP (2) 2
@@ -34,14 +34,14 @@ POP (1) 0
 STORE (1) 6[SB]
 ;int y2 = s.ext2.y;
 PUSH 1
-;fr.n7.stl.block.ast.expression.accessible.VariableAccess@548e7350
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@5f150435
 LOAD (4) 0[SB]
 POP (0) 0
 POP (2) 2
 POP (0) 0
 POP (1) 1
 STORE (1) 7[SB]
-;fr.n7.stl.block.ast.expression.accessible.VariableAccess@1a968a59
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@1c53fd30
 ;(x1 == 0)
 ;((x1 == 0) && (y1 == 1))
 ;(((x1 == 0) && (y1 == 1)) && (x2 == 2))
@@ -50,19 +50,19 @@ STORE (1) 7[SB]
 LOAD (1) 4[SB]
 LOADL 0
 SUBR IEq
-;fr.n7.stl.block.ast.expression.accessible.VariableAccess@4667ae56
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@50cbc42f
 ;(y1 == 1)
 LOAD (1) 5[SB]
 LOADL 1
 SUBR IEq
 SUBR BAnd
-;fr.n7.stl.block.ast.expression.accessible.VariableAccess@77cd7a0
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@75412c2f
 ;(x2 == 2)
 LOAD (1) 6[SB]
 LOADL 2
 SUBR IEq
 SUBR BAnd
-;fr.n7.stl.block.ast.expression.accessible.VariableAccess@204f30ec
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@282ba1e
 ;(y2 == 3)
 LOAD (1) 7[SB]
 LOADL 3

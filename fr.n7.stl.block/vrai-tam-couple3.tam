@@ -4,21 +4,21 @@ LOADL 5
 STORE (1) 0[SB]
 ;< int, < char, int>> p = < i, < 'z', 3>>;
 PUSH 3
-;fr.n7.stl.block.ast.expression.accessible.VariableAccess@2669b199
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@51016012
 LOAD (1) 0[SB]
 LOADL 122
 LOADL 3
 STORE (3) 1[SB]
 ;int a = (fst p);
 PUSH 1
-;fr.n7.stl.block.ast.expression.accessible.VariableAccess@2344fc66
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@29444d75
 ;(fst p)
 LOAD (3) 1[SB]
 POP (0) 2
 STORE (1) 4[SB]
 ;char b = (fst (sndp));
 PUSH 1
-;fr.n7.stl.block.ast.expression.accessible.VariableAccess@458ad742
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@2280cdac
 ;(sndp)
 ;(fst (sndp))
 LOAD (3) 1[SB]
@@ -27,14 +27,14 @@ POP (0) 1
 STORE (1) 5[SB]
 ;int c = (snd(sndp));
 PUSH 1
-;fr.n7.stl.block.ast.expression.accessible.VariableAccess@5afa04c
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@1517365b
 ;(sndp)
 ;(snd(sndp))
 LOAD (3) 1[SB]
 POP (2) 1
 POP (1) 1
 STORE (1) 6[SB]
-;fr.n7.stl.block.ast.expression.accessible.VariableAccess@6ea12c19
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@4fccd51b
 ;(a == 5)
 ;((a == 5) && (b == 'z'))
 ;(((a == 5) && (b == 'z')) && (c == 3))
@@ -42,13 +42,13 @@ STORE (1) 6[SB]
 LOAD (1) 4[SB]
 LOADL 5
 SUBR IEq
-;fr.n7.stl.block.ast.expression.accessible.VariableAccess@6a024a67
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@44e81672
 ;(b == 'z')
 LOAD (1) 5[SB]
 LOADL 122
 SUBR IEq
 SUBR BAnd
-;fr.n7.stl.block.ast.expression.accessible.VariableAccess@7921b0a2
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@60215eee
 ;(c == 3)
 LOAD (1) 6[SB]
 LOADL 3

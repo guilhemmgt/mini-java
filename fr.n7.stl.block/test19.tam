@@ -1,0 +1,17 @@
+;int i = 1;
+PUSH 1
+LOADL 1
+STORE (1) 0[SB]
+;if
+LOADL 1
+JUMPIF (0) endif8
+POP (0) 0
+endif8
+;int j = i;
+PUSH 1
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@16b98e56
+LOAD (1) 0[SB]
+STORE (1) 1[SB]
+POP (0) 2
+HALT
+

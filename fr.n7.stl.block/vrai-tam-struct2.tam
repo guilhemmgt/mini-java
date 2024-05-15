@@ -8,40 +8,40 @@ LOADL 1
 STORE (5) 0[SB]
 ;int pa = p.a;
 PUSH 1
-;fr.n7.stl.block.ast.expression.accessible.VariableAccess@27efef64
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@12bc6874
 LOAD (5) 0[SB]
 POP (0) 4
 POP (1) 0
 STORE (1) 5[SB]
 ;char pb = p.b;
 PUSH 1
-;fr.n7.stl.block.ast.expression.accessible.VariableAccess@6f7fd0e6
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@de0a01f
 LOAD (5) 0[SB]
 POP (0) 3
 POP (1) 1
 STORE (1) 6[SB]
 ;int pc = p.c;
 PUSH 1
-;fr.n7.stl.block.ast.expression.accessible.VariableAccess@47c62251
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@4c75cab9
 LOAD (5) 0[SB]
 POP (0) 2
 POP (1) 2
 STORE (1) 7[SB]
 ;int pd = p.d;
 PUSH 1
-;fr.n7.stl.block.ast.expression.accessible.VariableAccess@3e6fa38a
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@1ef7fe8e
 LOAD (5) 0[SB]
 POP (0) 1
 POP (1) 3
 STORE (1) 8[SB]
 ;boolean pe = p.e;
 PUSH 1
-;fr.n7.stl.block.ast.expression.accessible.VariableAccess@66a3ffec
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@6f79caec
 LOAD (5) 0[SB]
 POP (0) 0
 POP (1) 4
 STORE (1) 9[SB]
-;fr.n7.stl.block.ast.expression.accessible.VariableAccess@77caeb3e
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@67117f44
 ;(pa == 5)
 ;((pa == 5) && (pb == ']'))
 ;(((pa == 5) && (pb == ']')) && (pc == 8))
@@ -51,25 +51,25 @@ STORE (1) 9[SB]
 LOAD (1) 5[SB]
 LOADL 5
 SUBR IEq
-;fr.n7.stl.block.ast.expression.accessible.VariableAccess@1e88b3c
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@5d3411d
 ;(pb == ']')
 LOAD (1) 6[SB]
 LOADL 93
 SUBR IEq
 SUBR BAnd
-;fr.n7.stl.block.ast.expression.accessible.VariableAccess@42d80b78
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@2471cca7
 ;(pc == 8)
 LOAD (1) 7[SB]
 LOADL 8
 SUBR IEq
 SUBR BAnd
-;fr.n7.stl.block.ast.expression.accessible.VariableAccess@3bfdc050
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@5fe5c6f
 ;(pd == 6)
 LOAD (1) 8[SB]
 LOADL 6
 SUBR IEq
 SUBR BAnd
-;fr.n7.stl.block.ast.expression.accessible.VariableAccess@1bce4f0a
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@6979e8cb
 ;(pe == true)
 LOAD (1) 9[SB]
 LOADL 1
