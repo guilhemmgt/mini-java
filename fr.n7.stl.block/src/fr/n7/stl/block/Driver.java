@@ -20,7 +20,7 @@ class Driver {
 			 if (lancer_tests_prof) { 
 				for (File file : dirFiles) {
 					String name = file.getName();
-					if (name.startsWith("test") && name.endsWith(tests_suffixe)) {
+					if (name.startsWith("test0") && name.endsWith(tests_suffixe)) {
 						parser = new Parser(name);
 						try {
 							parser.parse();
