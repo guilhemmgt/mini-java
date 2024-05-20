@@ -3,16 +3,16 @@ PUSH 1
 LOADL 1
 STORE (1) 0[SB]
 ;while
-while10
+while2
 LOADL 1
-JUMPIF (0) endwhile10
+JUMPIF (0) endwhile2
 ;int i = 1;
 PUSH 1
 LOADL 1
 STORE (1) 1[SB]
 POP (0) 1
-JUMP while10
-endwhile10
+JUMP while2
+endwhile2
 POP (0) 1
 HALT
 

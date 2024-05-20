@@ -9,7 +9,7 @@ POP (0) 0
 endif8
 ;int j = i;
 PUSH 1
-;fr.n7.stl.block.ast.expression.accessible.VariableAccess@16b98e56
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@214c265e
 LOAD (1) 0[SB]
 STORE (1) 1[SB]
 POP (0) 2

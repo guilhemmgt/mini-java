@@ -127,6 +127,43 @@ precedence left UL_Point; // , UL_Crochet_Ouvrant, UL_Parenthese_Ouvrante;
 /* TODO */
 Program ::= Elements:elements Block:block
 			{: 
+				SymbolTable tds = new SymbolTable();
+				TAMFactoryImpl tamFactory = new TAMFactoryImpl();
+				Fragment code = tamFactory.createFragment();
+				
+				if (block.collect(tds)) {
+					System.out.println("Collect succeeded.");
+					
+					if (block.resolve(tds)) {
+						System.out.println("Resolve succeeded.");
+						
+						if (block.checkType()) {
+							System.out.println("Type succeeded.");
+							
+							block.allocateMemory(Register.SB, 0);
+							System.out.println("Memory allocated.");
+							
+							code.append(block.getCode(tamFactory));
+							code.add(tamFactory.createHalt());
+							
+							System.out.println("Code generated.");
+							
+							try {
+								File tamFile = new File (parser.name.replaceAll(".mjava", ".tam"));
+								PrintStream stream = new PrintStream(new FileOutputStream(tamFile));
+								stream.println(code);
+							} catch (Exception e) {
+								e.printStackTrace();
+							}
+						} else {
+							Logger.error("Type failed.");
+						}
+					} else {
+						Logger.error("Resolve failed.");
+					}
+				} else {
+					Logger.error("Collect failed.");
+				}
 			:}
 		;
 
@@ -142,16 +179,23 @@ Elements ::= Main
 		;
 		
 Class ::= UL_Classe UL_Identificateur SingleInherits 
-		UL_Accolade_Ouvrante ClassElements UL_Accolade_Fermante
+		UL_Accolade_Ouvrante ClassElements:classElements UL_Accolade_Fermante
 		{:
+			// TODO : voir si on garde la classe ClassType actuelle (et dans ce cas, trouver comment on l'initialise)
+			// ou si on l'intialise avec "classElements" ci-dessous, et ferait alors hériter les attributs et méthodes 
+			// de ClassElement
+			//RESULT = new ClassType(classElements);
 		:}
 		;
 		
 Main ::= UL_Public UL_Classe UL_Classe_Principale
 		UL_Accolade_Ouvrante 
 			UL_Public UL_De_Classe UL_Type_Vide UL_Methode_Principale 
-			UL_Parenthese_Ouvrante Parameters UL_Parenthese_Fermante Block UL_Accolade_Fermante
+			UL_Parenthese_Ouvrante Parameters:parametres UL_Parenthese_Fermante Block:block UL_Accolade_Fermante
 		{:
+			MethodDeclaration methodePrincipale = new MethodDeclaration(new Signature(AtomicType.VoidType, "main", parametres), block, false, true, false);
+			//TODO : Décider si on fait "Mainclass" ou ajoute attribut "isMain" à ClassType (peut-être même que l'attribut n'est pas nécessaire)
+			//RESULT = new Mainclass(methodePrincipale);
 		:}
 		;
 
@@ -213,46 +257,87 @@ ClassElement ::=
 Attribute ::=
 		Type:type Identifiant:identifiant UL_Point_Virgule
 		{:
+			Type _type = identifiant.getRight();
+				if (_type == null) {
+					_type = type;
+				} else {
+					_type = ((PartialType)_type).complete( type );
+ 				}
+			RESULT = new AttributeDeclaration(identifiant.getLeft(), _type, null, false, false);
 		:}
 		|
 		UL_De_Classe Type:type Identifiant:identifiant UL_Egal Expression:valeur UL_Point_Virgule
 		{:
+			Type _type = identifiant.getRight();
+				if (_type == null) {
+					_type = type;
+				} else {
+					_type = ((PartialType)_type).complete( type );
+ 				}
+			RESULT = new AttributeDeclaration(identifiant.getLeft(), _type, valeur, false, true);
 		:}
 		|
 		UL_De_Classe UL_Definitif Type:type Identifiant:identifiant UL_Egal Expression:valeur UL_Point_Virgule
 		{:
+			Type _type = identifiant.getRight();
+				if (_type == null) {
+					_type = type;
+				} else {
+					_type = ((PartialType)_type).complete( type );
+ 				}
+			RESULT = new AttributeDeclaration(identifiant.getLeft(), _type, valeur, true, true);
 		:}
 		;
 		
 Method ::=
 		Signature:entete Block:corps
+		//TODO : pour moi il ne devrait pas y avoir besoin de cast, voir d'où vient le pb
 		{:
+			RESULT = new MethodDeclaration((Signature) entete,corps, false, false, false);
 		:}
 		| 
 		UL_Definitif Signature:entete Block:corps
 		{:
+			RESULT = new MethodDeclaration((Signature) entete, corps, true, false, false);
 		:}
 		| 
 		UL_De_Classe Signature:entete Block:corps
 		{:
+			RESULT = new MethodDeclaration((Signature) entete,corps, false, true, false);
 		:}
 		| 
 		UL_De_Classe UL_Definitif Signature:entete Block:corps
 		{:
+			RESULT = new MethodDeclaration((Signature) entete, corps, true, true, false);
 		:}
 		| 
 		UL_Abstrait Signature:entete UL_Point_Virgule
 		{:
+			RESULT = new MethodDeclaration((Signature) entete, null, false, false, true);
 		:}
 		;
 		
 Signature ::=
 		Type:type Identifiant:identifiant UL_Parenthese_Ouvrante Parameters:parametres UL_Parenthese_Fermante
 		{:
+			Type _type = identifiant.getRight();
+				if (_type == null) {
+					_type = type;
+				} else {
+					_type = ((PartialType)_type).complete( type );
+ 				}
+			RESULT = new Signature(_type,identifiant.getLeft(),parametres);
 		:}
 		|
 		Type:type Identifiant:identifiant UL_Parenthese_Ouvrante UL_Parenthese_Fermante
 		{:
+			Type _type = identifiant.getRight();
+				if (_type == null) {
+					_type = type;
+				} else {
+					_type = ((PartialType)_type).complete( type );
+ 				}
+			RESULT = new Signature(_type,identifiant.getLeft(),new LinkedList<ParameterDeclaration>());
 		:}
 		;
 		

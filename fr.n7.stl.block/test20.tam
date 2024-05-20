@@ -4,9 +4,9 @@ LOADL 1
 STORE (1) 0[SB]
 ;if
 LOADL 1
-JUMPIF (0) endif9
+JUMPIF (0) endif1
 POP (0) 0
-endif9
+endif1
 ; i  = 2;
 LOADL 2
 LOADA 0[SB]

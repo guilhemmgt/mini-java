@@ -3,16 +3,16 @@ PUSH 1
 LOADL 1
 STORE (1) 0[SB]
 ;while
-while11
+while3
 LOADL 1
-JUMPIF (0) endwhile11
+JUMPIF (0) endwhile3
 ;boolean i = true;
 PUSH 1
 LOADL 1
 STORE (1) 1[SB]
 POP (0) 1
-JUMP while11
-endwhile11
+JUMP while3
+endwhile3
 POP (0) 1
 HALT
 
