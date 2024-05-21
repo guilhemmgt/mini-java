@@ -132,34 +132,38 @@ Program ::= Elements:elements
 
 				boolean collect_succeeded = true;
 
-				for (ClassDeclaration elem : elements) {
+				for (ClassDeclaration elem : (List<ClassDeclaration>) elements) {
 					//if (collect_succeeded && elem.collect(tds)) {
 						//Prochaines étapes
 					}
 					//else {
 					//	System.out.println("collect failed");
 					//}
-			}
+			:}
 		;
 
-Elements ::= Main
+Elements ::= Main:main
 		{:
-			//RESULT = main;
+			List<ClassDeclaration> elements = new LinkedList<ClassDeclaration>();
+			((List) elements).add( (ClassDeclaration) main);
+			RESULT = elements;
 		:}
-		| Class Elements
+		| Class:classe Elements:elements
 		{:
-			//RESULT = classe;
+			((List) elements).add((ClassDeclaration)classe);
+			RESULT = elements;
 		:}
-		| UL_Abstrait Class Elements
+		| UL_Abstrait Class:classe Elements:elements
 		{:
-			//RESULT = classe;
+			((List) elements).add((ClassDeclaration)classe);
+			RESULT = elements;
 		:}
 		;
 		
 Class ::= UL_Classe UL_Identificateur SingleInherits 
 		UL_Accolade_Ouvrante ClassElements:classElements UL_Accolade_Fermante
 		{:
-			RESULT = new ClassDeclaration(classElements);
+			RESULT = new ClassDeclaration("", new LinkedList<ClassElement>(), false);
 		:}
 		;
 		
