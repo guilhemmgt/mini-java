@@ -1,0 +1,35 @@
+;Entier a = 1;
+PUSH 1
+LOADL 1
+STORE (1) 0[SB]
+;int b = 3;
+PUSH 1
+LOADL 3
+STORE (1) 1[SB]
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@736e9adb
+; a  = b;
+LOAD (1) 1[SB]
+LOADA 0[SB]
+STOREI (1)
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@6d21714c
+; b  = a;
+LOAD (1) 0[SB]
+LOADA 1[SB]
+STOREI (1)
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@108c4c35
+;(a == 3)
+;((a == 3) && (b == 3))
+;print ((a == 3) && (b == 3));
+LOAD (1) 0[SB]
+LOADL 3
+SUBR IEq
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@4ccabbaa
+;(b == 3)
+LOAD (1) 1[SB]
+LOADL 3
+SUBR IEq
+SUBR BAnd
+SUBR BOut
+POP (0) 2
+HALT
+

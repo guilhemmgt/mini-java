@@ -1,0 +1,222 @@
+;Point p = { 5 ,8 };
+PUSH 2
+LOADL 5
+LOADL 8
+STORE (2) 0[SB]
+;int a = p.x;
+PUSH 1
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@6e8cf4c6
+LOAD (2) 0[SB]
+POP (0) 1
+POP (1) 0
+STORE (1) 2[SB]
+;int b = p.y;
+PUSH 1
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@12edcd21
+LOAD (2) 0[SB]
+POP (0) 0
+POP (1) 1
+STORE (1) 3[SB]
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@34c45dca
+;(a == 5)
+;((a == 5) && (b == 8))
+;print ((a == 5) && (b == 8));
+LOAD (1) 2[SB]
+LOADL 5
+SUBR IEq
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@52cc8049
+;(b == 8)
+LOAD (1) 3[SB]
+LOADL 8
+SUBR IEq
+SUBR BAnd
+SUBR BOut
+;print " ; ";
+LOADL 34
+LOADL 32
+LOADL 59
+LOADL 32
+SUBR COut
+SUBR COut
+SUBR COut
+;Truc t = { 5 ,']' ,< 1, < 2, 3>> ,6 ,true };
+PUSH 7
+LOADL 5
+LOADL 93
+LOADL 1
+LOADL 2
+LOADL 3
+LOADL 6
+LOADL 1
+STORE (7) 4[SB]
+;int ta = t.a;
+PUSH 1
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@5b6f7412
+LOAD (7) 4[SB]
+POP (0) 6
+POP (1) 0
+STORE (1) 11[SB]
+;char tb = t.b;
+PUSH 1
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@27973e9b
+LOAD (7) 4[SB]
+POP (0) 5
+POP (1) 1
+STORE (1) 12[SB]
+;< int, < int, int>> tc = t.c;
+PUSH 3
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@312b1dae
+LOAD (7) 4[SB]
+POP (0) 2
+POP (3) 2
+STORE (3) 13[SB]
+;int tc1 = (fst tc);
+PUSH 1
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@7530d0a
+;(fst tc)
+LOAD (3) 13[SB]
+POP (0) 2
+STORE (1) 16[SB]
+;int tc2 = (fst (sndtc));
+PUSH 1
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@27bc2616
+;(sndtc)
+;(fst (sndtc))
+LOAD (3) 13[SB]
+POP (2) 1
+POP (0) 1
+STORE (1) 17[SB]
+;int tc3 = (snd(sndtc));
+PUSH 1
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@3941a79c
+;(sndtc)
+;(snd(sndtc))
+LOAD (3) 13[SB]
+POP (2) 1
+POP (1) 1
+STORE (1) 18[SB]
+;int td = t.d;
+PUSH 1
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@506e1b77
+LOAD (7) 4[SB]
+POP (0) 1
+POP (1) 5
+STORE (1) 19[SB]
+;boolean te = t.e;
+PUSH 1
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@4fca772d
+LOAD (7) 4[SB]
+POP (0) 0
+POP (1) 6
+STORE (1) 20[SB]
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@9807454
+;(ta == 5)
+;((ta == 5) && (tb == ']'))
+;(((ta == 5) && (tb == ']')) && (tc1 == 1))
+;((((ta == 5) && (tb == ']')) && (tc1 == 1)) && (tc2 == 2))
+;(((((ta == 5) && (tb == ']')) && (tc1 == 1)) && (tc2 == 2)) && (tc3 == 3))
+;((((((ta == 5) && (tb == ']')) && (tc1 == 1)) && (tc2 == 2)) && (tc3 == 3)) && (td == 6))
+;(((((((ta == 5) && (tb == ']')) && (tc1 == 1)) && (tc2 == 2)) && (tc3 == 3)) && (td == 6)) && (te == true))
+;print (((((((ta == 5) && (tb == ']')) && (tc1 == 1)) && (tc2 == 2)) && (tc3 == 3)) && (td == 6)) && (te == true));
+LOAD (1) 11[SB]
+LOADL 5
+SUBR IEq
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@3d494fbf
+;(tb == ']')
+LOAD (1) 12[SB]
+LOADL 93
+SUBR IEq
+SUBR BAnd
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@1ddc4ec2
+;(tc1 == 1)
+LOAD (1) 16[SB]
+LOADL 1
+SUBR IEq
+SUBR BAnd
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@133314b
+;(tc2 == 2)
+LOAD (1) 17[SB]
+LOADL 2
+SUBR IEq
+SUBR BAnd
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@b1bc7ed
+;(tc3 == 3)
+LOAD (1) 18[SB]
+LOADL 3
+SUBR IEq
+SUBR BAnd
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@7cd84586
+;(td == 6)
+LOAD (1) 19[SB]
+LOADL 6
+SUBR IEq
+SUBR BAnd
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@30dae81
+;(te == true)
+LOAD (1) 20[SB]
+LOADL 1
+SUBR IEq
+SUBR BAnd
+SUBR BOut
+;print " ; ";
+LOADL 34
+LOADL 32
+LOADL 59
+LOADL 32
+SUBR COut
+SUBR COut
+SUBR COut
+;Segment s = { { 0 ,1 } ,{ 2 ,3 } };
+PUSH 4
+LOADL 0
+LOADL 1
+LOADL 2
+LOADL 3
+STORE (4) 21[SB]
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@1b2c6ec2
+;(s.ext1.x == 0)
+;((s.ext1.x == 0) && (s.ext1.y == 1))
+;(((s.ext1.x == 0) && (s.ext1.y == 1)) && (s.ext2.x == 2))
+;((((s.ext1.x == 0) && (s.ext1.y == 1)) && (s.ext2.x == 2)) && (s.ext2.y == 3))
+;print ((((s.ext1.x == 0) && (s.ext1.y == 1)) && (s.ext2.x == 2)) && (s.ext2.y == 3));
+LOAD (4) 21[SB]
+POP (0) 2
+POP (2) 0
+POP (0) 1
+POP (1) 0
+LOADL 0
+SUBR IEq
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@4edde6e5
+;(s.ext1.y == 1)
+LOAD (4) 21[SB]
+POP (0) 2
+POP (2) 0
+POP (0) 0
+POP (1) 1
+LOADL 1
+SUBR IEq
+SUBR BAnd
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@70177ecd
+;(s.ext2.x == 2)
+LOAD (4) 21[SB]
+POP (0) 0
+POP (2) 2
+POP (0) 1
+POP (1) 0
+LOADL 2
+SUBR IEq
+SUBR BAnd
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@1e80bfe8
+;(s.ext2.y == 3)
+LOAD (4) 21[SB]
+POP (0) 0
+POP (2) 2
+POP (0) 0
+POP (1) 1
+LOADL 3
+SUBR IEq
+SUBR BAnd
+SUBR BOut
+POP (0) 25
+HALT
+

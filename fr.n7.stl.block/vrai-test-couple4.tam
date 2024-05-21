@@ -1,0 +1,39 @@
+;int i = 5;
+PUSH 1
+LOADL 5
+STORE (1) 0[SB]
+;< int, int> p = < 2, i>;
+PUSH 2
+LOADL 2
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@27d6c5e0
+LOAD (1) 0[SB]
+STORE (2) 1[SB]
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@4f3f5b24
+;(sndp)
+; p  = < (sndp), 3>;
+LOAD (2) 1[SB]
+POP (1) 1
+LOADL 3
+LOADA 1[SB]
+STOREI (2)
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@15aeb7ab
+;(fst p)
+;((fst p) == 5)
+;(((fst p) == 5) && ((sndp) == 3))
+;print (((fst p) == 5) && ((sndp) == 3));
+LOAD (2) 1[SB]
+POP (0) 1
+LOADL 5
+SUBR IEq
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@7b23ec81
+;(sndp)
+;((sndp) == 3)
+LOAD (2) 1[SB]
+POP (1) 1
+LOADL 3
+SUBR IEq
+SUBR BAnd
+SUBR BOut
+POP (0) 3
+HALT
+

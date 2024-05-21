@@ -1,0 +1,163 @@
+;(PInt []) tab = new PInt[ t ];
+PUSH 1
+;fr.n7.stl.block.ast.expression.accessible.ConstantAccess@677327b6
+;new PInt[ t ]
+LOADL 11
+LOADL 1
+SUBR IMul
+SUBR MAlloc
+STORE (1) 0[SB]
+;boolean pair = true;
+PUSH 1
+LOADL 1
+STORE (1) 1[SB]
+;int a = 0;
+PUSH 1
+LOADL 0
+STORE (1) 2[SB]
+;int b = 1;
+PUSH 1
+LOADL 1
+STORE (1) 3[SB]
+;int i = 0;
+PUSH 1
+LOADL 0
+STORE (1) 4[SB]
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@14ae5a5
+;(i < t)
+;while
+while1
+LOAD (1) 4[SB]
+;fr.n7.stl.block.ast.expression.accessible.ConstantAccess@7f31245a
+LOADL 11
+SUBR ILss
+JUMPIF (0) endwhile1
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@6d6f6e28
+;(pair == true)
+; tab [ i ] = ((pair == true) ? fr.n7.stl.block.ast.expression.accessible.AddressAccess@74a14482 : fr.n7.stl.block.ast.expression.accessible.AddressAccess@1540e19d);
+LOAD (1) 1[SB]
+LOADL 1
+SUBR IEq
+JUMPIF (0) condexElse2
+LOADA 2[SB]
+JUMP condexEnd2
+condexElse2
+LOADA 3[SB]
+condexEnd2
+;ArrayAssignement:  tab [ i ]
+LOADA 0[SB]
+LOADI (1)
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@135fbaa4
+LOAD (1) 4[SB]
+LOADL 1
+SUBR IMul
+SUBR IAdd
+STOREI (1)
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@45ee12a7
+;(pair == false)
+; pair  = (pair == false);
+LOAD (1) 1[SB]
+LOADL 0
+SUBR IEq
+LOADA 1[SB]
+STOREI (1)
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@330bedb4
+;(i + 1)
+; i  = (i + 1);
+LOAD (1) 4[SB]
+LOADL 1
+SUBR IAdd
+LOADA 4[SB]
+STOREI (1)
+POP (0) 0
+JUMP while1
+endwhile1
+;print "une suite de 0 et de 1: ";
+LOADL 34
+LOADL 32
+LOADL 58
+LOADL 49
+LOADL 32
+LOADL 101
+LOADL 100
+LOADL 32
+LOADL 116
+LOADL 101
+LOADL 32
+LOADL 48
+LOADL 32
+LOADL 101
+LOADL 100
+LOADL 32
+LOADL 101
+LOADL 116
+LOADL 105
+LOADL 117
+LOADL 115
+LOADL 32
+LOADL 101
+LOADL 110
+LOADL 117
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+;int j = 0;
+PUSH 1
+LOADL 0
+STORE (1) 5[SB]
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@2503dbd3
+;(j < t)
+;while
+while3
+LOAD (1) 5[SB]
+;fr.n7.stl.block.ast.expression.accessible.ConstantAccess@4b67cf4d
+LOADL 11
+SUBR ILss
+JUMPIF (0) endwhile3
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@7ea987ac
+;ArrayAccess: tab[ j ]
+;print (*tab[ j ]);
+LOAD (1) 0[SB]
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@12a3a380
+LOAD (1) 5[SB]
+LOADL 1
+SUBR IMul
+SUBR IAdd
+LOADI (1)
+LOADI (1)
+SUBR IOut
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@29453f44
+;(j + 1)
+; j  = (j + 1);
+LOAD (1) 5[SB]
+LOADL 1
+SUBR IAdd
+LOADA 5[SB]
+STOREI (1)
+POP (0) 0
+JUMP while3
+endwhile3
+POP (0) 6
+HALT
+
