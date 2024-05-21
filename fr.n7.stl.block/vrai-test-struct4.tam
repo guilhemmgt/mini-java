@@ -1,0 +1,74 @@
+;Segment s = { { 0 ,1 } ,{ 2 ,3 } };
+PUSH 4
+LOADL 0
+LOADL 1
+LOADL 2
+LOADL 3
+STORE (4) 0[SB]
+;int x1 = s.ext1.x;
+PUSH 1
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@446cdf90
+LOAD (4) 0[SB]
+POP (0) 2
+POP (2) 0
+POP (0) 1
+POP (1) 0
+STORE (1) 4[SB]
+;int y1 = s.ext1.y;
+PUSH 1
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@799f7e29
+LOAD (4) 0[SB]
+POP (0) 2
+POP (2) 0
+POP (0) 0
+POP (1) 1
+STORE (1) 5[SB]
+;int x2 = s.ext2.x;
+PUSH 1
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@4b85612c
+LOAD (4) 0[SB]
+POP (0) 0
+POP (2) 2
+POP (0) 1
+POP (1) 0
+STORE (1) 6[SB]
+;int y2 = s.ext2.y;
+PUSH 1
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@277050dc
+LOAD (4) 0[SB]
+POP (0) 0
+POP (2) 2
+POP (0) 0
+POP (1) 1
+STORE (1) 7[SB]
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@5c29bfd
+;(x1 == 0)
+;((x1 == 0) && (y1 == 1))
+;(((x1 == 0) && (y1 == 1)) && (x2 == 2))
+;((((x1 == 0) && (y1 == 1)) && (x2 == 2)) && (y2 == 3))
+;print ((((x1 == 0) && (y1 == 1)) && (x2 == 2)) && (y2 == 3));
+LOAD (1) 4[SB]
+LOADL 0
+SUBR IEq
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@7aec35a
+;(y1 == 1)
+LOAD (1) 5[SB]
+LOADL 1
+SUBR IEq
+SUBR BAnd
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@67424e82
+;(x2 == 2)
+LOAD (1) 6[SB]
+LOADL 2
+SUBR IEq
+SUBR BAnd
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@42110406
+;(y2 == 3)
+LOAD (1) 7[SB]
+LOADL 3
+SUBR IEq
+SUBR BAnd
+SUBR BOut
+POP (0) 8
+HALT
+

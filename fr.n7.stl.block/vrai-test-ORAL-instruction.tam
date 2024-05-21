@@ -1,0 +1,193 @@
+;int i = 0;
+PUSH 1
+LOADL 0
+STORE (1) 0[SB]
+;boolean switch = false;
+PUSH 1
+LOADL 0
+STORE (1) 1[SB]
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@6f539caf
+;(i < 5)
+;while
+while20
+LOAD (1) 0[SB]
+LOADL 5
+SUBR ILss
+JUMPIF (0) endwhile20
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@79fc0f2f
+;if else
+LOAD (1) 1[SB]
+JUMPIF (0) else21
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@50040f0c
+;(i + 1)
+; i  = (i + 1);
+LOAD (1) 0[SB]
+LOADL 1
+SUBR IAdd
+LOADA 0[SB]
+STOREI (1)
+POP (0) 0
+JUMP endif21
+else21
+;while
+while22
+LOADL 0
+JUMPIF (0) endwhile22
+;print "ne s'affiche pas";
+LOADL 34
+LOADL 115
+LOADL 97
+LOADL 112
+LOADL 32
+LOADL 101
+LOADL 104
+LOADL 99
+LOADL 105
+LOADL 102
+LOADL 102
+LOADL 97
+LOADL 39
+LOADL 115
+LOADL 32
+LOADL 101
+LOADL 110
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+POP (0) 0
+JUMP while22
+endwhile22
+POP (0) 0
+endif21
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@2dda6444
+;(! switch)
+; switch  = (! switch);
+LOAD (1) 1[SB]
+SUBR BNeg
+LOADA 1[SB]
+STOREI (1)
+POP (0) 0
+JUMP while20
+endwhile20
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@5e9f23b4
+;if
+LOAD (1) 1[SB]
+JUMPIF (0) endif23
+;print "ne s'affiche pas non plus";
+LOADL 34
+LOADL 115
+LOADL 117
+LOADL 108
+LOADL 112
+LOADL 32
+LOADL 110
+LOADL 111
+LOADL 110
+LOADL 32
+LOADL 115
+LOADL 97
+LOADL 112
+LOADL 32
+LOADL 101
+LOADL 104
+LOADL 99
+LOADL 105
+LOADL 102
+LOADL 102
+LOADL 97
+LOADL 39
+LOADL 115
+LOADL 32
+LOADL 101
+LOADL 110
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+POP (0) 0
+endif23
+;print "c'est écrit false -> ";
+LOADL 34
+LOADL 32
+LOADL 62
+LOADL 45
+LOADL 32
+LOADL 101
+LOADL 115
+LOADL 108
+LOADL 97
+LOADL 102
+LOADL 32
+LOADL 116
+LOADL 105
+LOADL 114
+LOADL 99
+LOADL 233
+LOADL 32
+LOADL 116
+LOADL 115
+LOADL 101
+LOADL 39
+LOADL 99
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+SUBR COut
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@4783da3f
+;print switch;
+LOAD (1) 1[SB]
+SUBR BOut
+POP (0) 2
+HALT
+

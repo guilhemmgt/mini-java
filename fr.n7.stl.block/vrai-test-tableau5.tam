@@ -1,0 +1,34 @@
+;Tab t = new int[ 3 ];
+PUSH 1
+;new int[ 3 ]
+LOADL 3
+LOADL 1
+SUBR IMul
+SUBR MAlloc
+STORE (1) 0[SB]
+; t [ 1 ] = 6;
+LOADL 6
+;ArrayAssignement:  t [ 1 ]
+LOADA 0[SB]
+LOADI (1)
+LOADL 1
+LOADL 1
+SUBR IMul
+SUBR IAdd
+STOREI (1)
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@7a4f0f29
+;ArrayAccess: t[ 1 ]
+;(t[ 1 ] == 6)
+;print (t[ 1 ] == 6);
+LOAD (1) 0[SB]
+LOADL 1
+LOADL 1
+SUBR IMul
+SUBR IAdd
+LOADI (1)
+LOADL 6
+SUBR IEq
+SUBR BOut
+POP (0) 1
+HALT
+

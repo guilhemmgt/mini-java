@@ -1,0 +1,50 @@
+;boolean i = true;
+PUSH 1
+LOADL 1
+STORE (1) 0[SB]
+;fr.n7.stl.block.ast.expression.accessible.ConstantAccess@7229724f
+; i  = c;
+LOADL 0
+LOADA 0[SB]
+STOREI (1)
+;boolean j = c;
+PUSH 1
+;fr.n7.stl.block.ast.expression.accessible.ConstantAccess@4c873330
+LOADL 0
+STORE (1) 1[SB]
+;boolean k = c;
+PUSH 1
+;fr.n7.stl.block.ast.expression.accessible.ConstantAccess@119d7047
+LOADL 0
+STORE (1) 2[SB]
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@776ec8df
+;(i == false)
+;((i == false) && (j == false))
+;(((i == false) && (j == false)) && (k == false))
+;((((i == false) && (j == false)) && (k == false)) && (c == false))
+;print ((((i == false) && (j == false)) && (k == false)) && (c == false));
+LOAD (1) 0[SB]
+LOADL 0
+SUBR IEq
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@4eec7777
+;(j == false)
+LOAD (1) 1[SB]
+LOADL 0
+SUBR IEq
+SUBR BAnd
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@3b07d329
+;(k == false)
+LOAD (1) 2[SB]
+LOADL 0
+SUBR IEq
+SUBR BAnd
+;fr.n7.stl.block.ast.expression.accessible.ConstantAccess@41629346
+;(c == false)
+LOADL 0
+LOADL 0
+SUBR IEq
+SUBR BAnd
+SUBR BOut
+POP (0) 3
+HALT
+
