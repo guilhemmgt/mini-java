@@ -125,45 +125,22 @@ precedence left UL_Point; // , UL_Crochet_Ouvrant, UL_Parenthese_Ouvrante;
 /* UL_Identificateur est un terminal (Unité lexicale) */
 /* Block est la variable utilisable dans l'action sémantique qui contient la valeur renvoyé par l'analyse du Block */
 /* TODO */
-Program ::= Elements:elements Block:block
+Program ::= Elements:elements
 			{: 
 				SymbolTable tds = new SymbolTable();
 				TAMFactoryImpl tamFactory = new TAMFactoryImpl();
 				Fragment code = tamFactory.createFragment();
-				
-				if (block.collect(tds)) {
-					System.out.println("Collect succeeded.");
-					
-					if (block.resolve(tds)) {
-						System.out.println("Resolve succeeded.");
-						
-						if (block.checkType()) {
-							System.out.println("Type succeeded.");
-							
-							block.allocateMemory(Register.SB, 0);
-							System.out.println("Memory allocated.");
-							
-							code.append(block.getCode(tamFactory));
-							code.add(tamFactory.createHalt());
-							
-							System.out.println("Code generated.");
-							
-							try {
-								File tamFile = new File (parser.name.replaceAll(".mjava", ".tam"));
-								PrintStream stream = new PrintStream(new FileOutputStream(tamFile));
-								stream.println(code);
-							} catch (Exception e) {
-								e.printStackTrace();
-							}
-						} else {
-							Logger.error("Type failed.");
-						}
-					} else {
-						Logger.error("Resolve failed.");
+
+				boolean collect_succeeded = true;
+
+				for (ClassDeclaration elem : elements) {
+					if (elem.collect(tds)) {
+						//Prochaines étapes
 					}
-				} else {
-					Logger.error("Collect failed.");
-				}
+					else {
+						System.out.println("collect failed")
+					}
+			}
 			:}
 		;
 
@@ -181,10 +158,7 @@ Elements ::= Main
 Class ::= UL_Classe UL_Identificateur SingleInherits 
 		UL_Accolade_Ouvrante ClassElements:classElements UL_Accolade_Fermante
 		{:
-			// TODO : voir si on garde la classe ClassType actuelle (et dans ce cas, trouver comment on l'initialise)
-			// ou si on l'intialise avec "classElements" ci-dessous, et ferait alors hériter les attributs et méthodes 
-			// de ClassElement
-			//RESULT = new ClassType(classElements);
+			RESULT = new ClassDeclaration(classElements);
 		:}
 		;
 		
