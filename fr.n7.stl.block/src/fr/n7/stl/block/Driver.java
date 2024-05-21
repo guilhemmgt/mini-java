@@ -15,13 +15,13 @@ class Driver {
 			boolean lancer_tests_faux = false;
 			boolean lancer_tests_prof = false;
 			
-			 File[] dirFiles = new File(".").listFiles();
+			 File[] dirFiles = new File("./test-block/").listFiles();
 
 			 if (lancer_tests_prof) { 
 				for (File file : dirFiles) {
 					String name = file.getName();
 					if (name.startsWith("test0") && name.endsWith(tests_suffixe)) {
-						parser = new Parser(name);
+						parser = new Parser("./test-block/" + name);
 						try {
 							parser.parse();
 						} catch (Exception e) {
@@ -36,7 +36,7 @@ class Driver {
 					 String name = file.getName();
 					 if (name.startsWith(tests_vrais_prefixe) && name.endsWith(tests_suffixe)) {
 						 System.out.println("\n=== TEST VRAI " + name.substring(tests_vrais_prefixe.length(), name.length() - tests_suffixe.length()) + " ===");
-						 parser = new Parser(name);
+						 parser = new Parser("./test-block/" + name);
 						 parser.parse();
 					 }
 				 }

@@ -1,7 +1,0 @@
-test {
-	typedef int Tab[];
-	Tab t = new int[3];
-	t[1] = 6;
-	
-	print(t[1]==6);
-}

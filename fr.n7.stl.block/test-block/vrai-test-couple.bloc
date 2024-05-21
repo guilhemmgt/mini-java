@@ -1,0 +1,8 @@
+test {
+	int i = 5;
+	<int, int> p = <2, i>;
+	int a = fst p;
+	int b = snd p; 
+	
+	print(a==2 && b==5);
+}

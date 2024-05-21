@@ -1,5 +1,0 @@
-test {
-	while (c < 5) {
-		int a = 2;
-	}
-}

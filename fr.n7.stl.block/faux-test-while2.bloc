@@ -1,6 +1,0 @@
-test {
-	boolean a = true;
-	while (a < 5) {
-		int a = 2;
-	}
-}

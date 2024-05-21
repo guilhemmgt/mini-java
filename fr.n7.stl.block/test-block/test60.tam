@@ -1,0 +1,20 @@
+;(boolean []) p = { true ,false };
+PUSH 1
+LOADL 1
+LOADL 0
+STORE (1) 0[SB]
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@7106e68e
+;ArrayAccess: p[ 0 ]
+;if
+LOAD (1) 0[SB]
+LOADL 0
+LOADL 1
+SUBR IMul
+SUBR IAdd
+LOADI (1)
+JUMPIF (0) endif23
+POP (0) 0
+endif23
+POP (0) 1
+HALT
+

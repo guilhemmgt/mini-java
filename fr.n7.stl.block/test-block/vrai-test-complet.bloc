@@ -1,0 +1,20 @@
+prog {
+	typedef int *PInt;
+	const int t = 11;
+	PInt tab[] = (new PInt[t]);
+	boolean pair = true;
+	int a = 0;
+	int b = 1;
+	int i = 0;
+	while (i < t) {
+		tab[i] = pair==true ? &a : &b;
+		pair = (pair==false);
+		i = i+1;
+	}
+	print "une suite de 0 et de 1: ";
+	int j = 0;
+	while(j<t) {
+    	print (*(tab[j]));
+    	j = j+1;
+	}
+}

@@ -1,0 +1,9 @@
+test {
+	typedef int Entier;
+	Entier e = 5;
+	int v = 9;
+	int *ptr = &v;
+	e = *ptr;
+	
+	print(v==9 && e==9);
+}

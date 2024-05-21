@@ -1,0 +1,33 @@
+;int a = 0;
+PUSH 1
+LOADL 0
+STORE (1) 0[SB]
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@6ea6d14e
+;(a < 5)
+;while
+while55
+LOAD (1) 0[SB]
+LOADL 5
+SUBR ILss
+JUMPIF (0) endwhile55
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@6ad5c04e
+;(a + 1)
+; a  = (a + 1);
+LOAD (1) 0[SB]
+LOADL 1
+SUBR IAdd
+LOADA 0[SB]
+STOREI (1)
+POP (0) 0
+JUMP while55
+endwhile55
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@6833ce2c
+;(a == 5)
+;print (a == 5);
+LOAD (1) 0[SB]
+LOADL 5
+SUBR IEq
+SUBR BOut
+POP (0) 1
+HALT
+

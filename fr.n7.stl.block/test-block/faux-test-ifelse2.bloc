@@ -1,0 +1,7 @@
+test {
+	if (c == 5) {
+		int a = 0;
+	} else {
+		int a = 2;
+	}
+}

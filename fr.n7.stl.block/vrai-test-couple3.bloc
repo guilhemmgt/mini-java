@@ -1,9 +1,0 @@
-test {
-	int i = 5;
-	<int, <character, int>> p = <i, <'z', 3>>;
-	int a = fst p;
-	character b = fst snd p;
-	int c = snd snd p; 
-	
-	print(a==5 && b == 'z' && c == 3);
-}

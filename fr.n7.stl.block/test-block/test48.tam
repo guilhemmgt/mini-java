@@ -1,0 +1,16 @@
+;< boolean, boolean> p = { true ,false };
+PUSH 2
+LOADL 1
+LOADL 0
+STORE (2) 0[SB]
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@7cd84586
+;(fst p)
+;if
+LOAD (2) 0[SB]
+POP (0) 1
+JUMPIF (0) endif19
+POP (0) 0
+endif19
+POP (0) 2
+HALT
+

@@ -1,0 +1,4 @@
+test {
+	typedef struct Entieri { int v; } Entier;
+	Entier e = { 5, 4 };
+}

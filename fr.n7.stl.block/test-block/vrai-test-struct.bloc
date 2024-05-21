@@ -1,0 +1,9 @@
+test {
+	typedef struct Pointi { int x; int y; } Point;
+	Point p = {5,8};
+
+	int a = p.x;
+	int b = p.y;
+	
+	print (a==5 && b==8);
+}

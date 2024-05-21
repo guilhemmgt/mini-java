@@ -1,0 +1,11 @@
+test {
+	typedef int Entier;
+	Entier a = 1;
+	
+	if (true) {
+		Entier b = 5;
+		a = b;
+	}
+	
+	print(a==5);
+}

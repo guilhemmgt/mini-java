@@ -1,0 +1,8 @@
+test {
+	boolean a = false;
+	if ( 5 ) {
+		a = false;
+	} else {
+		a = true;
+	}
+}

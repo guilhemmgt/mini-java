@@ -1,0 +1,60 @@
+;int i = 5;
+PUSH 1
+LOADL 5
+STORE (1) 0[SB]
+;< < char, int>, int> p = < < 'z', 3>, i>;
+PUSH 3
+LOADL 122
+LOADL 3
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@1761e840
+LOAD (1) 0[SB]
+STORE (3) 1[SB]
+;char a = (fst (fst p));
+PUSH 1
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@6c629d6e
+;(fst p)
+;(fst (fst p))
+LOAD (3) 1[SB]
+POP (0) 1
+POP (0) 1
+STORE (1) 4[SB]
+;int b = (snd(fst p));
+PUSH 1
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@5ecddf8f
+;(fst p)
+;(snd(fst p))
+LOAD (3) 1[SB]
+POP (0) 1
+POP (1) 1
+STORE (1) 5[SB]
+;int c = (sndp);
+PUSH 1
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@3f102e87
+;(sndp)
+LOAD (3) 1[SB]
+POP (1) 2
+STORE (1) 6[SB]
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@27abe2cd
+;(a == 'z')
+;((a == 'z') && (b == 3))
+;(((a == 'z') && (b == 3)) && (c == 5))
+;print (((a == 'z') && (b == 3)) && (c == 5));
+LOAD (1) 4[SB]
+LOADL 122
+SUBR IEq
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@5f5a92bb
+;(b == 3)
+LOAD (1) 5[SB]
+LOADL 3
+SUBR IEq
+SUBR BAnd
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@6fdb1f78
+;(c == 5)
+LOAD (1) 6[SB]
+LOADL 5
+SUBR IEq
+SUBR BAnd
+SUBR BOut
+POP (0) 7
+HALT
+

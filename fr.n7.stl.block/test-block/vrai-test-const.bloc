@@ -1,0 +1,9 @@
+test {
+	boolean i = true;
+	i = c;
+	boolean j = c;
+	const boolean c = false;
+	boolean k = c;
+	
+	print (i == false && j == false && k == false && c == false);
+}

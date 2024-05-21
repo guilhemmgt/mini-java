@@ -1,0 +1,8 @@
+test {
+	int i = 1;
+	
+	int j = i==1 ? 2 : 1;
+	character k = i==5 ? 'l' : 'm';
+
+	print (i==1 && j==2 && k=='m');
+}
