@@ -128,17 +128,9 @@ Identificateur = ([:jletter:] | "_" ) ([:jletterdigit:] | [:jletter:] | "_" )*
   "true"				{ return symbolFactory.newSymbol("Vrai", UL_Vrai); }
   "false"			{ return symbolFactory.newSymbol("Faux", UL_Faux); }
   "return"			{ return symbolFactory.newSymbol("Retour", UL_Retour); }
+  "fst"				{ return symbolFactory.newSymbol("Premier", UL_Premier); }
+  "snd"				{ return symbolFactory.newSymbol("Second", UL_Second); }
   "while"			{ return symbolFactory.newSymbol("Tant que", UL_Tant_Que); }
-  "class"			{ return symbolFactory.newSymbol("Classe", UL_Classe); }
-  "extends"			{ return symbolFactory.newSymbol("Hérite de", UL_Herite); }
-  "public"			{ return symbolFactory.newSymbol("Public", UL_Public); }
-  "private"			{ return symbolFactory.newSymbol("Privé", UL_Prive); }
-  "static"			{ return symbolFactory.newSymbol("Public", UL_De_Classe); }
-  "final"			{ return symbolFactory.newSymbol("Définitif", UL_Definitif); }
-  "this"			{ return symbolFactory.newSymbol("Moi", UL_Moi); }
-  "super"			{ return symbolFactory.newSymbol("Super", UL_Super); }
-  "Main"			{ return symbolFactory.newSymbol("Classe Principale", UL_Classe_Principale); }
-  "main"			{ return symbolFactory.newSymbol("Méthode Principale", UL_Methode_Principale); }
   {Caractere}		{ return symbolFactory.newSymbol("Caractère", UL_Caractere, yytext()); }
   {Chaine}			{ return symbolFactory.newSymbol("Chaine de caractères", UL_Chaine, yytext()); }
   {Entier}     		{ return symbolFactory.newSymbol("Nombre Entier", UL_Nombre_Entier, yytext()); }
