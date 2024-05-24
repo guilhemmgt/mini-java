@@ -698,6 +698,8 @@ class CUP$Parser$actions {
 
 				boolean collect_succeeded = true;
 
+				System.out.println("Debut du collect");
+
 				for (ClassType elem : elements) {
 					if (collect_succeeded && elem.collect(tds)) {
 						//Prochaines étapes
@@ -828,6 +830,8 @@ class CUP$Parser$actions {
               List<ClassElement> RESULT =null;
 		//@@CUPDBG9
 
+			List<ClassElement> elements = new LinkedList<ClassElement>();
+			RESULT = elements;
 		
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("ClassElements",20, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
@@ -837,8 +841,20 @@ class CUP$Parser$actions {
           case 8: // ClassElements ::= AccessRight ClassElement ClassElements 
             {
               List<ClassElement> RESULT =null;
+		Location accessRightxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).xleft;
+		Location accessRightxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).xright;
+		AccessRight accessRight = (AccessRight)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-2)).value;
+		Location elemxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).xleft;
+		Location elemxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).xright;
+		ClassElement elem = (ClassElement)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
+		Location elementsxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xleft;
+		Location elementsxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xright;
+		List<ClassElement> elements = (List<ClassElement>)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
 		//@@CUPDBG10
 
+			elem.setTypeAcces(accessRight);
+			elements.add(elem);
+			RESULT = elements;
 		
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("ClassElements",20, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
@@ -847,7 +863,7 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 9: // AccessRight ::= UL_Public 
             {
-              Object RESULT =null;
+              AccessRight RESULT =null;
 		//@@CUPDBG11
 
 			RESULT = AccessRight.PUBLIC;
@@ -859,7 +875,7 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 10: // AccessRight ::= UL_Protege 
             {
-              Object RESULT =null;
+              AccessRight RESULT =null;
 		//@@CUPDBG12
 
 			RESULT = AccessRight.PROTEGE;
@@ -871,7 +887,7 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 11: // AccessRight ::= UL_Prive 
             {
-              Object RESULT =null;
+              AccessRight RESULT =null;
 		//@@CUPDBG13
 
 			RESULT = AccessRight.PRIVE;

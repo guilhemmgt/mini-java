@@ -103,7 +103,8 @@ non terminal AttributeDeclaration		Attribute;
 non terminal Signature					Signature;
 non terminal MethodDeclaration			Method;
 non terminal ConstructorDeclaration		Constructor, ConstructorPrelude;
-non terminal							AccessRight, ElementNature;
+non terminal AccessRight				AccessRight;
+non terminal 							ElementNature;
 
 /* Associativité et Priorité relative des opérateurs (du moins prioritaire au plus prioritaire) */
 /* Opérateur le moins prioritiaire */
@@ -135,6 +136,8 @@ Program ::= Elements:elements
 				Fragment code = tamFactory.createFragment();
 
 				boolean collect_succeeded = true;
+
+				System.out.println("Debut du collect");
 
 				for (ClassType elem : elements) {
 					if (collect_succeeded && elem.collect(tds)) {
@@ -202,9 +205,14 @@ SingleInherits ::=
 		
 ClassElements ::= /* Lambda */
 		{:
+			List<ClassElement> elements = new LinkedList<ClassElement>();
+			RESULT = elements;
 		:}
-		| AccessRight ClassElement ClassElements
+		| AccessRight:accessRight ClassElement:elem ClassElements:elements
 		{:
+			elem.setTypeAcces(accessRight);
+			elements.add(elem);
+			RESULT = elements;
 		:}
 		;
 AccessRight ::=
