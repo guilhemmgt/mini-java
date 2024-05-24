@@ -9,7 +9,7 @@ class Driver {
 		if (args.length == 0) {
 			String tests_vrais_prefixe = "vrai-test-";
 			String tests_faux_prefixe = "faux-test-";
-			String tests_suffixe = ".bloc";
+			String tests_suffixe = ".mjava";
 			
 			boolean lancer_tests_vrais = true;
 			boolean lancer_tests_faux = false;

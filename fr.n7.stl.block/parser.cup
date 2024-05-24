@@ -94,11 +94,15 @@ non terminal Pair<String,PartialType>	Identifiant;
 non terminal Type						Type, Atomique;
 non terminal Expression 					Expression;
 non terminal AssignableExpression		Affectable;
-non terminal							Elements, Main, Class ;
+non terminal List<ClassDeclaration>		Elements;
+non terminal ClassDeclaration 			Main, Class ;
 non terminal							SingleInherits ;
-non terminal							ClassElements ;
-non terminal							ClassElement ;
-non terminal							 Attribute, Signature, Method, Constructor, ConstructorPrelude;
+non terminal List<ClassElement>			ClassElements ;
+non terminal ClassElement 				ClassElement ;
+non terminal AttributeDeclaration		Attribute;
+non terminal Signature					Signature;
+non terminal MethodDeclaration			Method;
+non terminal ConstructorDeclaration		Constructor, ConstructorPrelude;
 non terminal							AccessRight, ElementNature;
 
 /* Associativité et Priorité relative des opérateurs (du moins prioritaire au plus prioritaire) */
@@ -132,7 +136,7 @@ Program ::= Elements:elements
 
 				boolean collect_succeeded = true;
 
-				for (ClassDeclaration elem : (List<ClassDeclaration>) elements) {
+				for (ClassDeclaration elem : elements) {
 					//if (collect_succeeded && elem.collect(tds)) {
 						//Prochaines étapes
 					}
@@ -145,17 +149,17 @@ Program ::= Elements:elements
 Elements ::= Main:main
 		{:
 			List<ClassDeclaration> elements = new LinkedList<ClassDeclaration>();
-			((List) elements).add( (ClassDeclaration) main);
+			elements.add(  main);
 			RESULT = elements;
 		:}
 		| Class:classe Elements:elements
 		{:
-			((List) elements).add((ClassDeclaration)classe);
+			elements.add(classe);
 			RESULT = elements;
 		:}
 		| UL_Abstrait Class:classe Elements:elements
 		{:
-			((List) elements).add((ClassDeclaration)classe);
+			elements.add(classe);
 			RESULT = elements;
 		:}
 		;
