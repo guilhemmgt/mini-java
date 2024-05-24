@@ -69,7 +69,7 @@ public class RecordType implements Type, Declaration, Scope<FieldDeclaration> {
 	 */
 	@Override
 	public boolean equalsTo(Type _other) {
-		throw new SemanticsUndefinedException( "compatibleWith is undefined in RecordType.");
+		throw new SemanticsUndefinedException( "equalsTo is undefined in RecordType.");
 	}
 
 	/* (non-Javadoc)

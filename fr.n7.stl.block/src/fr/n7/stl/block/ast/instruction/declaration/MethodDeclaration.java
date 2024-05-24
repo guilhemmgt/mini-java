@@ -1,6 +1,8 @@
 package fr.n7.stl.block.ast.instruction.declaration;
 
 import fr.n7.stl.block.ast.scope.Declaration;
+import fr.n7.stl.block.ast.scope.HierarchicalScope;
+import fr.n7.stl.block.ast.type.AccessRight;
 import fr.n7.stl.block.ast.type.Type;
 import fr.n7.stl.block.ast.Block;
 import fr.n7.stl.block.ast.instruction.ClassElement;
@@ -35,4 +37,21 @@ public class MethodDeclaration implements ClassElement {
 		return this.entete.getType();
 	}
 
+	@Override
+	public boolean resolveCE(HierarchicalScope<Declaration> _scope) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'resolveCE'");
+	}
+
+	@Override
+	public boolean collectCE(HierarchicalScope<Declaration> _scope) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'collectCE'");
+	}
+
+	@Override
+	public void setTypeAcces(AccessRight a) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'setTypeAcces'");
+	}
 }

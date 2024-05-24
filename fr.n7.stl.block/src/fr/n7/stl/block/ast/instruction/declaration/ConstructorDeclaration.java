@@ -4,6 +4,7 @@ import java.util.List;
 
 import fr.n7.stl.block.ast.instruction.ClassElement;
 import fr.n7.stl.block.ast.scope.Declaration;
+import fr.n7.stl.block.ast.scope.HierarchicalScope;
 import fr.n7.stl.block.ast.type.AccessRight;
 import fr.n7.stl.block.ast.type.Type;
 
@@ -16,6 +17,7 @@ public class ConstructorDeclaration implements ClassElement {
 		this.name = name;
 		this.parameters = parameters;
 	}
+
 
 	@Override
 	public String getName() {
@@ -33,6 +35,18 @@ public class ConstructorDeclaration implements ClassElement {
 	public void setTypeAcces(AccessRight a) {
 		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException("Unimplemented method 'setTypeAcces'");
+	}
+
+	@Override
+	public boolean resolveCE(HierarchicalScope<Declaration> _scope) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'resolveCE'");
+	}
+
+	@Override
+	public boolean collectCE(HierarchicalScope<Declaration> _scope) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'collectCE'");
 	}
 
 }

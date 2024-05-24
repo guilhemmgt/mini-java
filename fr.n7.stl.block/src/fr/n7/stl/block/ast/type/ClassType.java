@@ -14,7 +14,7 @@ import fr.n7.stl.block.ast.scope.Scope;
 import fr.n7.stl.block.ast.scope.SymbolTable;
 import fr.n7.stl.block.ast.type.declaration.FieldDeclaration;
 
-public class ClassType implements Type, Declaration, Scope<AttributeDeclaration>{
+public class ClassType implements Type, Declaration, Scope<ClassElement>{
 
 	private List<ClassElement> elements;
 	private boolean isAbstract;
@@ -53,27 +53,43 @@ public class ClassType implements Type, Declaration, Scope<AttributeDeclaration>
 	}
 
 	@Override
-	public AttributeDeclaration get(String _name) {
-		// TODO Auto-generated method stub
-		return null;
+	public ClassElement get(String _name) {
+		boolean _found = false;
+		Iterator<ClassElement> _iter = this.elements.iterator();
+		ClassElement _current = null;
+		while (_iter.hasNext() && (! _found)) {
+			_current = _iter.next();
+			_found = _found || _current.getName().contentEquals(_name);
+		}
+		if (_found) {
+			return _current;
+		} else {
+			return null;
+		}
 	}
 
 	@Override
 	public boolean contains(String _name) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean _result = false;
+		Iterator<ClassElement> _iter = this.elements.iterator();
+		while (_iter.hasNext() && (! _result)) {
+			_result = _result || _iter.next().getName().contentEquals(_name);
+		}
+		return _result;
 	}
 
 	@Override
-	public boolean accepts(AttributeDeclaration _declaration) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean accepts(ClassElement _element) {
+		return ! this.contains(_element.getName());
 	}
 
 	@Override
-	public void register(AttributeDeclaration _declaration) {
-		// TODO Auto-generated method stub
-		
+	public void register(ClassElement _element) {
+		if (this.accepts(_element)) {
+			this.elements.add(_element);
+		} else {
+			throw new IllegalArgumentException();
+		}
 	}
 
 	@Override
@@ -87,21 +103,32 @@ public class ClassType implements Type, Declaration, Scope<AttributeDeclaration>
 	}
 
 	@Override
+	public String toString() {
+		String _result = "class " + this.name + " { ";
+		Iterator<ClassElement> _iter = this.elements.iterator();
+		if (_iter.hasNext()) {
+			_result += _iter.next();
+			while (_iter.hasNext()) {
+				_result += " " + _iter.next();
+			}
+		}
+		return _result + "}";
+	}
+
+	@Override
 	public boolean equalsTo(Type _other) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'equalsTo'");
+		throw new SemanticsUndefinedException( "equalsTo is undefined in ClassType.");
 	}
 
 	@Override
 	public boolean compatibleWith(Type _other) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'compatibleWith'");
+		// même classe + on regarde l'héritage
+		throw new SemanticsUndefinedException( "compatibleWith is undefined in ClassType.");
 	}
 
 	@Override
 	public Type merge(Type _other) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'merge'");
+		throw new SemanticsUndefinedException( "merge is undefined in ClassType.");
 	}
 
 	@Override
@@ -115,11 +142,18 @@ public class ClassType implements Type, Declaration, Scope<AttributeDeclaration>
 
 	@Override
 	public boolean resolve(HierarchicalScope<Declaration> _scope) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'resolve'");
+		boolean _result = true;
+		for (ClassElement e : this.elements) {
+			_result = _result && e.resolveCE(_scope);
+		}
+		return _result;
 	}	
 
 	public boolean collect(HierarchicalScope<Declaration> _scope) {
-		throw new SemanticsUndefinedException("Semantics collect is undefined in ClassType.");
+		boolean _result = true;
+		for (ClassElement e : this.elements) {
+			_result = _result && e.collectCE(_scope);
+		}
+		return _result;
 	}
 }
