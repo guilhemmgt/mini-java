@@ -183,7 +183,6 @@ Main ::= UL_Public UL_Classe UL_Classe_Principale
 			UL_Parenthese_Ouvrante Parameters:parametres UL_Parenthese_Fermante Block:block UL_Accolade_Fermante
 		{:
 			MethodDeclaration methodePrincipale = new MethodDeclaration(new Signature(AtomicType.VoidType, "main", parametres), block, false, true, false);
-			//TODO : Décider si on fait "Mainclass" ou ajoute attribut "isMain" à ClassType (peut-être même que l'attribut n'est pas nécessaire)
 			List<ClassElement> l = new ArrayList<ClassElement>();
 			l.add(methodePrincipale);
 			RESULT = new ClassType("Main", l, false);
