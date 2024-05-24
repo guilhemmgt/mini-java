@@ -815,7 +815,6 @@ class CUP$Parser$actions {
 		//@@CUPDBG8
 
 			MethodDeclaration methodePrincipale = new MethodDeclaration(new Signature(AtomicType.VoidType, "main", parametres), block, false, true, false);
-			//TODO : Décider si on fait "Mainclass" ou ajoute attribut "isMain" à ClassType (peut-être même que l'attribut n'est pas nécessaire)
 			List<ClassElement> l = new ArrayList<ClassElement>();
 			l.add(methodePrincipale);
 			RESULT = new ClassType("Main", l, false);
@@ -1664,6 +1663,7 @@ class CUP$Parser$actions {
             {
               AssignableExpression RESULT =null;
 		//@@CUPDBG58
+
 
 				
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("Affectable",15, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
