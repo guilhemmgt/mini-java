@@ -48,6 +48,10 @@ public class ClassType implements Type, Declaration, Scope<AttributeDeclaration>
 		this.elements = new LinkedList<ClassElement>();	
 	}
 
+	public void setAbstract(boolean isAbstract) {
+		this.isAbstract = isAbstract;
+	}
+
 	@Override
 	public AttributeDeclaration get(String _name) {
 		// TODO Auto-generated method stub

@@ -161,15 +161,16 @@ Elements ::= Main:main
 		:}
 		| UL_Abstrait Class:classe Elements:elements
 		{:
+			classe.setAbstract(true);
 			elements.add(classe);
 			RESULT = elements;
 		:}
 		;
 		
-Class ::= UL_Classe UL_Identificateur SingleInherits 
+Class ::= UL_Classe UL_Identificateur:identifiant SingleInherits 
 		UL_Accolade_Ouvrante ClassElements:classElements UL_Accolade_Fermante
 		{:
-			RESULT = new ClassType("", new LinkedList<ClassElement>(), false);
+			RESULT = new ClassType(identifiant, classElements, false);
 		:}
 		;
 		
