@@ -699,12 +699,14 @@ class CUP$Parser$actions {
 				boolean collect_succeeded = true;
 
 				for (ClassDeclaration elem : elements) {
-					//if (collect_succeeded && elem.collect(tds)) {
+					if (collect_succeeded && elem.collect(tds)) {
 						//Prochaines étapes
 					}
-					//else {
-					//	System.out.println("collect failed");
-					//}
+					else {
+						collect_succeeded = false;
+						System.out.println("collect failed");
+					}
+				}
 			
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("Program",0, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }

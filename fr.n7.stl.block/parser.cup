@@ -94,8 +94,8 @@ non terminal Pair<String,PartialType>	Identifiant;
 non terminal Type						Type, Atomique;
 non terminal Expression 					Expression;
 non terminal AssignableExpression		Affectable;
-non terminal List<ClassDeclaration>		Elements;
-non terminal ClassDeclaration 			Main, Class ;
+non terminal List<ClassType>		Elements;
+non terminal ClassType 			Main, Class ;
 non terminal							SingleInherits ;
 non terminal List<ClassElement>			ClassElements ;
 non terminal ClassElement 				ClassElement ;
@@ -136,19 +136,21 @@ Program ::= Elements:elements
 
 				boolean collect_succeeded = true;
 
-				for (ClassDeclaration elem : elements) {
-					//if (collect_succeeded && elem.collect(tds)) {
+				for (ClassType elem : elements) {
+					if (collect_succeeded && elem.collect(tds)) {
 						//Prochaines étapes
 					}
-					//else {
-					//	System.out.println("collect failed");
-					//}
+					else {
+						collect_succeeded = false;
+						System.out.println("collect failed");
+					}
+				}
 			:}
 		;
 
 Elements ::= Main:main
 		{:
-			List<ClassDeclaration> elements = new LinkedList<ClassDeclaration>();
+			List<ClassType> elements = new LinkedList<ClassType>();
 			elements.add(  main);
 			RESULT = elements;
 		:}
@@ -167,7 +169,7 @@ Elements ::= Main:main
 Class ::= UL_Classe UL_Identificateur SingleInherits 
 		UL_Accolade_Ouvrante ClassElements:classElements UL_Accolade_Fermante
 		{:
-			RESULT = new ClassDeclaration("", new LinkedList<ClassElement>(), false);
+			RESULT = new ClassType("", new LinkedList<ClassElement>(), false);
 		:}
 		;
 		
@@ -180,7 +182,7 @@ Main ::= UL_Public UL_Classe UL_Classe_Principale
 			//TODO : Décider si on fait "Mainclass" ou ajoute attribut "isMain" à ClassType (peut-être même que l'attribut n'est pas nécessaire)
 			List<ClassElement> l = new ArrayList<ClassElement>();
 			l.add(methodePrincipale);
-			RESULT = new ClassDeclaration("Main", l, false);
+			RESULT = new ClassType("Main", l, false);
 		:}
 		;
 
@@ -207,12 +209,15 @@ ClassElements ::= /* Lambda */
 AccessRight ::=
 		UL_Public
 		{:
+			RESULT = AccessRight.PUBLIC;
 		:}
 		| UL_Protege
 		{:
+			RESULT = AccessRight.PROTEGE;
 		:}
 		| UL_Prive
 		{:
+			RESULT = AccessRight.PRIVE;
 		:}
 		;
 		
