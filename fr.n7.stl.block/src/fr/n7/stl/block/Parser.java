@@ -922,8 +922,12 @@ class CUP$Parser$actions {
           case 14: // ClassElement ::= Attribute 
             {
               ClassElement RESULT =null;
+		Location attributexleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xleft;
+		Location attributexright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xright;
+		AttributeDeclaration attribute = (AttributeDeclaration)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
 		//@@CUPDBG16
 
+			RESULT = attribute;
 		
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("ClassElement",21, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
@@ -933,8 +937,12 @@ class CUP$Parser$actions {
           case 15: // ClassElement ::= Method 
             {
               ClassElement RESULT =null;
+		Location methodxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xleft;
+		Location methodxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xright;
+		MethodDeclaration method = (MethodDeclaration)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
 		//@@CUPDBG17
 
+			RESULT = method;
 		
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("ClassElement",21, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
@@ -944,8 +952,12 @@ class CUP$Parser$actions {
           case 16: // ClassElement ::= Constructor 
             {
               ClassElement RESULT =null;
+		Location constructorxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xleft;
+		Location constructorxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xright;
+		ConstructorDeclaration constructor = (ConstructorDeclaration)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
 		//@@CUPDBG18
 
+			RESULT = constructor;
 		
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("ClassElement",21, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }

@@ -240,16 +240,19 @@ ElementNature ::=
 		;		
 		
 ClassElement ::=
-		Attribute
+		Attribute:attribute
 		{:
+			RESULT = attribute;
 		:}
 		|
-		Method
+		Method:method
 		{:
+			RESULT = method;
 		:}
 		|
-		Constructor
+		Constructor:constructor
 		{:
+			RESULT = constructor;
 		:}
 		;
 		
