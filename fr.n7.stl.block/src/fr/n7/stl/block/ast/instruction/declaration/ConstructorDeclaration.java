@@ -4,7 +4,7 @@ import fr.n7.stl.block.ast.instruction.ClassElement;
 import fr.n7.stl.block.ast.scope.Declaration;
 import fr.n7.stl.block.ast.type.Type;
 
-public class ConstructorDeclaration implements Declaration, ClassElement {
+public class ConstructorDeclaration implements ClassElement {
 
 	@Override
 	public String getName() {

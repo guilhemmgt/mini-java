@@ -5,7 +5,7 @@ import fr.n7.stl.block.ast.instruction.ClassElement;
 import fr.n7.stl.block.ast.scope.Declaration;
 import fr.n7.stl.block.ast.type.Type;
 
-public class AttributeDeclaration implements Declaration, ClassElement {
+public class AttributeDeclaration implements ClassElement {
 
 	private String name;
 	private Type type;
@@ -24,14 +24,12 @@ public class AttributeDeclaration implements Declaration, ClassElement {
 
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.name;
 	}
 
 	@Override
 	public Type getType() {
-		// TODO Auto-generated method stub
-		return null;
+		return type;
 	}
 
 }
