@@ -1,7 +1,0 @@
-test {
-	int i = 5;
-	<int, int> p = <2, i>;
-	p = <snd p, 3>;
-	
-	print((fst p)==5 && (snd p)==3);
-}

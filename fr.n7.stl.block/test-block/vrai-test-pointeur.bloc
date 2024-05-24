@@ -1,0 +1,7 @@
+test {
+	int x = 3;
+	int * px = &x;
+	int y = (*px);
+	
+	print(x==3 && y==3);
+}

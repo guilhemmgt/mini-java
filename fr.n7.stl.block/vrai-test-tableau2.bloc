@@ -1,6 +1,0 @@
-test {
-	<int, character> t[] = new <int, character>[5];
-	t[3] = <5,'e'>;
-
-	print((fst (t[3]))==5 && (snd (t[3]))=='e');
-}

@@ -1,0 +1,4 @@
+test {
+	boolean x = 3;
+	int * px = &x;
+}

@@ -1,0 +1,9 @@
+test {
+	int i = 5;
+	<<character, int>, int> p = <<'z', 3>, i>;
+	character a = fst fst p;
+	int b = snd fst p;
+	int c = snd p; 
+	
+	print(a=='z' && b == 3 && c == 5);
+}

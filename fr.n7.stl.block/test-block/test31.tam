@@ -1,0 +1,16 @@
+;int i = 1;
+PUSH 1
+LOADL 1
+STORE (1) 0[SB]
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@6f496d9f
+;(i == 1)
+;if
+LOAD (1) 0[SB]
+LOADL 1
+SUBR IEq
+JUMPIF (0) endif12
+POP (0) 0
+endif12
+POP (0) 1
+HALT
+

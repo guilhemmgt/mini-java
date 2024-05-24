@@ -1,0 +1,23 @@
+;(boolean []) p = new boolean[ 2 ];
+PUSH 1
+;new boolean[ 2 ]
+LOADL 2
+LOADL 1
+SUBR IMul
+SUBR MAlloc
+STORE (1) 0[SB]
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@7eda2dbb
+;ArrayAccess: p[ 0 ]
+;if
+LOAD (1) 0[SB]
+LOADL 0
+LOADL 1
+SUBR IMul
+SUBR IAdd
+LOADI (1)
+JUMPIF (0) endif24
+POP (0) 0
+endif24
+POP (0) 1
+HALT
+

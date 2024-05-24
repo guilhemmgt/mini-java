@@ -1,0 +1,8 @@
+;(int []) p = { 1 ,2 };
+PUSH 1
+LOADL 1
+LOADL 2
+STORE (1) 0[SB]
+POP (0) 1
+HALT
+

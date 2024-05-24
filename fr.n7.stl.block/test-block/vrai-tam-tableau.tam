@@ -1,0 +1,57 @@
+;(int []) t = new int[ 5 ];
+PUSH 1
+;new int[ 5 ]
+LOADL 5
+LOADL 1
+SUBR IMul
+SUBR MAlloc
+STORE (1) 0[SB]
+; t [ 3 ] = 2;
+LOADL 2
+;ArrayAssignement:  t [ 3 ]
+LOADA 0[SB]
+LOADI (1)
+LOADL 3
+LOADL 1
+SUBR IMul
+SUBR IAdd
+STOREI (1)
+; t [ 3 ] = 4;
+LOADL 4
+;ArrayAssignement:  t [ 3 ]
+LOADA 0[SB]
+LOADI (1)
+LOADL 3
+LOADL 1
+SUBR IMul
+SUBR IAdd
+STOREI (1)
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@13b6d03
+;ArrayAccess: t[ 3 ]
+;(t[ 3 ] == 4)
+;((t[ 3 ] == 4) && (t[ 1 ] == 0))
+;print ((t[ 3 ] == 4) && (t[ 1 ] == 0));
+LOAD (1) 0[SB]
+LOADL 3
+LOADL 1
+SUBR IMul
+SUBR IAdd
+LOADI (1)
+LOADL 4
+SUBR IEq
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@f5f2bb7
+;ArrayAccess: t[ 1 ]
+;(t[ 1 ] == 0)
+LOAD (1) 0[SB]
+LOADL 1
+LOADL 1
+SUBR IMul
+SUBR IAdd
+LOADI (1)
+LOADL 0
+SUBR IEq
+SUBR BAnd
+SUBR BOut
+POP (0) 1
+HALT
+
