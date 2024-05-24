@@ -1191,6 +1191,7 @@ class CUP$Parser$actions {
 		List<ParameterDeclaration> parametres = (List<ParameterDeclaration>)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-2)).value;
 		//@@CUPDBG29
 
+			RESULT = new ConstructorDeclaration(nom, parametres);
 		
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("Constructor",25, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-4)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
@@ -1205,6 +1206,7 @@ class CUP$Parser$actions {
 		String nom = (String)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-3)).value;
 		//@@CUPDBG30
 
+			RESULT = new ConstructorDeclaration(nom, new LinkedList<ParameterDeclaration>());
 		
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("Constructor",25, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-3)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
