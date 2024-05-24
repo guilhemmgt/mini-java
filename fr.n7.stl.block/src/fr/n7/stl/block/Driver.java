@@ -11,11 +11,26 @@ class Driver {
 			String tests_faux_prefixe = "faux-test-";
 			String tests_suffixe = ".bloc";
 			
-			boolean lancer_tests_vrais = true;
+			boolean lancer_tests_vrais = false;
 			boolean lancer_tests_faux = false;
 			boolean lancer_tests_prof = false;
+			boolean lancer_tests_mJava = true;
 			
-			 File[] dirFiles = new File("./test-block/").listFiles();
+			 File[] dirFiles = new File("./test-mjava/").listFiles();
+
+			 if (lancer_tests_mJava) { 
+				for (File file : dirFiles) {
+					String name = file.getName();
+					if (name.startsWith("test0") && name.endsWith(tests_suffixe)) {
+						parser = new Parser("./test-mjava/" + name);
+						try {
+							parser.parse();
+						} catch (Exception e) {
+							e.printStackTrace();
+						}					
+					}
+				}
+			}
 
 			 if (lancer_tests_prof) { 
 				for (File file : dirFiles) {
