@@ -6,7 +6,7 @@ import fr.n7.stl.block.ast.Block;
 import fr.n7.stl.block.ast.instruction.ClassElement;
 
 
-public class MethodDeclaration implements Declaration, ClassElement {
+public class MethodDeclaration implements ClassElement {
 
 	private Signature entete;
 	private Block corps;
