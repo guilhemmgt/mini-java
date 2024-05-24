@@ -295,27 +295,27 @@ Method ::=
 		Signature:entete Block:corps
 		//TODO : pour moi il ne devrait pas y avoir besoin de cast, voir d'où vient le pb
 		{:
-			RESULT = new MethodDeclaration((Signature) entete,corps, false, false, false);
+			RESULT = new MethodDeclaration(entete,corps, false, false, false);
 		:}
 		| 
 		UL_Definitif Signature:entete Block:corps
 		{:
-			RESULT = new MethodDeclaration((Signature) entete, corps, true, false, false);
+			RESULT = new MethodDeclaration(entete, corps, true, false, false);
 		:}
 		| 
 		UL_De_Classe Signature:entete Block:corps
 		{:
-			RESULT = new MethodDeclaration((Signature) entete,corps, false, true, false);
+			RESULT = new MethodDeclaration(entete,corps, false, true, false);
 		:}
 		| 
 		UL_De_Classe UL_Definitif Signature:entete Block:corps
 		{:
-			RESULT = new MethodDeclaration((Signature) entete, corps, true, true, false);
+			RESULT = new MethodDeclaration(entete, corps, true, true, false);
 		:}
 		| 
 		UL_Abstrait Signature:entete UL_Point_Virgule
 		{:
-			RESULT = new MethodDeclaration((Signature) entete, null, false, false, true);
+			RESULT = new MethodDeclaration(entete, null, false, false, true);
 		:}
 		;
 		
