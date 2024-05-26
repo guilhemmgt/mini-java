@@ -9,7 +9,7 @@ import fr.n7.stl.block.ast.type.AccessRight;
 import fr.n7.stl.block.ast.type.Type;
 
 public class ConstructorDeclaration implements ClassElement {
-
+	private AccessRight typeAcces = null;
 	private String name;
 	private List<ParameterDeclaration> parameters;
 
@@ -17,7 +17,6 @@ public class ConstructorDeclaration implements ClassElement {
 		this.name = name;
 		this.parameters = parameters;
 	}
-
 
 	@Override
 	public String getName() {
@@ -32,9 +31,13 @@ public class ConstructorDeclaration implements ClassElement {
 	}
 
 	@Override
+	public AccessRight getTypeAcces() {
+		return typeAcces;
+	}
+
+	@Override
 	public void setTypeAcces(AccessRight a) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'setTypeAcces'");
+		this.typeAcces = a;
 	}
 
 	@Override
@@ -48,5 +51,4 @@ public class ConstructorDeclaration implements ClassElement {
 		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException("Unimplemented method 'collectCE'");
 	}
-
 }

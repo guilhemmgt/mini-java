@@ -7,7 +7,6 @@ import fr.n7.stl.block.ast.type.Type;
 import fr.n7.stl.block.ast.Block;
 import fr.n7.stl.block.ast.instruction.ClassElement;
 
-
 public class MethodDeclaration implements ClassElement {
 
 	private Signature entete;
@@ -15,8 +14,7 @@ public class MethodDeclaration implements ClassElement {
 	private boolean isFinal;
 	private boolean isStatic;
 	private boolean isAbstract;
-
-	
+	private AccessRight typeAcces = null;
 
 	public MethodDeclaration(Signature entete, Block corps, boolean isFinal, boolean isStatic, boolean isAbstract) {
 		this.entete = entete;
@@ -31,10 +29,19 @@ public class MethodDeclaration implements ClassElement {
 		return this.entete.getName();
 	}
 
-
 	@Override
 	public Type getType() {
 		return this.entete.getType();
+	}
+
+	@Override
+	public AccessRight getTypeAcces() {
+		return typeAcces;
+	}
+
+	@Override
+	public void setTypeAcces(AccessRight a) {
+		this.typeAcces = a;
 	}
 
 	@Override
@@ -47,11 +54,5 @@ public class MethodDeclaration implements ClassElement {
 	public boolean collectCE(HierarchicalScope<Declaration> _scope) {
 		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException("Unimplemented method 'collectCE'");
-	}
-
-	@Override
-	public void setTypeAcces(AccessRight a) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'setTypeAcces'");
 	}
 }

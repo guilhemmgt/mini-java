@@ -4,7 +4,7 @@ import fr.n7.stl.block.ast.scope.HierarchicalScope;
 import fr.n7.stl.block.ast.type.AccessRight;
 
 public interface ClassElement extends Declaration {
-    public AccessRight typeAcces = null;
+    public AccessRight getTypeAcces();
     public void setTypeAcces(AccessRight a);
 
     public boolean resolveCE(HierarchicalScope<Declaration> _scope);

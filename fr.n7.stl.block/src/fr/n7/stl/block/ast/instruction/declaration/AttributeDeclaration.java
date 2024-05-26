@@ -15,17 +15,13 @@ public class AttributeDeclaration implements ClassElement {
 	private boolean isFinal;
 	private boolean isStatic;
 	private AccessRight typeAcces = null;
-	
+
 	public AttributeDeclaration(String name, Type type, Expression value, boolean isFinal, boolean isStatic) {
 		this.name = name;
 		this.type = type;
 		this.value = value;
 		this.isFinal = isFinal;
 		this.isStatic = isStatic;
-	}
-
-	public void setTypeAcces(AccessRight a) {
-		this.typeAcces = a;
 	}
 
 	@Override
@@ -36,6 +32,16 @@ public class AttributeDeclaration implements ClassElement {
 	@Override
 	public Type getType() {
 		return type;
+	}
+
+	@Override
+	public AccessRight getTypeAcces() {
+		return typeAcces;
+	}
+
+	@Override
+	public void setTypeAcces(AccessRight a) {
+		this.typeAcces = a;
 	}
 
 	@Override
