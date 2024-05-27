@@ -133,6 +133,7 @@ Identificateur = ([:jletter:] | "_" ) ([:jletterdigit:] | [:jletter:] | "_" )*
   "extends"			{ return symbolFactory.newSymbol("Hérite de", UL_Herite); }
   "public"			{ return symbolFactory.newSymbol("Public", UL_Public); }
   "private"			{ return symbolFactory.newSymbol("Privé", UL_Prive); }
+  "protected"			{ return symbolFactory.newSymbol("Protégé", UL_Protege); }
   "static"			{ return symbolFactory.newSymbol("Public", UL_De_Classe); }
   "final"			{ return symbolFactory.newSymbol("Définitif", UL_Definitif); }
   "this"			{ return symbolFactory.newSymbol("Moi", UL_Moi); }

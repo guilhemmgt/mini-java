@@ -1,0 +1,12 @@
+class A {
+    private int a;
+    public int b;
+    protected int c;
+}
+
+public class Main {
+
+    public static void main (String args) {
+    }
+
+}

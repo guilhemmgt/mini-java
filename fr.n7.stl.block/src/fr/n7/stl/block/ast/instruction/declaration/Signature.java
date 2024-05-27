@@ -3,7 +3,8 @@ package fr.n7.stl.block.ast.instruction.declaration;
 import java.util.List;
 
 import fr.n7.stl.block.ast.type.Type;
-import fr.n7.stl.block.ast.scope.Declaration;;
+import fr.n7.stl.block.ast.scope.Declaration;
+import fr.n7.stl.block.ast.scope.HierarchicalScope;;
 
 public class Signature implements Declaration{
     private Type type;
@@ -27,6 +28,5 @@ public class Signature implements Declaration{
     public List<ParameterDeclaration> getParametres() {
         return parametres;
     }
-
     
 }
