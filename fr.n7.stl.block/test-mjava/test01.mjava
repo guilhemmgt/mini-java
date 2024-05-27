@@ -2,6 +2,12 @@ class A {
     private int a;
     public int b;
     protected int c;
+
+    public A () {
+        this.a = 1;
+        this.b = 2;
+        this.c = 3;
+    }
 }
 
 public class Main {
