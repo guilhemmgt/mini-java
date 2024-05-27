@@ -10,7 +10,7 @@ import fr.n7.stl.block.ast.scope.SymbolTable;
 import fr.n7.stl.block.ast.type.AccessRight;
 import fr.n7.stl.block.ast.type.Type;
 
-public class ConstructorDeclaration implements ClassElement {
+public class ConstructorDeclaration implements ClassElement, Type {
 	private AccessRight typeAcces = null;
 	private String name;
 	private List<ParameterDeclaration> parameters;
@@ -66,5 +66,35 @@ public class ConstructorDeclaration implements ClassElement {
 		} else {
 			return false;
 		}
+	}
+
+	@Override
+	public boolean equalsTo(Type _other) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'equalsTo'");
+	}
+
+	@Override
+	public boolean compatibleWith(Type _other) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'compatibleWith'");
+	}
+
+	@Override
+	public Type merge(Type _other) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'merge'");
+	}
+
+	@Override
+	public int length() {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'length'");
+	}
+
+	@Override
+	public boolean resolve(HierarchicalScope<Declaration> _scope) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'resolve'");
 	}
 }
