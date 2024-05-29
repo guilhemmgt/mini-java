@@ -19,6 +19,7 @@ import fr.n7.stl.block.ast.type.declaration.FieldDeclaration;
 import fr.n7.stl.tam.ast.Fragment;
 import fr.n7.stl.tam.ast.Register;
 import fr.n7.stl.tam.ast.TAMFactory;
+import fr.n7.stl.util.Logger;
 
 public class ClassType implements Type, Declaration, Scope<ClassElement>{
 
@@ -85,10 +86,10 @@ public class ClassType implements Type, Declaration, Scope<ClassElement>{
 			_current = _iter.next();
 			if (_current instanceof MethodDeclaration) {
 				MethodDeclaration md = (MethodDeclaration) _current;
-				_found = _found || md.getEntete() == _signature;
+				_found = _found || md.getEntete().equals(_signature);
 			} else if (_current instanceof ConstructorDeclaration) {
 				ConstructorDeclaration cd = (ConstructorDeclaration) _current;
-				_found = _found || cd.getEntete() == _signature;
+				_found = _found || cd.getEntete().equals(_signature);
 			}
 		}
 		if (_found) {
@@ -115,10 +116,10 @@ public class ClassType implements Type, Declaration, Scope<ClassElement>{
 			ClassElement next = _iter.next();
 			if (next instanceof MethodDeclaration) {
 				MethodDeclaration md = (MethodDeclaration) next;
-				_result = _result || md.getEntete() == _signature;
+				_result = _result || md.getEntete().equals(_signature);
 			} else if (next instanceof ConstructorDeclaration) {
 				ConstructorDeclaration cd = (ConstructorDeclaration) next;
-				_result = _result || cd.getEntete() == _signature;
+				_result = _result || cd.getEntete().equals(_signature);
 			}
 		}
 		return _result;
@@ -196,11 +197,18 @@ public class ClassType implements Type, Declaration, Scope<ClassElement>{
 	}	
 
 	public boolean collect(HierarchicalScope<Declaration> _scope) {
-		boolean _result = true;
-		for (ClassElement e : this.elements) {
-			_result = _result && e.collectCE(_scope);
+		if(_scope.accepts(this)){
+			_scope.register(this);
+
+			boolean _result = true;
+			for (ClassElement e : this.elements) {
+				_result = _result && e.collectCE(_scope);
+			}
+			return _result;
+		} else {
+			Logger.error(this.name + " déjà utilisé dans ce scope.");
+			return false;
 		}
-		return _result;
 	}
 
 
