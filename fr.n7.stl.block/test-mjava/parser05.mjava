@@ -1,7 +1,4 @@
 class A {
-    private int i;
-	public static final int b = 1;
-
     protected int n(int i) {
         return i;
 	}
