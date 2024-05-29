@@ -1,0 +1,45 @@
+class A {
+    protected int n(int i) {
+        return i;
+	}
+
+    public final void m() {
+	}
+	public A() {
+        
+	}
+    protected int m() {
+        return 0;
+	}
+
+    public A(int arg) {
+        
+	}
+}
+
+class B {
+    protected int n(int i) {
+        return i;
+	}
+
+    public final void m() {
+	}
+	public A() {
+        
+	}
+    protected int m() {
+        return 0;
+	}
+
+    public A(int arg) {
+        
+	}
+}
+
+public class Main {
+	public static void main(String args[]) {
+        int a = 0;
+        a = 5;
+        int b = a;
+    }
+}

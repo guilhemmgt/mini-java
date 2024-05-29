@@ -171,7 +171,7 @@ Elements ::= Main:main
 		;
 		
 Class ::= UL_Classe UL_Identificateur:identifiant SingleInherits 
-		UL_Accolade_Ouvrante ClassElements:classElements UL_Accolade_Fermante
+		  UL_Accolade_Ouvrante ClassElements:classElements UL_Accolade_Fermante
 		{:
 			RESULT = new ClassType(identifiant, classElements, false);
 		:}
@@ -189,19 +189,18 @@ Main ::= UL_Public UL_Classe UL_Classe_Principale
 		:}
 		;
 
-/* TODO
-
-SingleInherits ::= 
+SingleInherits ::= /* Lambda */
 		{:
+		// pas d'héritage TODO
 		:}
+		/*
 		|
 		UL_Herite Instance
 		{:
 		:}
+		*/
 		;
-*/
 
-		
 ClassElements ::= /* Lambda */
 		{:
 			List<ClassElement> elements = new LinkedList<ClassElement>();
@@ -214,6 +213,24 @@ ClassElements ::= /* Lambda */
 			RESULT = elements;
 		:}
 		;
+
+ClassElement ::=
+		Attribute:attribute
+		{:
+			RESULT = attribute;
+		:}
+		|
+		Method:method
+		{:
+			RESULT = method;
+		:}
+		|
+		Constructor:constructor
+		{:
+			RESULT = constructor;
+		:}
+		;
+
 AccessRight ::=
 		UL_Public
 		{:
@@ -239,22 +256,7 @@ ElementNature ::=
 		:}
 		;		
 		
-ClassElement ::=
-		Attribute:attribute
-		{:
-			RESULT = attribute;
-		:}
-		|
-		Method:method
-		{:
-			RESULT = method;
-		:}
-		|
-		Constructor:constructor
-		{:
-			RESULT = constructor;
-		:}
-		;
+
 		
 Attribute ::=
 		Type:type Identifiant:identifiant UL_Point_Virgule

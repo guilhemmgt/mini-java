@@ -1,0 +1,11 @@
+abstract class A {
+         public A() {
+         }
+         public abstract void m();
+}
+
+public class Main {
+	public static void main(String args[]) {
+
+    }
+}

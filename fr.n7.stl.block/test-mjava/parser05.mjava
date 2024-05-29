@@ -1,0 +1,27 @@
+class A {
+    private int i;
+	public static final int b = 1;
+
+    protected int n(int i) {
+        return i;
+	}
+
+    public final void m() {
+	}
+	public A() {
+        
+	}
+    protected int m() {
+        return 0;
+	}
+
+    public A(int arg) {
+        
+	}
+}
+
+public class Main {
+	public static void main(String args[]) {
+        A a = new A();
+    }
+}
