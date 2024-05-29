@@ -4,13 +4,16 @@
 package fr.n7.stl.block.ast.scope;
 
 import java.lang.reflect.Constructor;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
 import fr.n7.stl.block.ast.instruction.declaration.ConstructorDeclaration;
 import fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration;
+import fr.n7.stl.block.ast.instruction.declaration.ParameterDeclaration;
 import fr.n7.stl.block.ast.instruction.declaration.Signature;
+import fr.n7.stl.block.ast.type.AtomicType;
 import fr.n7.stl.util.Logger;
 
 /**
@@ -21,7 +24,7 @@ import fr.n7.stl.util.Logger;
 public class SymbolTable implements HierarchicalScope<Declaration> {
 	
 	private Map<String, Declaration> declarations;
-	private Map<Signature, Declaration> signdeclarations;
+	private Map<Signature, Declaration> signDeclarations;
 	
 	private Scope<Declaration> context;
 
@@ -31,7 +34,7 @@ public class SymbolTable implements HierarchicalScope<Declaration> {
 	
 	public SymbolTable(Scope<Declaration> _context) {
 		this.declarations = new HashMap<String,Declaration>();
-		this.signdeclarations = new HashMap<Signature,Declaration>();
+		this.signDeclarations = new HashMap<Signature,Declaration>();
 		this.context = _context;
 	}
 
@@ -52,8 +55,8 @@ public class SymbolTable implements HierarchicalScope<Declaration> {
 	}
 	@Override
 	public Declaration get(Signature _signature) {
-		if (this.signdeclarations.containsKey(_signature)) {
-			return this.signdeclarations.get(_signature);
+		if (this.signDeclarations.containsKey(_signature)) {
+			return this.signDeclarations.get(_signature);
 		} else {
 			if (this.context != null) {
 				return this.context.get(_signature);
@@ -72,7 +75,7 @@ public class SymbolTable implements HierarchicalScope<Declaration> {
 	}
 	@Override
 	public boolean contains(Signature _signature) {
-		return (this.signdeclarations.containsKey(_signature));
+		return (this.signDeclarations.containsKey(_signature));
 	}
 
 	/* (non-Javadoc)
@@ -97,13 +100,13 @@ public class SymbolTable implements HierarchicalScope<Declaration> {
 	@Override
 	public void register(Declaration _declaration) {
 		if (this.accepts(_declaration)) {
-			System.out.println("REGISTER (symboltable): " + _declaration.getName());
+			System.out.println("REGISTER: " + _declaration.getName() + " (" + _declaration.getClass().getName() + ")");
 			if (_declaration instanceof MethodDeclaration) {
 				MethodDeclaration _methodDeclaration = (MethodDeclaration) _declaration;
-				this.signdeclarations.put(_methodDeclaration.getEntete(), _declaration);
+				this.signDeclarations.put(_methodDeclaration.getEntete(), _declaration);
 			} else if(_declaration instanceof ConstructorDeclaration) {
 				ConstructorDeclaration _constructorDeclaration = (ConstructorDeclaration) _declaration;
-				this.signdeclarations.put(_constructorDeclaration.getEntete(), _declaration);
+				this.signDeclarations.put(_constructorDeclaration.getEntete(), _declaration);
 			} else {
 				this.declarations.put(_declaration.getName(), _declaration);
 			}
@@ -161,7 +164,7 @@ public class SymbolTable implements HierarchicalScope<Declaration> {
 		for (Entry<String,Declaration> _entry : this.declarations.entrySet()) {
 			_local += _entry.getKey() + " -> " + _entry.getValue().toString() + "\n";
 		}
-		for (Entry<Signature,Declaration> _entry : this.signdeclarations.entrySet()) {
+		for (Entry<Signature,Declaration> _entry : this.signDeclarations.entrySet()) {
 			_local += _entry.getKey() + " -> " + _entry.getValue().toString() + "\n";
 		}
 		return _local;
