@@ -7,10 +7,12 @@ import fr.n7.stl.block.ast.expression.AbstractIdentifier;
 import fr.n7.stl.block.ast.SemanticsUndefinedException;
 import fr.n7.stl.block.ast.expression.AbstractAccess;
 import fr.n7.stl.block.ast.instruction.declaration.ConstantDeclaration;
+import fr.n7.stl.block.ast.instruction.declaration.ConstructorDeclaration;
 import fr.n7.stl.block.ast.instruction.declaration.ParameterDeclaration;
 import fr.n7.stl.block.ast.instruction.declaration.VariableDeclaration;
 import fr.n7.stl.block.ast.scope.Declaration;
 import fr.n7.stl.block.ast.scope.HierarchicalScope;
+import fr.n7.stl.block.ast.type.ClassType;
 import fr.n7.stl.block.ast.type.Type;
 import fr.n7.stl.tam.ast.Fragment;
 import fr.n7.stl.tam.ast.TAMFactory;
@@ -78,16 +80,22 @@ public class IdentifierAccess extends AbstractIdentifier implements AccessibleEx
 					if (_declaration instanceof ConstantDeclaration) {
 						this.expression = new ConstantAccess((ConstantDeclaration) _declaration);
 						return true;
-					} else {
-						if (_declaration instanceof ParameterDeclaration) {
+					} else if (_declaration instanceof ParameterDeclaration){
 							this.expression = new ParameterAccess((ParameterDeclaration) _declaration);
 							return true;
-						} else {
-							Logger.error("The declaration for " + this.name + " is of the wrong kind.");
-							return false;
-						}						
+					} else if (_declaration instanceof ClassType) {
+						// this.expression = new ClassAccess();
+						return true;
+					} else if (_declaration instanceof ConstructorDeclaration) {
+						//this.expression = new ConstructorCall((ClassType) _declaration, );
+						return true;
+				
+					} else {
+						Logger.error("The declaration for " + this.name + " is of the wrong kind.");
+						return false;
+					}						
 					}
-				}
+				
 			} else {
 				Logger.error("The identifier " + this.name + " has not been found.");
 				return false;	
