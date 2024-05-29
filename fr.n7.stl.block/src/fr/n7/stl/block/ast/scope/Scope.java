@@ -3,6 +3,10 @@
  */
 package fr.n7.stl.block.ast.scope;
 
+import java.time.format.SignStyle;
+
+import fr.n7.stl.block.ast.instruction.declaration.Signature;
+
 /**
  * Interface to mark a node in the Abstract Syntax Tree as a Scope in the language.
  * @author Marc Pantel
@@ -18,6 +22,7 @@ public interface Scope <D extends Declaration> {
 	 * @return : An optional object that carry an element named _name if there exists one in the scope, empty if not.
 	 */
 	public D get(String _name);
+	public D get(Signature _signature);
 	
 	/**
 	 * Check if an element is registered (contained) in the current scope.
@@ -25,6 +30,7 @@ public interface Scope <D extends Declaration> {
 	 * @return : True if the scope contains an element named _name, false if not.
 	 */
 	public boolean contains(String _name);
+	public boolean contains(Signature _signature);
 	
 	/**
 	 * Check if a declaration can be registered in the scope.

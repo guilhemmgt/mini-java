@@ -24,14 +24,17 @@ class B {
 
     public final void m() {
 	}
-	public A() {
+	private B() {
         
 	}
-    protected int m() {
+    public int abc() {
+        return 0;
+	}
+    public int abc(int i) {
         return 0;
 	}
 
-    public A(int arg) {
+    public B(int arg) {
         
 	}
 }

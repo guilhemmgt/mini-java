@@ -135,17 +135,35 @@ Program ::= Elements:elements
 				TAMFactoryImpl tamFactory = new TAMFactoryImpl();
 				Fragment code = tamFactory.createFragment();
 
+				boolean do_collect = true;
+				boolean do_resolve = false;
+
 				boolean collect_succeeded = true;
+				boolean resolve_succeeded = true;
 
-				System.out.println("Debut du collect");
-
-				for (ClassType elem : elements) {
-					if (collect_succeeded && elem.collect(tds)) {
-						//Prochaines étapes
+				// Collect
+				if (do_collect) {
+					System.out.println("Starting collect ...");
+					for (ClassType elem : elements) {
+						System.out.println("Class " + elem.getName());
+						if (!elem.collect(tds)) {
+							collect_succeeded = false;
+							Logger.error("Collect failed !");
+							break;
+						}
 					}
-					else {
-						collect_succeeded = false;
-						System.out.println("collect failed");
+				}
+
+				// Resolve
+				if (collect_succeeded && do_resolve) {
+					System.out.println("Starting resolve ...");
+					for (ClassType elem : elements) {
+						System.out.println("Class " + elem.getName());
+						if (!elem.resolve(tds)) {
+							resolve_succeeded = false;
+							Logger.error("Resolve failed !");
+							break;
+						}
 					}
 				}
 			:}

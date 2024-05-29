@@ -1,15 +1,9 @@
 class A {
 	
 	public void m() {
+		int a = 1;
+		int m = 1;
 		print 1;
-	}
-	
-}
-
-class B extends A {
-
-	public void m() {
-		print 2;
 	}
 	
 }
@@ -17,14 +11,7 @@ class B extends A {
 public class Main {
 
 	public static void main(String args[]) {
-		A a = new A();
-		a.m();
-		
-		B b = new B();
-		b.m();
-		
-		a = b;
-		a.m();
-		
+		int a = 1;
+		int m = 1;
 	}
 }

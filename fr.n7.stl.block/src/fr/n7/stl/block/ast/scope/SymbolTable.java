@@ -3,10 +3,14 @@
  */
 package fr.n7.stl.block.ast.scope;
 
+import java.lang.reflect.Constructor;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import fr.n7.stl.block.ast.instruction.declaration.ConstructorDeclaration;
+import fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration;
+import fr.n7.stl.block.ast.instruction.declaration.Signature;
 import fr.n7.stl.util.Logger;
 
 /**
@@ -17,6 +21,8 @@ import fr.n7.stl.util.Logger;
 public class SymbolTable implements HierarchicalScope<Declaration> {
 	
 	private Map<String, Declaration> declarations;
+	private Map<Signature, Declaration> signdeclarations;
+	
 	private Scope<Declaration> context;
 
 	public SymbolTable() {
@@ -25,6 +31,7 @@ public class SymbolTable implements HierarchicalScope<Declaration> {
 	
 	public SymbolTable(Scope<Declaration> _context) {
 		this.declarations = new HashMap<String,Declaration>();
+		this.signdeclarations = new HashMap<Signature,Declaration>();
 		this.context = _context;
 	}
 
@@ -43,6 +50,18 @@ public class SymbolTable implements HierarchicalScope<Declaration> {
 			}
 		}
 	}
+	@Override
+	public Declaration get(Signature _signature) {
+		if (this.signdeclarations.containsKey(_signature)) {
+			return this.signdeclarations.get(_signature);
+		} else {
+			if (this.context != null) {
+				return this.context.get(_signature);
+			} else {
+				return null;
+			}
+		}
+	}
 
 	/* (non-Javadoc)
 	 * @see fr.n7.stl.block.ast.scope.Scope#contains(java.lang.String)
@@ -51,13 +70,25 @@ public class SymbolTable implements HierarchicalScope<Declaration> {
 	public boolean contains(String _name) {
 		return (this.declarations.containsKey(_name));
 	}
+	@Override
+	public boolean contains(Signature _signature) {
+		return (this.signdeclarations.containsKey(_signature));
+	}
 
 	/* (non-Javadoc)
 	 * @see fr.n7.stl.block.ast.scope.Scope#accepts(fr.n7.stl.block.ast.scope.Declaration)
 	 */
 	@Override
 	public boolean accepts(Declaration _declaration) {
-		return (! this.contains(_declaration.getName()));
+		if (_declaration instanceof MethodDeclaration) {
+			MethodDeclaration _methodDeclaration = (MethodDeclaration) _declaration;
+			return (! this.contains(_methodDeclaration.getEntete()));
+		} else if (_declaration instanceof ConstructorDeclaration) {
+			ConstructorDeclaration _constructorDeclaration = (ConstructorDeclaration) _declaration;
+			return (! this.contains(_constructorDeclaration.getEntete()));
+		} else {
+			return (! this.contains(_declaration.getName()));
+		}
 	}
 
 	/* (non-Javadoc)
@@ -67,7 +98,15 @@ public class SymbolTable implements HierarchicalScope<Declaration> {
 	public void register(Declaration _declaration) {
 		if (this.accepts(_declaration)) {
 			System.out.println("REGISTER (symboltable): " + _declaration.getName());
-			this.declarations.put(_declaration.getName(), _declaration);
+			if (_declaration instanceof MethodDeclaration) {
+				MethodDeclaration _methodDeclaration = (MethodDeclaration) _declaration;
+				this.signdeclarations.put(_methodDeclaration.getEntete(), _declaration);
+			} else if(_declaration instanceof ConstructorDeclaration) {
+				ConstructorDeclaration _constructorDeclaration = (ConstructorDeclaration) _declaration;
+				this.signdeclarations.put(_constructorDeclaration.getEntete(), _declaration);
+			} else {
+				this.declarations.put(_declaration.getName(), _declaration);
+			}
 		} else {
 			throw new IllegalArgumentException();
 		}
@@ -92,6 +131,22 @@ public class SymbolTable implements HierarchicalScope<Declaration> {
 			}
 		}
 	}
+	@Override
+	public boolean knows(Signature _signature) {
+		if (this.contains(_signature)) {
+			return true;
+		} else {
+			if (this.context != null) {
+				if (this.context instanceof HierarchicalScope<?>) {
+					return ((HierarchicalScope<?>)this.context).knows(_signature);
+				} else {
+					return this.context.contains(_signature);
+				}
+			} else {
+				return false;
+			}
+		}
+	}
 	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
@@ -104,6 +159,9 @@ public class SymbolTable implements HierarchicalScope<Declaration> {
 		}
 		_local += "Local definitions : ";
 		for (Entry<String,Declaration> _entry : this.declarations.entrySet()) {
+			_local += _entry.getKey() + " -> " + _entry.getValue().toString() + "\n";
+		}
+		for (Entry<Signature,Declaration> _entry : this.signdeclarations.entrySet()) {
 			_local += _entry.getKey() + " -> " + _entry.getValue().toString() + "\n";
 		}
 		return _local;

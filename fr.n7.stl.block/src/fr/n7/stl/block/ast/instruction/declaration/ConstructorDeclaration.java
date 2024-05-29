@@ -9,23 +9,23 @@ import fr.n7.stl.block.ast.scope.HierarchicalScope;
 import fr.n7.stl.block.ast.scope.SymbolTable;
 import fr.n7.stl.block.ast.type.AccessRight;
 import fr.n7.stl.block.ast.type.Type;
+import fr.n7.stl.util.Logger;
 
 public class ConstructorDeclaration implements ClassElement, Type {
 	private AccessRight typeAcces = null;
-	private String name;
-	private List<ParameterDeclaration> parameters;
+	private Signature entete;
 	private Block corps;
 
 	HierarchicalScope<Declaration> scopeParams;
 
 	public ConstructorDeclaration(String name, List<ParameterDeclaration> parameters, Block corps) {
-		this.name = name;
-		this.parameters = parameters;
+		this.entete = new Signature(null, name, parameters);
+		this.corps = corps;
 	}
 
 	@Override
 	public String getName() {
-		return this.name;
+		return this.entete.getName();
 	}
 
 	@Override
@@ -37,6 +37,10 @@ public class ConstructorDeclaration implements ClassElement, Type {
 	@Override
 	public AccessRight getTypeAcces() {
 		return typeAcces;
+	}
+
+	public Signature getEntete () {
+		return this.entete;
 	}
 
 	@Override
@@ -52,18 +56,22 @@ public class ConstructorDeclaration implements ClassElement, Type {
 
 	@Override
 	public boolean collectCE(HierarchicalScope<Declaration> _scope) {
-		// TODO Auto-generated method stub
 		this.scopeParams = new SymbolTable(_scope);
 		
 		if (_scope.accepts(this)) {
 			_scope.register(this);
 			
-			for(ParameterDeclaration pad : parameters) {
+			for(ParameterDeclaration pad : this.entete.getParametres()) {
 				this.scopeParams.register(pad);
 			}
 			
-			return this.corps.collect(this.scopeParams);
+			boolean result = this.corps.collect(this.scopeParams);
+			if (!result)
+				Logger.error("ConstructorDeclaration collect failed");
+
+			return result;
 		} else {
+			Logger.error("ConstructorDeclaration collect failed (not accepted)");
 			return false;
 		}
 	}

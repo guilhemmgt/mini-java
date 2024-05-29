@@ -5,6 +5,7 @@ import fr.n7.stl.block.ast.scope.HierarchicalScope;
 import fr.n7.stl.block.ast.scope.SymbolTable;
 import fr.n7.stl.block.ast.type.AccessRight;
 import fr.n7.stl.block.ast.type.Type;
+import fr.n7.stl.util.Logger;
 
 import java.util.List;
 
@@ -31,8 +32,6 @@ public class MethodDeclaration implements ClassElement {
 		this.isAbstract = isAbstract;
 	}
 
-
-
 	@Override
 	public String getName() {
 		return this.entete.getName();
@@ -48,6 +47,10 @@ public class MethodDeclaration implements ClassElement {
 		return typeAcces;
 	}
 
+	public Signature getEntete () {
+		return this.entete;
+	}
+
 	@Override
 	public void setTypeAcces(AccessRight a) {
 		this.typeAcces = a;
@@ -61,7 +64,6 @@ public class MethodDeclaration implements ClassElement {
 
 	@Override
 	public boolean collectCE(HierarchicalScope<Declaration> _scope) {
-		//throw new UnsupportedOperationException("Unimplemented method 'collectCE'");
 		List<ParameterDeclaration> parameters = this.entete.getParametres();
 		this.scopeParams = new SymbolTable(_scope);
 		
@@ -72,8 +74,12 @@ public class MethodDeclaration implements ClassElement {
 				this.scopeParams.register(pad);
 			}
 			
-			return this.corps.collect(this.scopeParams);
+			boolean collect = this.corps.collect(this.scopeParams);
+			if (!collect)
+				Logger.error("MethodDeclaration collect failed");
+			return collect;
 		} else {
+			Logger.error("MethodDeclaration collect failed (not accepted)");
 			return false;
 		}
 
