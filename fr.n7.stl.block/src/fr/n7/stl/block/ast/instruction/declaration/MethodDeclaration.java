@@ -113,7 +113,9 @@ public class MethodDeclaration implements ClassElement {
 		for(ParameterDeclaration pad : parameters) {
 			taille += pad.getType().length();
 		}
-		this.corps.allocateMemory(_register, offset+taille);
+		if (this.corps != null){
+			this.corps.allocateMemory(_register, offset+taille);
+		}
 		return taille;
 	}
 

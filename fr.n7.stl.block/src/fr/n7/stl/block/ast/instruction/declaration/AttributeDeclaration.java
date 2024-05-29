@@ -50,8 +50,12 @@ public class AttributeDeclaration implements ClassElement {
 
 	@Override
 	public boolean resolveCE(HierarchicalScope<Declaration> _scope) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'resolveCE'");
+		//throw new UnsupportedOperationException("Unimplemented method 'resolveCE'");
+		boolean resolved = true;
+		if (this.value != null) {
+			this.value.fullResolve(_scope);
+		}
+		return  resolved && type.resolve(_scope);
 	}
 
 	@Override
@@ -69,9 +73,12 @@ public class AttributeDeclaration implements ClassElement {
 	@Override
 	public boolean checkType() {
 		//throw new UnsupportedOperationException("Unimplemented method 'checkType'");
-		Type valueType = this.value.getType();
-		boolean res = valueType.compatibleWith(this.type);
-		System.out.println("CHECKTYPE (variabledeclaration): " + this.type + " vs " + valueType + " = " + res);
+		boolean res = true;
+		if (this.value != null) {
+			Type valueType = this.value.getType();
+			res = valueType.compatibleWith(this.type);
+			System.out.println("CHECKTYPE (variabledeclaration): " + this.type + " vs " + valueType + " = " + res);
+		}
 		return res;
 	}
 
