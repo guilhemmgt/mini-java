@@ -22,7 +22,7 @@ class Driver {
 			if (lancer_tests_mJava) {
 				for (File file : dirFiles) {
 					String name = file.getName();
-					if (/*name.startsWith("test0") &&*/ name.endsWith(tests_suffixe)) {
+					if (name.startsWith("parser0") && name.endsWith(tests_suffixe)) {
 						System.out.println("\n=== TEST "
 								+ name.substring(0, name.length() - tests_suffixe.length())
 								+ " ===");

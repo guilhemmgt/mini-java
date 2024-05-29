@@ -50,8 +50,9 @@ public class ConstructorDeclaration implements ClassElement, Type {
 
 	@Override
 	public boolean resolveCE(HierarchicalScope<Declaration> _scope) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'resolveCE'");
+		//throw new UnsupportedOperationException("Unimplemented method 'resolveCE'");
+		//TODO : vérifier que suffit de faire que sur le corps
+		return this.corps.resolve(_scope);
 	}
 
 	@Override

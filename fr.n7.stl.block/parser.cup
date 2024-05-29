@@ -136,7 +136,7 @@ Program ::= Elements:elements
 				Fragment code = tamFactory.createFragment();
 
 				boolean do_collect = true;
-				boolean do_resolve = false;
+				boolean do_resolve = true;
 
 				boolean collect_succeeded = true;
 				boolean resolve_succeeded = true;
@@ -154,6 +154,10 @@ Program ::= Elements:elements
 					}
 				}
 
+				if (collect_succeeded) {
+					System.out.println("collect succeeded");
+				}
+
 				// Resolve
 				if (collect_succeeded && do_resolve) {
 					System.out.println("Starting resolve ...");
@@ -165,6 +169,10 @@ Program ::= Elements:elements
 							break;
 						}
 					}
+				}
+
+				if (resolve_succeeded) {
+					System.out.println("resolve succeeded");
 				}
 			:}
 		;

@@ -58,8 +58,9 @@ public class MethodDeclaration implements ClassElement {
 
 	@Override
 	public boolean resolveCE(HierarchicalScope<Declaration> _scope) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'resolveCE'");
+		//throw new UnsupportedOperationException("Unimplemented method 'resolveCE'");
+		//TODO : vérifier que c'est suffisant de faire sur le coprs
+		return this.corps.resolve(_scope);
 	}
 
 	@Override
