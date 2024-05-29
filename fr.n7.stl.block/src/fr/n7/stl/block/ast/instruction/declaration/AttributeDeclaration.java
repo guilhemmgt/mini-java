@@ -56,11 +56,9 @@ public class AttributeDeclaration implements ClassElement {
 
 	@Override
 	public boolean collectCE(HierarchicalScope<Declaration> _scope) {
-		// TODO Auto-generated method stub
-		//throw new UnsupportedOperationException("Unimplemented method 'collectCE'");
 		if(_scope.accepts(this)){
 			_scope.register(this);
-			return this.value.collectAndBackwardResolve(_scope);
+			return this.value == null ? true : this.value.collectAndBackwardResolve(_scope);
 		}
 		else{
 			Logger.error(this.name + " déjà utilisé dans ce scope.");
