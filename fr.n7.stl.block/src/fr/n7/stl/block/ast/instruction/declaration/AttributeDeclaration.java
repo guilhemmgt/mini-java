@@ -6,7 +6,9 @@ import fr.n7.stl.block.ast.scope.Declaration;
 import fr.n7.stl.block.ast.scope.HierarchicalScope;
 import fr.n7.stl.block.ast.type.AccessRight;
 import fr.n7.stl.block.ast.type.Type;
+import fr.n7.stl.tam.ast.Fragment;
 import fr.n7.stl.tam.ast.Register;
+import fr.n7.stl.tam.ast.TAMFactory;
 import fr.n7.stl.util.Logger;
 
 public class AttributeDeclaration implements ClassElement {
@@ -79,6 +81,12 @@ public class AttributeDeclaration implements ClassElement {
 	public int allocateMemory(Register _register, int offset) {
 		//throw new UnsupportedOperationException("Unimplemented method 'allocateMemory'");
 		return type.length();
+	}
+
+	@Override
+	public Fragment getCode(TAMFactory _factory) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'getCode'");
 	}
 
 }

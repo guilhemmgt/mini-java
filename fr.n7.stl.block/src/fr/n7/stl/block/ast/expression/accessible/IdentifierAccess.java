@@ -7,6 +7,7 @@ import fr.n7.stl.block.ast.expression.AbstractIdentifier;
 import fr.n7.stl.block.ast.SemanticsUndefinedException;
 import fr.n7.stl.block.ast.expression.AbstractAccess;
 import fr.n7.stl.block.ast.instruction.declaration.ConstantDeclaration;
+import fr.n7.stl.block.ast.instruction.declaration.ParameterDeclaration;
 import fr.n7.stl.block.ast.instruction.declaration.VariableDeclaration;
 import fr.n7.stl.block.ast.scope.Declaration;
 import fr.n7.stl.block.ast.scope.HierarchicalScope;
@@ -79,8 +80,13 @@ public class IdentifierAccess extends AbstractIdentifier implements AccessibleEx
 						this.expression = new ConstantAccess((ConstantDeclaration) _declaration);
 						return true;
 					} else {
-						Logger.error("The declaration for " + this.name + " is of the wrong kind.");
-						return false;
+						if (_declaration instanceof ParameterDeclaration) {
+							this.expression = new ParameterAccess((ParameterDeclaration) _declaration);
+							return true;
+						} else {
+							Logger.error("The declaration for " + this.name + " is of the wrong kind.");
+							return false;
+						}						
 					}
 				}
 			} else {
@@ -91,7 +97,6 @@ public class IdentifierAccess extends AbstractIdentifier implements AccessibleEx
 			return true;
 		}
 	}
-	
 	/* (non-Javadoc)
 	 * @see fr.n7.stl.block.ast.Expression#getType()
 	 */

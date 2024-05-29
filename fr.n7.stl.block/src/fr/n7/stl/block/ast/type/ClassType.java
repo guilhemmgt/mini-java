@@ -16,7 +16,9 @@ import fr.n7.stl.block.ast.scope.HierarchicalScope;
 import fr.n7.stl.block.ast.scope.Scope;
 import fr.n7.stl.block.ast.scope.SymbolTable;
 import fr.n7.stl.block.ast.type.declaration.FieldDeclaration;
+import fr.n7.stl.tam.ast.Fragment;
 import fr.n7.stl.tam.ast.Register;
+import fr.n7.stl.tam.ast.TAMFactory;
 
 public class ClassType implements Type, Declaration, Scope<ClassElement>{
 
@@ -218,6 +220,14 @@ public class ClassType implements Type, Declaration, Scope<ClassElement>{
 	this.size = offset - _offset;
 	System.out.println("ALLOCATEMEMORY (block): allocated " + this.size);
 	return offset;
+	}
+
+	public Fragment getCode(TAMFactory _factory) {
+		Fragment code = _factory.createFragment();
+		for (ClassElement e : this.elements) {
+			code.append(e.getCode(_factory));
+		}
+		return code;
 	}
 
 }

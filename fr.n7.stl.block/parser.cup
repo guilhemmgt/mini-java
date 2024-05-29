@@ -144,6 +144,7 @@ Program ::= Elements:elements
 				boolean do_resolve = true;
 				boolean do_type = true;
 				boolean do_memory = true;
+				boolean do_code = true;
 
 				boolean collect_succeeded = true;
 				boolean resolve_succeeded = true;
@@ -210,6 +211,18 @@ Program ::= Elements:elements
 						i = elem.allocateMemory(Register.SB, i); 
 						}
 					System.out.println(GREEN + "memory allocated" +RESET);
+				}
+
+				// Code Generation
+				if (do_code) {
+					System.out.println("Starting getCode ...");
+					int i = 0;
+					for (ClassType elem : elements) {
+						System.out.println("Class " + elem.getName());
+						code.append(elem.getCode(tamFactory));
+					}
+					code.add(tamFactory.createHalt());
+					System.out.println(GREEN + "code generated" +RESET);
 				}
 			:}
 		;
