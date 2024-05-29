@@ -1,2 +1,7 @@
 /.metadata/
 **/*.class
+**/bin/*
+**/Parser.java
+**/Parser.java~
+**/Lexer.java
+**/Lexer.java~
