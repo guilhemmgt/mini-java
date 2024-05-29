@@ -96,7 +96,7 @@ non terminal Expression 					Expression;
 non terminal AssignableExpression		Affectable;
 non terminal List<ClassType>		Elements;
 non terminal ClassType 			Main, Class ;
-non terminal							SingleInherits ;
+non terminal ClassType							SingleInherits ;
 non terminal List<ClassElement>			ClassElements ;
 non terminal ClassElement 				ClassElement ;
 non terminal AttributeDeclaration		Attribute;
@@ -169,11 +169,11 @@ Elements ::= Main:main
 			RESULT = elements;
 		:}
 		;
-		
-Class ::= UL_Classe UL_Identificateur:identifiant SingleInherits 
+
+Class ::= UL_Classe UL_Identificateur:identifiant SingleInherits:inheritedClass 
 		  UL_Accolade_Ouvrante ClassElements:classElements UL_Accolade_Fermante
 		{:
-			RESULT = new ClassType(identifiant, classElements, false);
+			RESULT = new ClassType(identifiant, classElements, false, inheritedClass);
 		:}
 		;
 		
@@ -185,20 +185,20 @@ Main ::= UL_Public UL_Classe UL_Classe_Principale
 			MethodDeclaration methodePrincipale = new MethodDeclaration(new Signature(AtomicType.VoidType, "main", parametres), block, false, true, false);
 			List<ClassElement> l = new ArrayList<ClassElement>();
 			l.add(methodePrincipale);
-			RESULT = new ClassType("Main", l, false);
+			RESULT = new ClassType("Main", l, false, null);
 		:}
 		;
 
 SingleInherits ::= /* Lambda */
 		{:
-		// pas d'héritage TODO
+			RESULT = null;
 		:}
-		/*
 		|
-		UL_Herite Instance
+		UL_Herite UL_Identificateur:identifiant
 		{:
+			// TODO
+			RESULT = null;
 		:}
-		*/
 		;
 
 ClassElements ::= /* Lambda */

@@ -19,6 +19,7 @@ public class ClassType implements Type, Declaration, Scope<ClassElement>{
 	private List<ClassElement> elements;
 	private boolean isAbstract;
 	private String name;
+	private ClassType inheritedClass; // null si pas héritée
 
 	/**
 	 * Constructor for a record type including fields.
@@ -28,9 +29,10 @@ public class ClassType implements Type, Declaration, Scope<ClassElement>{
 	 * @param _constructors Sequence of methods to initialize the content of the class type.
 	 * @param _isAbstract Boolean valued at true if the class is abstract 
 	 */
-	public ClassType(String _name, Iterable<ClassElement> _elements, boolean _isAbstract) {
+	public ClassType(String _name, Iterable<ClassElement> _elements, boolean _isAbstract, ClassType inheritedClass) {
 		this.name = _name;
 		this.isAbstract = _isAbstract;
+		this.inheritedClass = inheritedClass;
 
 		this.elements = new LinkedList<ClassElement>();
 		for (ClassElement _element : _elements) {
