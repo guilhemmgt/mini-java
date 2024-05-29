@@ -1,0 +1,21 @@
+;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@7ef20235
+main
+POP (0) 0
+;fr.n7.stl.block.ast.instruction.declaration.ConstructorDeclaration@27d6c5e0
+B
+POP (0) 0
+;fr.n7.stl.block.ast.instruction.declaration.ConstructorDeclaration@4f3f5b24
+A
+POP (0) 0
+;fr.n7.stl.block.ast.instruction.declaration.ConstructorDeclaration@15aeb7ab
+A
+POP (0) 0
+;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@7b23ec81
+m
+POP (0) 0
+;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@6acbcfc0
+m
+POP (0) 0
+LOADL 1
+HALT
+

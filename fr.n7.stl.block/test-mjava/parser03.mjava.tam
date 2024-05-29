@@ -1,0 +1,21 @@
+;int a = 0;
+;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@3d075dc0
+main
+PUSH 1
+LOADL 0
+STORE (1) 1[SB]
+; a  = 5;
+LOADL 5
+LOADA 1[SB]
+STOREI (1)
+;int b = a;
+PUSH 1
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@682a0b20
+LOAD (1) 1[SB]
+STORE (1) 2[SB]
+POP (0) 2
+;fr.n7.stl.block.ast.instruction.declaration.ConstructorDeclaration@214c265e
+A
+POP (0) 0
+HALT
+
