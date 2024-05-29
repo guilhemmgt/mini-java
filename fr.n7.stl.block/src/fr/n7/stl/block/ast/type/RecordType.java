@@ -8,6 +8,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 import fr.n7.stl.block.ast.SemanticsUndefinedException;
+import fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration;
+import fr.n7.stl.block.ast.instruction.declaration.Signature;
 import fr.n7.stl.block.ast.scope.Declaration;
 import fr.n7.stl.block.ast.scope.HierarchicalScope;
 import fr.n7.stl.block.ast.scope.Scope;
@@ -114,6 +116,10 @@ public class RecordType implements Type, Declaration, Scope<FieldDeclaration> {
 			return null;
 		}
 	}
+	@Override
+	public FieldDeclaration get(Signature _signature) {
+		return null;
+	}
 
 	/* (non-Javadoc)
 	 * @see fr.n7.stl.block.ast.Scope#contains(java.lang.String)
@@ -126,6 +132,10 @@ public class RecordType implements Type, Declaration, Scope<FieldDeclaration> {
 			_result = _result || _iter.next().getName().contentEquals(_name);
 		}
 		return _result;
+	}
+	@Override
+	public boolean contains(Signature _signature) {
+		return false;
 	}
 
 	/* (non-Javadoc)
