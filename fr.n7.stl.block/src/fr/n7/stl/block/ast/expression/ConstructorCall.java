@@ -103,6 +103,11 @@ public class ConstructorCall implements Expression {
 			// Obtention de la méthode du constructeur
 			Signature signature = new Signature(null, classType.getName(), this.arguments);
 			this.methode = (ConstructorDeclaration) classType.get(signature);
+			if (this.methode == null) {
+				// Le constructeur n'existe pas
+				Logger.error("(ConstructorCall) Le constructeur " + signature.toString() + " de la classe " + classType.getName() + " n'existe pas.");
+				return false;
+			}
 		}
 
 		boolean funResolve = this.methode.resolveCE(_scope);
