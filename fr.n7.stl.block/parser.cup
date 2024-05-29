@@ -223,6 +223,14 @@ Program ::= Elements:elements
 					}
 					code.add(tamFactory.createHalt());
 					System.out.println(GREEN + "code generated" +RESET);
+
+					try {
+						File tamFile = new File (parser.name + ".tam");
+						PrintStream stream = new PrintStream(new FileOutputStream(tamFile));
+						stream.println(code);
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
 				}
 			:}
 		;
