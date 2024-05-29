@@ -131,6 +131,11 @@ precedence left UL_Point; // , UL_Crochet_Ouvrant, UL_Parenthese_Ouvrante;
 /* TODO */
 Program ::= Elements:elements
 			{: 
+				//Couleurs pour l'affichage dans le terminal pour s'y retrouver plus facilement
+				String GREEN = "\033[0;32m";
+				String RESET = "\033[0m"; 
+				String RED = "\033[0;31m";     
+
 				SymbolTable tds = new SymbolTable();
 				TAMFactoryImpl tamFactory = new TAMFactoryImpl();
 				Fragment code = tamFactory.createFragment();
@@ -148,14 +153,14 @@ Program ::= Elements:elements
 						System.out.println("Class " + elem.getName());
 						if (!elem.collect(tds)) {
 							collect_succeeded = false;
-							Logger.error("Collect failed !");
+							Logger.error(RED + "Collect failed !" +RESET);
 							break;
 						}
 					}
 				}
 
 				if (collect_succeeded) {
-					System.out.println("collect succeeded");
+					System.out.println(GREEN + "collect succeeded" +RESET);
 				}
 
 				// Resolve
@@ -165,14 +170,14 @@ Program ::= Elements:elements
 						System.out.println("Class " + elem.getName());
 						if (!elem.resolve(tds)) {
 							resolve_succeeded = false;
-							Logger.error("Resolve failed !");
+							Logger.error(RED + "Resolve failed !" +RESET);
 							break;
 						}
 					}
 				}
 
 				if (resolve_succeeded) {
-					System.out.println("resolve succeeded");
+					System.out.println(GREEN + "resolve succeeded" + RESET);
 				}
 			:}
 		;
