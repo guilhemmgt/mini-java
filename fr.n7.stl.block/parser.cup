@@ -714,12 +714,12 @@ Expression ::= /* Affectable:affectable UL_Egal Expression:expression
 			//TODO
 			| UL_Nouveau Type:type UL_Parenthese_Ouvrante UL_Parenthese_Fermante	                     
              	{: 
-					RESULT = new ConstructorCall((ConstructorDeclaration) type, new ArrayList<Expression>());
+					RESULT = new ConstructorCall(type, new ArrayList<Expression>());
 				:}
 			//TODO
 			| UL_Nouveau Type:type UL_Parenthese_Ouvrante Expressions:parametres UL_Parenthese_Fermante	                     
              	{: 
-					RESULT = new ConstructorCall((ConstructorDeclaration) type, parametres);
+					RESULT = new ConstructorCall(type, parametres);
 				:}
             ;
        
