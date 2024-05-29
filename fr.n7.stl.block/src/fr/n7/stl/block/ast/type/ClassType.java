@@ -8,6 +8,9 @@ import fr.n7.stl.block.ast.SemanticsUndefinedException;
 import fr.n7.stl.block.ast.instruction.ClassElement;
 import fr.n7.stl.block.ast.instruction.Instruction;
 import fr.n7.stl.block.ast.instruction.declaration.AttributeDeclaration;
+import fr.n7.stl.block.ast.instruction.declaration.ConstructorDeclaration;
+import fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration;
+import fr.n7.stl.block.ast.instruction.declaration.Signature;
 import fr.n7.stl.block.ast.scope.Declaration;
 import fr.n7.stl.block.ast.scope.HierarchicalScope;
 import fr.n7.stl.block.ast.scope.Scope;
@@ -69,6 +72,27 @@ public class ClassType implements Type, Declaration, Scope<ClassElement>{
 			return null;
 		}
 	}
+	@Override
+	public ClassElement get(Signature _signature) {
+		boolean _found = false;
+		Iterator<ClassElement> _iter = this.elements.iterator();
+		ClassElement _current = null;
+		while (_iter.hasNext() && (! _found)) {
+			_current = _iter.next();
+			if (_current instanceof MethodDeclaration) {
+				MethodDeclaration md = (MethodDeclaration) _current;
+				_found = _found || md.getEntete() == _signature;
+			} else if (_current instanceof ConstructorDeclaration) {
+				ConstructorDeclaration cd = (ConstructorDeclaration) _current;
+				_found = _found || cd.getEntete() == _signature;
+			}
+		}
+		if (_found) {
+			return _current;
+		} else {
+			return null;
+		}
+	}
 
 	@Override
 	public boolean contains(String _name) {
@@ -76,6 +100,22 @@ public class ClassType implements Type, Declaration, Scope<ClassElement>{
 		Iterator<ClassElement> _iter = this.elements.iterator();
 		while (_iter.hasNext() && (! _result)) {
 			_result = _result || _iter.next().getName().contentEquals(_name);
+		}
+		return _result;
+	}
+	@Override
+	public boolean contains(Signature _signature) {
+		boolean _result = false;
+		Iterator<ClassElement> _iter = this.elements.iterator();
+		while (_iter.hasNext() && (! _result)) {
+			ClassElement next = _iter.next();
+			if (next instanceof MethodDeclaration) {
+				MethodDeclaration md = (MethodDeclaration) next;
+				_result = _result || md.getEntete() == _signature;
+			} else if (next instanceof ConstructorDeclaration) {
+				ConstructorDeclaration cd = (ConstructorDeclaration) next;
+				_result = _result || cd.getEntete() == _signature;
+			}
 		}
 		return _result;
 	}
