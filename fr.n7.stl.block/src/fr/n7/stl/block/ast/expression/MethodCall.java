@@ -8,43 +8,25 @@ import java.util.List;
 
 import fr.n7.stl.block.ast.SemanticsUndefinedException;
 import fr.n7.stl.block.ast.instruction.declaration.FunctionDeclaration;
+import fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration;
 import fr.n7.stl.block.ast.scope.Declaration;
 import fr.n7.stl.block.ast.scope.HierarchicalScope;
 import fr.n7.stl.block.ast.type.Type;
 import fr.n7.stl.tam.ast.Fragment;
+import fr.n7.stl.tam.ast.Register;
 import fr.n7.stl.tam.ast.TAMFactory;
 
-/**
- * Abstract Syntax Tree node for a function call expression.
- * @author Marc Pantel
- *
- */
-public class FunctionCall implements Expression {
+public class MethodCall implements Expression {
 
-	/**
-	 * Name of the called function.
-	 * TODO : Should be an expression.
-	 */
-	protected String name;
-	
-	/**
-	 * Declaration of the called function after name resolution.
-	 * TODO : Should rely on the VariableUse class.
-	 */
-	protected FunctionDeclaration function;
-	
-	/**
-	 * List of AST nodes that computes the values of the parameters for the function call.
-	 */
+	protected MethodDeclaration methode;
 	protected List<Expression> arguments;
 	
 	/**
-	 * @param _name : Name of the called function.
+	 * @param _methode : called function.
 	 * @param _arguments : List of AST nodes that computes the values of the parameters for the function call.
 	 */
-	public FunctionCall(String _name, List<Expression> _arguments) {
-		this.name = _name;
-		this.function = null;
+	public MethodCall(MethodDeclaration _methode, List<Expression> _arguments) {
+		this.methode = _methode;
 		this.arguments = _arguments;
 	}
 
@@ -53,7 +35,7 @@ public class FunctionCall implements Expression {
 	 */
 	@Override
 	public String toString() {
-		String _result = ((this.function == null)?this.name:this.function) + "( ";
+		String _result = ((this.methode == null)?this.methode.getName():this.methode) + "( ";
 		Iterator<Expression> _iter = this.arguments.iterator();
 		if (_iter.hasNext()) {
 			_result += _iter.next();
@@ -69,14 +51,11 @@ public class FunctionCall implements Expression {
 	 */
 	@Override
 	public boolean collectAndBackwardResolve(HierarchicalScope<Declaration> _scope) {
-		this.function = (FunctionDeclaration) _scope.get(this.name);
-
-		boolean funCollect = this.function == null ? true : this.function.collectAndBackwardResolve(_scope);
+		boolean funCollect = this.methode == null ? true : this.methode.collectCE(_scope);
 		boolean argCollects = true;
 		for (Expression arg : this.arguments) {
 			argCollects = argCollects && arg.collectAndBackwardResolve(_scope);
 		}
-		
 		return funCollect && argCollects;
 	}
 
@@ -85,16 +64,11 @@ public class FunctionCall implements Expression {
 	 */
 	@Override
 	public boolean fullResolve(HierarchicalScope<Declaration> _scope) {
-		if (this.function == null) {
-			this.function = (FunctionDeclaration) _scope.get(this.name);
-		}
-
-		boolean funResolve = this.function.fullResolve(_scope);
+		boolean funResolve = this.methode.resolveCE(_scope);
 		boolean argResolves = true;
 		for (Expression arg : this.arguments) {
 			argResolves = argResolves && arg.fullResolve(_scope);
 		}
-		
 		return funResolve && argResolves;
 	}
 	
@@ -103,7 +77,8 @@ public class FunctionCall implements Expression {
 	 */
 	@Override
 	public Type getType() {
-		throw new SemanticsUndefinedException( "Semantics getType is undefined in FunctionCall.");
+		//throw new SemanticsUndefinedException( "Semantics getType is undefined in FunctionCall.");
+		return this.methode.getType();
 	}
 
 	/* (non-Javadoc)
@@ -111,7 +86,13 @@ public class FunctionCall implements Expression {
 	 */
 	@Override
 	public Fragment getCode(TAMFactory _factory) {
-		throw new SemanticsUndefinedException( "Semantics getCode is undefined in FunctionCall.");
+		//throw new SemanticsUndefinedException( "Semantics getCode is undefined in FunctionCall.");
+		Fragment frag = _factory.createFragment();
+		frag.addComment(this.toString());
+		for (Expression e : this.arguments) {
+			frag.append(e.getCode(_factory));
+		}
+		frag.add(_factory.createCall(this.methode.getName(), Register.SB));
+		return frag;
 	}
-
 }

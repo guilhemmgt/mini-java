@@ -6,6 +6,7 @@ import fr.n7.stl.block.ast.scope.Declaration;
 import fr.n7.stl.block.ast.scope.HierarchicalScope;
 import fr.n7.stl.block.ast.type.AccessRight;
 import fr.n7.stl.block.ast.type.Type;
+import fr.n7.stl.util.Logger;
 
 public class AttributeDeclaration implements ClassElement {
 
@@ -53,6 +54,15 @@ public class AttributeDeclaration implements ClassElement {
 	@Override
 	public boolean collectCE(HierarchicalScope<Declaration> _scope) {
 		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'collectCE'");
+		//throw new UnsupportedOperationException("Unimplemented method 'collectCE'");
+		if(_scope.accepts(this)){
+			_scope.register(this);
+			return this.value.collectAndBackwardResolve(_scope);
+		}
+		else{
+			Logger.error(this.name + " déjà utilisé dans ce scope.");
+			return false;
+		}
 	}
+
 }
