@@ -100,7 +100,7 @@ public class SymbolTable implements HierarchicalScope<Declaration> {
 	@Override
 	public void register(Declaration _declaration) {
 		if (this.accepts(_declaration)) {
-			System.out.println("REGISTER: " + _declaration.getName() + " (" + _declaration.getClass().getName() + ")");
+			System.out.println("REGISTER: " + _declaration.getName() + " (" + _declaration.getClass().getName().replace("fr.n7.stl.block.ast.", "") + ")");
 			if (_declaration instanceof MethodDeclaration) {
 				MethodDeclaration _methodDeclaration = (MethodDeclaration) _declaration;
 				this.signDeclarations.put(_methodDeclaration.getEntete(), _declaration);
