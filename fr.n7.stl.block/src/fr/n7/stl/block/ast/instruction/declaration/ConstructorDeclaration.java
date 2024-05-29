@@ -131,7 +131,19 @@ public class ConstructorDeclaration implements ClassElement, Type {
 
 	@Override
 	public Fragment getCode(TAMFactory _factory) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'getCode'");
+		//throw new UnsupportedOperationException("Unimplemented method 'getCode'");
+		List<ParameterDeclaration> parameters = this.entete.getParametres();
+		Fragment frag = _factory.createFragment();
+	
+
+		// TODO : A verifier mais je pense pas qu'il faut load ici les paramètres mais plutôt au moment
+		// où on les utilise -> voir où
+		// for(ParameterDeclaration pad : parameters) {
+		// 	frag.add(_factory.createLoad(Register.LB, 0, pad.getType().length()));
+		// }
+		frag.append(this.corps.getCode(_factory));
+		frag.addPrefix(this.entete.getName());
+		frag.addComment(this.toString());
+		return frag;
 	}
 }

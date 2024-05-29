@@ -85,8 +85,12 @@ public class AttributeDeclaration implements ClassElement {
 
 	@Override
 	public Fragment getCode(TAMFactory _factory) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'getCode'");
+		//throw new UnsupportedOperationException("Unimplemented method 'getCode'");
+		Fragment frag = _factory.createFragment();
+		if (value != null) {
+			frag.append(value.getCode(_factory));
+		}
+		return frag;
 	}
 
 }

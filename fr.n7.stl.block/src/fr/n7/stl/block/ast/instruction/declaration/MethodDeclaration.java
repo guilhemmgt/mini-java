@@ -62,8 +62,11 @@ public class MethodDeclaration implements ClassElement {
 	@Override
 	public boolean resolveCE(HierarchicalScope<Declaration> _scope) {
 		//throw new UnsupportedOperationException("Unimplemented method 'resolveCE'");
-		//TODO : vérifier que c'est suffisant de faire sur le coprs
-		return this.corps.resolve(_scope);
+		boolean	resolved = true;
+		if (this.corps != null) {
+			resolved = this.corps.resolve(_scope);
+		}
+		return resolved;
 	}
 
 	@Override
@@ -77,8 +80,10 @@ public class MethodDeclaration implements ClassElement {
 			for(ParameterDeclaration pad : parameters) {
 				this.scopeParams.register(pad);
 			}
-			
-			boolean collect = this.corps.collect(this.scopeParams);
+			boolean collect = true;
+			if (this.corps != null) {
+				collect = this.corps.collect(this.scopeParams);
+			}
 			if (!collect)
 				Logger.error("MethodDeclaration collect failed");
 			return collect;
@@ -92,7 +97,11 @@ public class MethodDeclaration implements ClassElement {
 	@Override
 	public boolean checkType() {
 		//throw new UnsupportedOperationException("Unimplemented method 'checkType'");
-		return this.corps.checkType();
+		boolean checked = true; 
+		if (this.corps != null) {
+			checked = this.corps.checkType();
+		}
+		return checked;
 	}
 
 	@Override
@@ -110,7 +119,23 @@ public class MethodDeclaration implements ClassElement {
 
 	@Override
 	public Fragment getCode(TAMFactory _factory) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'getCode'");
+		//throw new UnsupportedOperationException("Unimplemented method 'getCode'");
+		List<ParameterDeclaration> parameters = this.entete.getParametres();
+		Fragment frag = _factory.createFragment();
+	
+
+		// TODO : A verifier mais je pense pas qu'il faut load ici les paramètres mais plutôt au moment
+		// où on les utilise -> voir où
+		// for(ParameterDeclaration pad : parameters) {
+		// 	frag.add(_factory.createLoad(Register.LB, 0, pad.getType().length()));
+		// }
+
+		//On vérifie si le corps n'est pas null (méthode abstraite)
+		if (this.corps != null) {
+			frag.append(this.corps.getCode(_factory));
+			frag.addPrefix(this.entete.getName());
+			frag.addComment(this.toString());
+		}
+		return frag;
 	}
 }
