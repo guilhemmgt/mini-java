@@ -3,6 +3,7 @@
  */
 package fr.n7.stl.block.ast.expression;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -10,8 +11,12 @@ import fr.n7.stl.block.ast.SemanticsUndefinedException;
 import fr.n7.stl.block.ast.instruction.declaration.ConstructorDeclaration;
 import fr.n7.stl.block.ast.instruction.declaration.FunctionDeclaration;
 import fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration;
+import fr.n7.stl.block.ast.instruction.declaration.ParameterDeclaration;
+import fr.n7.stl.block.ast.instruction.declaration.Signature;
 import fr.n7.stl.block.ast.scope.Declaration;
 import fr.n7.stl.block.ast.scope.HierarchicalScope;
+import fr.n7.stl.block.ast.type.ClassType;
+import fr.n7.stl.block.ast.type.NamedType;
 import fr.n7.stl.block.ast.type.Type;
 import fr.n7.stl.tam.ast.Fragment;
 import fr.n7.stl.tam.ast.Register;
@@ -19,15 +24,16 @@ import fr.n7.stl.tam.ast.TAMFactory;
 
 public class ConstructorCall implements Expression {
 
-	protected ConstructorDeclaration methode;
+	protected ConstructorDeclaration methode; // Affecté au collect/resolve
+	protected Type type; // Le type de la classe
 	protected List<Expression> arguments;
 	
 	/**
 	 * @param _methode : called function.
 	 * @param _arguments : List of AST nodes that computes the values of the parameters for the function call.
 	 */
-	public ConstructorCall(ConstructorDeclaration _methode, List<Expression> _arguments) {
-		this.methode = _methode;
+	public ConstructorCall(Type _type, List<Expression> _arguments) {
+		this.type = _type;
 		this.arguments = _arguments;
 	}
 
@@ -36,7 +42,7 @@ public class ConstructorCall implements Expression {
 	 */
 	@Override
 	public String toString() {
-		String _result = ((this.methode == null)?this.methode.getName():this.methode) + "( ";
+		String _result = ((this.methode == null)?this.type.toString():this.methode.getName()) + "( ";
 		Iterator<Expression> _iter = this.arguments.iterator();
 		if (_iter.hasNext()) {
 			_result += _iter.next();
@@ -52,6 +58,18 @@ public class ConstructorCall implements Expression {
 	 */
 	@Override
 	public boolean collectAndBackwardResolve(HierarchicalScope<Declaration> _scope) {
+		// Obtention des paramètres
+		ArrayList<ParameterDeclaration> argumentsDeclarations = new ArrayList<ParameterDeclaration>();
+		for (Expression arg : arguments) {
+			argumentsDeclarations.add(new ParameterDeclaration(arg.toString(), arg.getType()));
+		}
+		// Obtention de la méthode du constructeur
+		NamedType namedType = (NamedType) this.type;
+		ClassType classType = (ClassType) _scope.get(namedType.toString());
+		Signature signature = new Signature(null, classType.getName(), argumentsDeclarations);
+		this.methode = (ConstructorDeclaration) classType.get(signature);
+		// Suite du resolve
+
 		boolean funCollect = this.methode == null ? true : this.methode.collectCE(_scope);
 		boolean argCollects = true;
 		for (Expression arg : this.arguments) {
@@ -78,7 +96,6 @@ public class ConstructorCall implements Expression {
 	 */
 	@Override
 	public Type getType() {
-		//throw new SemanticsUndefinedException( "Semantics getType is undefined in FunctionCall.");
 		return this.methode.getType();
 	}
 
@@ -87,7 +104,6 @@ public class ConstructorCall implements Expression {
 	 */
 	@Override
 	public Fragment getCode(TAMFactory _factory) {
-		//throw new SemanticsUndefinedException( "Semantics getCode is undefined in FunctionCall.");
 		Fragment frag = _factory.createFragment();
 		frag.addComment(this.toString());
 		for (Expression e : this.arguments) {
