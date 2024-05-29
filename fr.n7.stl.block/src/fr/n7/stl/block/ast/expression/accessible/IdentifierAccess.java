@@ -12,8 +12,8 @@ import fr.n7.stl.block.ast.instruction.declaration.ParameterDeclaration;
 import fr.n7.stl.block.ast.instruction.declaration.VariableDeclaration;
 import fr.n7.stl.block.ast.scope.Declaration;
 import fr.n7.stl.block.ast.scope.HierarchicalScope;
-import fr.n7.stl.block.ast.type.ClassType;
 import fr.n7.stl.block.ast.type.Type;
+import fr.n7.stl.block.ast.type.declaration.ClassDeclaration;
 import fr.n7.stl.tam.ast.Fragment;
 import fr.n7.stl.tam.ast.TAMFactory;
 import fr.n7.stl.util.Logger;
@@ -83,7 +83,7 @@ public class IdentifierAccess extends AbstractIdentifier implements AccessibleEx
 					} else if (_declaration instanceof ParameterDeclaration){
 							this.expression = new ParameterAccess((ParameterDeclaration) _declaration);
 							return true;
-					} else if (_declaration instanceof ClassType) {
+					} else if (_declaration instanceof ClassDeclaration) {
 						// this.expression = new ClassAccess();
 						return true;
 					} else if (_declaration instanceof ConstructorDeclaration) {

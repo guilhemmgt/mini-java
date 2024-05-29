@@ -121,6 +121,8 @@ public class VariableDeclaration implements Declaration, Instruction {
 	@Override
 	public boolean fullResolve(HierarchicalScope<Declaration> _scope) {
 		boolean valResolve = this.value.fullResolve(_scope);
+		
+		System.out.println("VARIABLEDECLARATION: " + name + " " + type + " " + value.getType() + " " + value.getClass().getSimpleName() + type.getClass().getSimpleName());
 		boolean typeResolve = this.type.resolve(_scope);
 		return valResolve && typeResolve;
 	}

@@ -55,14 +55,15 @@ public class SymbolTable implements HierarchicalScope<Declaration> {
 	}
 	@Override
 	public Declaration get(Signature _signature) {
-		if (this.signDeclarations.containsKey(_signature)) {
-			return this.signDeclarations.get(_signature);
+		for(Map.Entry<Signature, Declaration> entry : signDeclarations.entrySet()) {
+			Signature sig = entry.getKey();
+			if (sig.equals(_signature))
+				return entry.getValue();
+		}
+		if (this.context != null) {
+			return this.context.get(_signature);
 		} else {
-			if (this.context != null) {
-				return this.context.get(_signature);
-			} else {
-				return null;
-			}
+			return null;
 		}
 	}
 
@@ -75,7 +76,14 @@ public class SymbolTable implements HierarchicalScope<Declaration> {
 	}
 	@Override
 	public boolean contains(Signature _signature) {
-		return (this.signDeclarations.containsKey(_signature));
+		for(Map.Entry<Signature, Declaration> entry : signDeclarations.entrySet()) {
+			Signature sig = entry.getKey();
+			if (sig.equals(_signature)) {
+				System.out.println("MATCH: " + sig + " vs " + _signature);
+				return true;
+			}
+		}
+		return false;
 	}
 
 	/* (non-Javadoc)
@@ -100,14 +108,17 @@ public class SymbolTable implements HierarchicalScope<Declaration> {
 	@Override
 	public void register(Declaration _declaration) {
 		if (this.accepts(_declaration)) {
-			System.out.println("REGISTER: " + _declaration.getName() + " (" + _declaration.getClass().getName().replace("fr.n7.stl.block.ast.", "") + ")");
+			
 			if (_declaration instanceof MethodDeclaration) {
 				MethodDeclaration _methodDeclaration = (MethodDeclaration) _declaration;
-				this.signDeclarations.put(_methodDeclaration.getEntete(), _declaration);
+				System.out.println("REGISTER: " + _methodDeclaration.getEntete() + " (" + _methodDeclaration.getClass().getName().replace("fr.n7.stl.block.ast.", "") + ")");
+				this.signDeclarations.put(_methodDeclaration.getEntete(), _methodDeclaration);
 			} else if(_declaration instanceof ConstructorDeclaration) {
 				ConstructorDeclaration _constructorDeclaration = (ConstructorDeclaration) _declaration;
-				this.signDeclarations.put(_constructorDeclaration.getEntete(), _declaration);
+				System.out.println("REGISTER: " + _constructorDeclaration.getEntete() + " (" + _constructorDeclaration.getClass().getName().replace("fr.n7.stl.block.ast.", "") + ")");
+				this.signDeclarations.put(_constructorDeclaration.getEntete(), _constructorDeclaration);
 			} else {
+				System.out.println("REGISTER: " + _declaration.getName() + " (" + _declaration.getClass().getName().replace("fr.n7.stl.block.ast.", "") + ")");
 				this.declarations.put(_declaration.getName(), _declaration);
 			}
 		} else {

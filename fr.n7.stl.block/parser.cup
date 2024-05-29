@@ -23,6 +23,7 @@ import fr.n7.stl.block.ast.expression.value.*;
 import fr.n7.stl.block.ast.instruction.*;
 import fr.n7.stl.block.ast.instruction.declaration.*;
 import fr.n7.stl.block.ast.scope.*;
+import fr.n7.stl.block.ast.type.declaration.*;
 import fr.n7.stl.block.ast.type.*;
 import fr.n7.stl.util.*;
 import fr.n7.stl.tam.ast.Register;
@@ -92,11 +93,12 @@ non terminal LabelDeclaration			Etiquette;
 non terminal List<ParameterDeclaration>	Parameters;
 non terminal Pair<String,PartialType>	Identifiant;
 non terminal Type						Type, Atomique;
+non terminal ClassType					ClassType;
 non terminal Expression 					Expression;
 non terminal AssignableExpression		Affectable;
-non terminal List<ClassType>		Elements;
-non terminal ClassType 			Main, Class ;
-non terminal ClassType							SingleInherits ;
+non terminal List<ClassDeclaration>		Elements;
+non terminal ClassDeclaration 			Main, Class ;
+non terminal ClassDeclaration							SingleInherits ;
 non terminal List<ClassElement>			ClassElements ;
 non terminal ClassElement 				ClassElement ;
 non terminal AttributeDeclaration		Attribute;
@@ -153,7 +155,7 @@ Program ::= Elements:elements
 				// Collect
 				if (do_collect) {
 					System.out.println("Starting collect ...");
-					for (ClassType elem : elements) {
+					for (ClassDeclaration elem : elements) {
 						System.out.println("Class " + elem.getName());
 						if (!elem.collect(tds)) {
 							collect_succeeded = false;
@@ -170,7 +172,7 @@ Program ::= Elements:elements
 				// Resolve
 				if (collect_succeeded && do_resolve) {
 					System.out.println("Starting resolve ...");
-					for (ClassType elem : elements) {
+					for (ClassDeclaration elem : elements) {
 						System.out.println("Class " + elem.getName());
 						if (!elem.resolve(tds)) {
 							resolve_succeeded = false;
@@ -187,7 +189,7 @@ Program ::= Elements:elements
 				// Type
 				if (do_type) {
 					System.out.println("Starting check_type ...");
-					for (ClassType elem : elements) {
+					for (ClassDeclaration elem : elements) {
 						System.out.println("Class " + elem.getName());
 						if (!elem.checkType()) {
 							type_succeeded = false;
@@ -205,7 +207,7 @@ Program ::= Elements:elements
 				if (do_memory) {
 					System.out.println("Starting allocateMemory ...");
 					int i = 0;
-					for (ClassType elem : elements) {
+					for (ClassDeclaration elem : elements) {
 						System.out.println("Class " + elem.getName());
 						//TODO : Vérifier si i ou i+1
 						i = elem.allocateMemory(Register.SB, i); 
@@ -217,7 +219,7 @@ Program ::= Elements:elements
 				if (do_code) {
 					System.out.println("Starting getCode ...");
 					int i = 0;
-					for (ClassType elem : elements) {
+					for (ClassDeclaration elem : elements) {
 						System.out.println("Class " + elem.getName());
 						code.append(elem.getCode(tamFactory));
 					}
@@ -229,7 +231,7 @@ Program ::= Elements:elements
 
 Elements ::= Main:main
 		{:
-			List<ClassType> elements = new LinkedList<ClassType>();
+			List<ClassDeclaration> elements = new LinkedList<ClassDeclaration>();
 			elements.add(  main);
 			RESULT = elements;
 		:}
@@ -249,7 +251,7 @@ Elements ::= Main:main
 Class ::= UL_Classe UL_Identificateur:identifiant SingleInherits:inheritedClass 
 		  UL_Accolade_Ouvrante ClassElements:classElements UL_Accolade_Fermante
 		{:
-			RESULT = new ClassType(identifiant, classElements, false, inheritedClass);
+			RESULT = new ClassDeclaration(identifiant, classElements, false, inheritedClass);
 		:}
 		;
 		
@@ -261,7 +263,7 @@ Main ::= UL_Public UL_Classe UL_Classe_Principale
 			MethodDeclaration methodePrincipale = new MethodDeclaration(new Signature(AtomicType.VoidType, "main", parametres), block, false, true, false);
 			List<ClassElement> l = new ArrayList<ClassElement>();
 			l.add(methodePrincipale);
-			RESULT = new ClassType("Main", l, false, null);
+			RESULT = new ClassDeclaration("Main", l, false, null);
 		:}
 		;
 
@@ -270,7 +272,7 @@ SingleInherits ::= /* Lambda */
 			RESULT = null;
 		:}
 		|
-		UL_Herite UL_Identificateur:identifiant
+		UL_Herite UL_Identificateur:identifiant 
 		{:
 			// TODO
 			RESULT = null;
@@ -468,11 +470,17 @@ Type ::= Atomique:atomique
 			{: 
 				RESULT = atomique; 
 			:}
-		| UL_Identificateur:nom
+		| ClassType:classType
 			{: 
-				RESULT = new NamedType( nom ); 
+				RESULT = classType;
 			:}
 		;
+
+ClassType ::= UL_Identificateur:nom
+			{: 
+				RESULT = new ClassType( nom ); 
+			:}
+			;
 
 Instructions ::= Instructions:instructions Instruction:instruction
 				{:
@@ -770,14 +778,14 @@ Expression ::= /* Affectable:affectable UL_Egal Expression:expression
 				:}
 			/*  constructeur sans paramètre */
 			//TODO
-			| UL_Nouveau Type:type UL_Parenthese_Ouvrante UL_Parenthese_Fermante	                     
+			| UL_Nouveau ClassType:classType UL_Parenthese_Ouvrante UL_Parenthese_Fermante	                     
              	{: 
-					RESULT = new ConstructorCall(type, new ArrayList<Expression>());
+					RESULT = new ConstructorCall(classType, new ArrayList<Expression>());
 				:}
 			//TODO
-			| UL_Nouveau Type:type UL_Parenthese_Ouvrante Expressions:parametres UL_Parenthese_Fermante	                     
+			| UL_Nouveau ClassType:classType UL_Parenthese_Ouvrante Expressions:parametres UL_Parenthese_Fermante	                     
              	{: 
-					RESULT = new ConstructorCall(type, parametres);
+					RESULT = new ConstructorCall(classType, parametres);
 				:}
             ;
        

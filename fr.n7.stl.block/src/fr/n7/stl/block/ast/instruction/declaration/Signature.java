@@ -37,7 +37,7 @@ public class Signature implements Declaration{
         for (ParameterDeclaration pd : parametres) {
             params += pd.getType() + ",";
         }
-		return (this.type == null ? "null" : this.getName()) + ":" + this.name + "(" + params + ")";
+		return (this.type == null ? "null" : this.type) + ":" + this.name + "(" + params + ")";
 	}
 
     @Override
