@@ -199,15 +199,4 @@ public class ClassType implements Type, Declaration, Scope<ClassElement>{
 		return _result;
 	}
 
-	@Override
-	public ClassElement get(Signature _signature) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'get'");
-	}
-
-	@Override
-	public boolean contains(Signature _signature) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'contains'");
-	}
 }
