@@ -8,6 +8,7 @@ import fr.n7.stl.block.ast.SemanticsUndefinedException;
 import fr.n7.stl.block.ast.instruction.ClassElement;
 import fr.n7.stl.block.ast.instruction.Instruction;
 import fr.n7.stl.block.ast.instruction.declaration.AttributeDeclaration;
+import fr.n7.stl.block.ast.instruction.declaration.Signature;
 import fr.n7.stl.block.ast.scope.Declaration;
 import fr.n7.stl.block.ast.scope.HierarchicalScope;
 import fr.n7.stl.block.ast.scope.Scope;
@@ -157,5 +158,17 @@ public class ClassType implements Type, Declaration, Scope<ClassElement>{
 			_result = _result && e.collectCE(_scope);
 		}
 		return _result;
+	}
+
+	@Override
+	public ClassElement get(Signature _signature) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'get'");
+	}
+
+	@Override
+	public boolean contains(Signature _signature) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'contains'");
 	}
 }
