@@ -143,7 +143,7 @@ Program ::= Elements:elements
 				boolean do_collect = true;
 				boolean do_resolve = true;
 				boolean do_type = true;
-
+				boolean do_memory = true;
 
 				boolean collect_succeeded = true;
 				boolean resolve_succeeded = true;
@@ -198,6 +198,18 @@ Program ::= Elements:elements
 
 				if (type_succeeded) {
 					System.out.println(GREEN + "check_type succeeded" +RESET);
+				}
+
+				// Allocate Memory
+				if (do_memory) {
+					System.out.println("Starting allocateMemory ...");
+					int i = 0;
+					for (ClassType elem : elements) {
+						System.out.println("Class " + elem.getName());
+						//TODO : Vérifier si i ou i+1
+						i = elem.allocateMemory(Register.SB, i); 
+						}
+					System.out.println(GREEN + "memory allocated" +RESET);
 				}
 			:}
 		;

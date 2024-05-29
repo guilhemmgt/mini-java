@@ -6,6 +6,7 @@ import fr.n7.stl.block.ast.scope.Declaration;
 import fr.n7.stl.block.ast.scope.HierarchicalScope;
 import fr.n7.stl.block.ast.type.AccessRight;
 import fr.n7.stl.block.ast.type.Type;
+import fr.n7.stl.tam.ast.Register;
 import fr.n7.stl.util.Logger;
 
 public class AttributeDeclaration implements ClassElement {
@@ -72,6 +73,12 @@ public class AttributeDeclaration implements ClassElement {
 		boolean res = valueType.compatibleWith(this.type);
 		System.out.println("CHECKTYPE (variabledeclaration): " + this.type + " vs " + valueType + " = " + res);
 		return res;
+	}
+
+	@Override
+	public int allocateMemory(Register _register, int offset) {
+		//throw new UnsupportedOperationException("Unimplemented method 'allocateMemory'");
+		return type.length();
 	}
 
 }

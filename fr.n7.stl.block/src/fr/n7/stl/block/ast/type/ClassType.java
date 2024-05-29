@@ -16,6 +16,7 @@ import fr.n7.stl.block.ast.scope.HierarchicalScope;
 import fr.n7.stl.block.ast.scope.Scope;
 import fr.n7.stl.block.ast.scope.SymbolTable;
 import fr.n7.stl.block.ast.type.declaration.FieldDeclaration;
+import fr.n7.stl.tam.ast.Register;
 
 public class ClassType implements Type, Declaration, Scope<ClassElement>{
 
@@ -23,6 +24,7 @@ public class ClassType implements Type, Declaration, Scope<ClassElement>{
 	private boolean isAbstract;
 	private String name;
 	private ClassType inheritedClass; // null si pas héritée
+	private int size;
 
 	/**
 	 * Constructor for a record type including fields.
@@ -206,6 +208,16 @@ public class ClassType implements Type, Declaration, Scope<ClassElement>{
 			_result = _result && e.checkType();
 		}
 		return _result;
+	}
+
+	public int allocateMemory(Register _register, int _offset) {
+	int offset = _offset;
+	for (ClassElement e : this.elements) {
+		offset += e.allocateMemory(_register, offset);
+	}
+	this.size = offset - _offset;
+	System.out.println("ALLOCATEMEMORY (block): allocated " + this.size);
+	return offset;
 	}
 
 }

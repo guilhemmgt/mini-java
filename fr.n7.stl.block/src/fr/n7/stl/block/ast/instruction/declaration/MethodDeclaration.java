@@ -5,6 +5,7 @@ import fr.n7.stl.block.ast.scope.HierarchicalScope;
 import fr.n7.stl.block.ast.scope.SymbolTable;
 import fr.n7.stl.block.ast.type.AccessRight;
 import fr.n7.stl.block.ast.type.Type;
+import fr.n7.stl.tam.ast.Register;
 import fr.n7.stl.util.Logger;
 
 import java.util.List;
@@ -90,5 +91,18 @@ public class MethodDeclaration implements ClassElement {
 	public boolean checkType() {
 		//throw new UnsupportedOperationException("Unimplemented method 'checkType'");
 		return this.corps.checkType();
+	}
+
+	@Override
+	public int allocateMemory(Register _register, int offset) {
+		//throw new UnsupportedOperationException("Unimplemented method 'allocateMemory'");
+		//TODO : A verifier (pas sûre du tout)
+		List<ParameterDeclaration> parameters = this.entete.getParametres();
+		int taille = 0;
+		for(ParameterDeclaration pad : parameters) {
+			taille += pad.getType().length();
+		}
+		this.corps.allocateMemory(_register, offset+taille);
+		return taille;
 	}
 }
