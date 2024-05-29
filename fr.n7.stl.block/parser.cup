@@ -142,9 +142,12 @@ Program ::= Elements:elements
 
 				boolean do_collect = true;
 				boolean do_resolve = true;
+				boolean do_type = true;
+
 
 				boolean collect_succeeded = true;
 				boolean resolve_succeeded = true;
+				boolean type_succeeded = true;
 
 				// Collect
 				if (do_collect) {
@@ -178,6 +181,23 @@ Program ::= Elements:elements
 
 				if (resolve_succeeded) {
 					System.out.println(GREEN + "resolve succeeded" + RESET);
+				}
+
+				// Type
+				if (do_type) {
+					System.out.println("Starting check_type ...");
+					for (ClassType elem : elements) {
+						System.out.println("Class " + elem.getName());
+						if (!elem.checkType()) {
+							type_succeeded = false;
+							Logger.error(RED + "CheckType failed !" +RESET);
+							break;
+						}
+					}
+				}
+
+				if (type_succeeded) {
+					System.out.println(GREEN + "check_type succeeded" +RESET);
 				}
 			:}
 		;

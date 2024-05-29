@@ -12,7 +12,7 @@ import fr.n7.stl.block.ast.type.Type;
 import fr.n7.stl.util.Logger;
 
 public class ConstructorDeclaration implements ClassElement, Type {
-	private AccessRight typeAcces = null;
+	private AccessRight typeAcces = AccessRight.PUBLIC;
 	private Signature entete;
 	private Block corps;
 
@@ -105,5 +105,11 @@ public class ConstructorDeclaration implements ClassElement, Type {
 	public boolean resolve(HierarchicalScope<Declaration> _scope) {
 		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException("Unimplemented method 'resolve'");
+	}
+
+	@Override
+	public boolean checkType() {
+		//throw new UnsupportedOperationException("Unimplemented method 'checkType'");
+		return this.corps.checkType();
 	}
 }

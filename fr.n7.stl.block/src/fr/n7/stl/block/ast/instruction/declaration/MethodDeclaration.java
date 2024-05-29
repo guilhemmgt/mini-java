@@ -85,4 +85,10 @@ public class MethodDeclaration implements ClassElement {
 		}
 
 	}
+
+	@Override
+	public boolean checkType() {
+		//throw new UnsupportedOperationException("Unimplemented method 'checkType'");
+		return this.corps.checkType();
+	}
 }

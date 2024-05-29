@@ -65,4 +65,13 @@ public class AttributeDeclaration implements ClassElement {
 		}
 	}
 
+	@Override
+	public boolean checkType() {
+		//throw new UnsupportedOperationException("Unimplemented method 'checkType'");
+		Type valueType = this.value.getType();
+		boolean res = valueType.compatibleWith(this.type);
+		System.out.println("CHECKTYPE (variabledeclaration): " + this.type + " vs " + valueType + " = " + res);
+		return res;
+	}
+
 }

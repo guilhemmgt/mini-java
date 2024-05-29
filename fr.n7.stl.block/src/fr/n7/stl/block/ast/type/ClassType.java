@@ -199,4 +199,13 @@ public class ClassType implements Type, Declaration, Scope<ClassElement>{
 		return _result;
 	}
 
+
+	public boolean checkType() {
+		boolean _result = true;
+		for (ClassElement e : this.elements) {
+			_result = _result && e.checkType();
+		}
+		return _result;
+	}
+
 }

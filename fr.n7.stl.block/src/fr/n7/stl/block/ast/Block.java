@@ -86,7 +86,6 @@ public class Block {
 			result = result && instruction.fullResolve(this.locals);
 		}
 		return result;
-		// throw new SemanticsUndefinedException("Semantics resolve is undefined in Block.");
 	}
 
 	/**

@@ -9,4 +9,5 @@ public interface ClassElement extends Declaration {
 
     public boolean resolveCE(HierarchicalScope<Declaration> _scope);
 	public boolean collectCE(HierarchicalScope<Declaration> _scope);
+    public boolean checkType();
 }
