@@ -1,0 +1,56 @@
+;int a = 0;
+;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@6f496d9f
+main_(String [])
+PUSH 1
+LOADL 0
+STORE (1) 1[SB]
+; a  = 5;
+LOADL 5
+LOADA 1[SB]
+STOREI (1)
+;int b = a;
+PUSH 1
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@5b480cf9
+LOAD (1) 1[SB]
+STORE (1) 2[SB]
+POP (0) 2
+;fr.n7.stl.block.ast.instruction.declaration.ConstructorDeclaration@723279cf
+B
+POP (0) 0
+;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@10f87f48
+abc_int
+RETURN (1) 1
+POP (0) 0
+;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@b4c966a
+abc
+RETURN (1) 0
+POP (0) 0
+;fr.n7.stl.block.ast.instruction.declaration.ConstructorDeclaration@2f4d3709
+B
+POP (0) 0
+;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@4e50df2e
+m
+POP (0) 0
+;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@1d81eb93
+n_int
+RETURN (1) 1
+POP (0) 0
+;fr.n7.stl.block.ast.instruction.declaration.ConstructorDeclaration@7291c18f
+A
+POP (0) 0
+;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@34a245ab
+m
+RETURN (1) 0
+POP (0) 0
+;fr.n7.stl.block.ast.instruction.declaration.ConstructorDeclaration@7cc355be
+A
+POP (0) 0
+;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@6e8cf4c6
+m
+POP (0) 0
+;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@12edcd21
+n_int
+RETURN (1) 1
+POP (0) 0
+HALT
+

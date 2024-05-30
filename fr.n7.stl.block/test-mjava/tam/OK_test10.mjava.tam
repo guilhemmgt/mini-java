@@ -1,0 +1,17 @@
+;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@1de0aca6
+main_String
+POP (0) 0
+;int b = a;
+;fr.n7.stl.block.ast.instruction.declaration.ConstructorDeclaration@41906a77
+A
+PUSH 1
+;fr.n7.stl.block.ast.expression.accessible.AttributeAccess@255316f2
+LOAD (1) 1[SB]
+STORE (1) 1[SB]
+; a  = 2;
+LOADL 2
+LOADA 1[SB]
+STOREI (1)
+POP (0) 1
+HALT
+

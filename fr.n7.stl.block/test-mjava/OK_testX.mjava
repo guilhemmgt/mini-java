@@ -29,12 +29,6 @@ class B extends A{
         print p2;
 	}
 
-	public void m(int arg1) {
-		int a = arg1 * 2;
-		print 0;
-		print a;
-	}
-
 	private int int3() {
 		return 3;
 	}
