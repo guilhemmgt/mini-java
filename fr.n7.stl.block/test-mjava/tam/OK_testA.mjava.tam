@@ -1,11 +1,16 @@
-;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@14ae5a5
-main
+;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@621be5d1
+main_String
 POP (0) 0
-;fr.n7.stl.block.ast.instruction.declaration.ConstructorDeclaration@7f31245a
+; b  = 2;
+;fr.n7.stl.block.ast.instruction.declaration.ConstructorDeclaration@573fd745
 B
+LOADL 2
+LOADA 1[SB]
+STOREI (1)
 POP (0) 0
-;fr.n7.stl.block.ast.instruction.declaration.ConstructorDeclaration@6d6f6e28
+;fr.n7.stl.block.ast.instruction.declaration.ConstructorDeclaration@15327b79
 A
 POP (0) 0
+LOADL 1
 HALT
 

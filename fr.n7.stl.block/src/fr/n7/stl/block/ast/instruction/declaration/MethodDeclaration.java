@@ -124,10 +124,15 @@ public class MethodDeclaration implements ClassElement {
 		List<ParameterDeclaration> parameters = this.entete.getParametres();
 		Fragment frag = _factory.createFragment();
 
-		//On vérifie si le corps n'est pas null (méthode abstraite)
+		//On vérifie si le corps n'est pas null (méthode abstraite par exemple)
 		if (this.corps != null) {
 			frag.append(this.corps.getCode(_factory));
-			frag.addPrefix(this.entete.getName());
+			List<ParameterDeclaration> param = this.entete.getParametres();
+			String str = "";
+			for (ParameterDeclaration p : param) {
+				str = str + "_" + p.getType();
+			}
+			frag.addPrefix(this.entete.getName()+str);
 			frag.addComment(this.toString());
 		}
 		return frag;

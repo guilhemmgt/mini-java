@@ -1,5 +1,5 @@
 ;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@4edde6e5
-main
+main_(String [])
 POP (0) 0
 ;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@70177ecd
 m

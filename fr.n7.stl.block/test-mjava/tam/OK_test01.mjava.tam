@@ -1,5 +1,5 @@
-;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@433c675d
-main
+;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@439f5b3d
+main_String
 POP (0) 0
 HALT
 

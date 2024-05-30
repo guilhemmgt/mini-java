@@ -1,6 +1,6 @@
 ;int a = 0;
 ;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@6f496d9f
-main
+main_(String [])
 PUSH 1
 LOADL 0
 STORE (1) 1[SB]
@@ -18,7 +18,7 @@ POP (0) 2
 B
 POP (0) 0
 ;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@10f87f48
-abc
+abc_int
 RETURN (1) 1
 POP (0) 0
 ;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@b4c966a
@@ -32,7 +32,7 @@ POP (0) 0
 m
 POP (0) 0
 ;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@1d81eb93
-n
+n_int
 RETURN (1) 1
 POP (0) 0
 ;fr.n7.stl.block.ast.instruction.declaration.ConstructorDeclaration@7291c18f
@@ -49,7 +49,7 @@ POP (0) 0
 m
 POP (0) 0
 ;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@12edcd21
-n
+n_int
 RETURN (1) 1
 POP (0) 0
 HALT
