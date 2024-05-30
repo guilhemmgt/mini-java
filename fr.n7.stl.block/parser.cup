@@ -265,7 +265,12 @@ Elements ::= Main:main
 Class ::= UL_Classe UL_Identificateur:identifiant SingleInherits:inheritedClass 
 		  UL_Accolade_Ouvrante ClassElements:classElements UL_Accolade_Fermante
 		{:
-			RESULT = new ClassDeclaration(identifiant, classElements, false, inheritedClass);
+			RESULT = new ClassDeclaration(identifiant, classElements, false, inheritedClass, false);
+		:}
+		| UL_Definitif UL_Classe UL_Identificateur:identifiant SingleInherits:inheritedClass 
+		  UL_Accolade_Ouvrante ClassElements:classElements UL_Accolade_Fermante
+		{:
+			RESULT = new ClassDeclaration(identifiant, classElements, false, inheritedClass, true);
 		:}
 		;
 		
@@ -277,7 +282,7 @@ Main ::= UL_Public UL_Classe UL_Classe_Principale
 			MethodDeclaration methodePrincipale = new MethodDeclaration(new Signature(AtomicType.VoidType, "main", parametres), block, false, true, false);
 			List<ClassElement> l = new ArrayList<ClassElement>();
 			l.add(methodePrincipale);
-			RESULT = new ClassDeclaration("Main", l, false, null);
+			RESULT = new ClassDeclaration("Main", l, false, null, false);
 		:}
 		;
 
