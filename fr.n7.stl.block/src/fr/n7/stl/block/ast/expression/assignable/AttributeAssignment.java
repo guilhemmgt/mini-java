@@ -5,14 +5,18 @@ package fr.n7.stl.block.ast.expression.assignable;
 
 import fr.n7.stl.block.ast.SemanticsUndefinedException;
 import fr.n7.stl.block.ast.expression.AbstractIdentifier;
+import fr.n7.stl.block.ast.instruction.ClassElement;
 import fr.n7.stl.block.ast.instruction.declaration.AttributeDeclaration;
 import fr.n7.stl.block.ast.instruction.declaration.VariableDeclaration;
 import fr.n7.stl.block.ast.scope.Declaration;
 import fr.n7.stl.block.ast.scope.HierarchicalScope;
+import fr.n7.stl.block.ast.scope.SymbolTable;
 import fr.n7.stl.block.ast.type.Type;
+import fr.n7.stl.block.ast.type.declaration.ClassDeclaration;
 import fr.n7.stl.tam.ast.Fragment;
 import fr.n7.stl.tam.ast.TAMFactory;
 import fr.n7.stl.util.Logger;
+import java_cup.runtime.Symbol;
 
 /**
  * Abstract Syntax Tree node for an expression whose computation assigns a variable.
@@ -20,7 +24,7 @@ import fr.n7.stl.util.Logger;
  *
  */
 public class AttributeAssignment extends AbstractIdentifier implements AssignableExpression {
-	
+	private ClassDeclaration classDeclaration;
 	protected AttributeDeclaration declaration;
 
 	/**
@@ -36,6 +40,7 @@ public class AttributeAssignment extends AbstractIdentifier implements Assignabl
 	 */
 	@Override
 	public boolean collectAndBackwardResolve(HierarchicalScope<Declaration> _scope) {
+		this.classDeclaration = SymbolTable.classDeclaration;
 		return true;
 	}
 	
@@ -44,15 +49,17 @@ public class AttributeAssignment extends AbstractIdentifier implements Assignabl
 	 */
 	@Override
 	public boolean fullResolve(HierarchicalScope<Declaration> _scope) {
-		if (((HierarchicalScope<Declaration>)_scope).knows(this.name)) {
-			Declaration _declaration = _scope.get(this.name);
-			if (_declaration instanceof AttributeDeclaration) {
-				this.declaration = ((AttributeDeclaration) _declaration);
-				return true;
-			} else {
-				Logger.error("The declaration for " + this.name + " is of the wrong kind (" + _declaration.getClass().getName() + ")."); // pas le droit d'affecter une const, une fonction, ...
-				return false;
+		for(ClassElement ce : classDeclaration.getElements()) {
+			if (ce instanceof AttributeDeclaration) {
+				AttributeDeclaration ad = (AttributeDeclaration) ce;
+				if (ad.getName().equals(this.name)) {
+					this.declaration = ad;
+				}
 			}
+		}
+
+		if (this.declaration != null) {
+			return true;
 		} else {
 			Logger.error("The identifier " + this.name + " has not been found.");
 			return false;	

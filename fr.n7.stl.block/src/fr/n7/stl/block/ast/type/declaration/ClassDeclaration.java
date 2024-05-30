@@ -194,6 +194,8 @@ public class ClassDeclaration implements Declaration, Scope<ClassElement>{
 			_scope.register(this);
 			this.locals = new SymbolTable (_scope);
 
+			SymbolTable.classDeclaration = this;
+
 			boolean _result = true;
 			for (ClassElement e : this.elements) {
 				_result = _result && e.collectCE(locals);

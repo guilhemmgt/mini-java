@@ -14,6 +14,7 @@ import fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration;
 import fr.n7.stl.block.ast.instruction.declaration.ParameterDeclaration;
 import fr.n7.stl.block.ast.instruction.declaration.Signature;
 import fr.n7.stl.block.ast.type.AtomicType;
+import fr.n7.stl.block.ast.type.declaration.ClassDeclaration;
 import fr.n7.stl.util.Logger;
 
 /**
@@ -30,6 +31,7 @@ public class SymbolTable implements HierarchicalScope<Declaration> {
 
 	public static MethodDeclaration methodDeclaration = null;
 	public static ConstructorDeclaration constructorDeclaration = null;
+	public static ClassDeclaration classDeclaration = null;
 
 	public SymbolTable() {
 		this( null );
