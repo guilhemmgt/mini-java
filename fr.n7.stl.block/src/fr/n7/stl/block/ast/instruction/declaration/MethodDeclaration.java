@@ -16,7 +16,6 @@ import fr.n7.stl.block.ast.Block;
 import fr.n7.stl.block.ast.instruction.ClassElement;
 
 public class MethodDeclaration implements ClassElement {
-
 	private Signature entete;
 	private Block corps;
 	private boolean isFinal;
@@ -25,7 +24,7 @@ public class MethodDeclaration implements ClassElement {
 	private AccessRight typeAcces = null;
 
 	// Table des symboles spécifiques aux paramètres
-	HierarchicalScope<Declaration> scopeParams;
+	private HierarchicalScope<Declaration> locals;
 
 	public MethodDeclaration(Signature entete, Block corps, boolean isFinal, boolean isStatic, boolean isAbstract) {
 		this.entete = entete;
@@ -71,24 +70,20 @@ public class MethodDeclaration implements ClassElement {
 
 	@Override
 	public boolean collectCE(HierarchicalScope<Declaration> _scope) {
-		List<ParameterDeclaration> parameters = this.entete.getParametres();
-		this.scopeParams = new SymbolTable(_scope);
-		
 		if (_scope.accepts(this)) {
 			_scope.register(this);
+			this.locals = new SymbolTable (_scope);
 			
-			for(ParameterDeclaration pad : parameters) {
-				this.scopeParams.register(pad);
+			for(ParameterDeclaration pad : this.entete.getParametres()) {
+				this.locals.register(pad);
 			}
 			boolean collect = true;
 			if (this.corps != null) {
-				collect = this.corps.collect(this.scopeParams);
+				collect = this.corps.collect(this.locals);
 			}
-			if (!collect)
-				Logger.error("MethodDeclaration collect failed");
 			return collect;
 		} else {
-			Logger.error("MethodDeclaration collect failed (not accepted)");
+			Logger.error("(MethodDeclaration) " + this.getName() + " déjà utilisé dans ce scope.");
 			return false;
 		}
 

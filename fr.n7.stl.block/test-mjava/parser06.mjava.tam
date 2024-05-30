@@ -1,7 +1,7 @@
-;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@3b9a45b3
+;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@5451c3a8
 main
 POP (0) 0
-;fr.n7.stl.block.ast.instruction.declaration.ConstructorDeclaration@7699a589
+;fr.n7.stl.block.ast.instruction.declaration.ConstructorDeclaration@2626b418
 A
 POP (0) 0
 HALT

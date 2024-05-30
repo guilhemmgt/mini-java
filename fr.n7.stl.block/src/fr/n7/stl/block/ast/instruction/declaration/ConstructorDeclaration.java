@@ -19,7 +19,8 @@ public class ConstructorDeclaration implements ClassElement, Type {
 	private Signature entete;
 	private Block corps;
 
-	HierarchicalScope<Declaration> scopeParams;
+	// Table des symboles spécifiques aux paramètres
+	private HierarchicalScope<Declaration> locals;
 
 	public ConstructorDeclaration(String name, List<ParameterDeclaration> parameters, Block corps) {
 		this.entete = new Signature(null, name, parameters);
@@ -60,22 +61,20 @@ public class ConstructorDeclaration implements ClassElement, Type {
 
 	@Override
 	public boolean collectCE(HierarchicalScope<Declaration> _scope) {
-		this.scopeParams = new SymbolTable(_scope);
-		
 		if (_scope.accepts(this)) {
 			_scope.register(this);
+			this.locals = new SymbolTable (_scope);
 			
 			for(ParameterDeclaration pad : this.entete.getParametres()) {
-				this.scopeParams.register(pad);
+				this.locals.register(pad);
 			}
-			
-			boolean result = this.corps.collect(this.scopeParams);
-			if (!result)
-				Logger.error("ConstructorDeclaration collect failed");
-
-			return result;
+			boolean collect = true;
+			if (this.corps != null) {
+				collect = this.corps.collect(this.locals);
+			}
+			return collect;
 		} else {
-			Logger.error("ConstructorDeclaration collect failed (not accepted)");
+			Logger.error("(ConstructorDeclaration) " + this.getName() + " déjà utilisé dans ce scope.");
 			return false;
 		}
 	}

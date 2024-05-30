@@ -209,15 +209,15 @@ public class ClassDeclaration implements Declaration, Scope<ClassElement>{
 	public boolean collect(HierarchicalScope<Declaration> _scope) {
 		if(_scope.accepts(this)){
 			_scope.register(this);
+			this.locals = new SymbolTable (_scope);
 
 			boolean _result = true;
-			this.locals = new SymbolTable (_scope);
 			for (ClassElement e : this.elements) {
 				_result = _result && e.collectCE(locals);
 			}
 			return _result;
 		} else {
-			Logger.error(this.name + " déjà utilisé dans ce scope.");
+			Logger.error("(ClassDeclaration) " + this.name + " déjà utilisé dans ce scope.");
 			return false;
 		}
 	}
