@@ -82,12 +82,12 @@ public class ConstructorCall implements Expression {
 		}
 		ConstructorDeclaration constructorDeclaration = (ConstructorDeclaration) signatureGet;
 
-		boolean funResolve = constructorDeclaration.resolveCE(_scope);
+		//boolean funResolve = constructorDeclaration.resolveCE(_scope);
 		boolean argResolves = true;
 		for (Expression arg : this.arguments) {
 			argResolves = argResolves && arg.fullResolve(_scope);
 		}
-		return funResolve && argResolves;
+		return /*funResolve &&*/ argResolves;
 	}
 	
 

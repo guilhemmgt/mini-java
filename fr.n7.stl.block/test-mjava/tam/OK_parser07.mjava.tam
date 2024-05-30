@@ -1,19 +1,22 @@
-;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@1e80bfe8
+;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@28a418fc
 main
 POP (0) 0
-;fr.n7.stl.block.ast.instruction.declaration.ConstructorDeclaration@66a29884
-B
-POP (0) 0
-;fr.n7.stl.block.ast.instruction.declaration.ConstructorDeclaration@4769b07b
-A
-POP (0) 0
-;fr.n7.stl.block.ast.instruction.declaration.ConstructorDeclaration@cc34f4d
-A
-POP (0) 0
-;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@17a7cec2
+;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@5305068a
 m
 POP (0) 0
-;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@65b3120a
+;fr.n7.stl.block.ast.instruction.declaration.ConstructorDeclaration@1f32e575
+B
+POP (0) 0
+;fr.n7.stl.block.ast.instruction.declaration.ConstructorDeclaration@279f2327
+A
+POP (0) 0
+;fr.n7.stl.block.ast.instruction.declaration.ConstructorDeclaration@2ff4acd0
+A
+POP (0) 0
+;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@54bedef2
+m
+POP (0) 0
+;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@5caf905d
 m
 POP (0) 0
 LOADL 1

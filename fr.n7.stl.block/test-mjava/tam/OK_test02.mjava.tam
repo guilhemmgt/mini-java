@@ -1,5 +1,5 @@
 ;int a = 1;
-;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@76fb509a
+;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@3f99bd52
 main
 PUSH 1
 LOADL 1
@@ -10,7 +10,7 @@ LOADL 1
 STORE (1) 2[SB]
 POP (0) 2
 ;int a = 1;
-;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@1f17ae12
+;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@4f023edb
 m
 PUSH 1
 LOADL 1

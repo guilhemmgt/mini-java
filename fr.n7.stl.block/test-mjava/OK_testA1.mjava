@@ -1,0 +1,29 @@
+class B extends A {
+
+    public B() {
+        this.b = 2;
+    }
+
+}
+
+class A {
+    public int b = 1;
+    
+    public A() {
+    
+    }
+}
+
+class C {
+    public C() {
+        
+    }
+}
+
+public class Main {
+
+    public static void main (String args) {
+        B instance = new B();
+    }
+
+}

@@ -44,7 +44,6 @@ public class ClassType implements Type {
 		throw new SemanticsUndefinedException( "equalsTo is undefined in ClassType.");
 	}
 
-
 	@Override
 	public boolean compatibleWith(Type _other) {
 		boolean eq = this.equals(_other);
@@ -56,7 +55,6 @@ public class ClassType implements Type {
 	public Type merge(Type _other) {
 		throw new SemanticsUndefinedException( "merge is undefined in ClassType.");
 	}
-
 
 	@Override
 	public int length() {
@@ -80,8 +78,11 @@ public class ClassType implements Type {
 		}
 		this.declaration = (ClassDeclaration) declaration;
 
+		/* 
 		boolean resolve = this.declaration.resolve(_scope);
 
 		return resolve;
+		*/
+		return true;
 	}
 }
