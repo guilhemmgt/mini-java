@@ -1,0 +1,49 @@
+class A {
+	public A(){
+		print 0;
+	}
+
+	public void m() {
+		int a = 1;
+		int m = 1;
+		print 0;
+		print 1;
+	}
+
+	public void m(int arg1) {
+		int a = arg1 * 2;
+		print 0;
+		print a;
+	}	
+}
+
+class B extends A{
+	public B(int idx){
+		print 0;
+		print idx;
+	}
+
+	public B(int p1, int p2){
+		print 0;
+        print p1;
+        print p2;
+	}
+
+	public void m(int arg1) {
+		int a = arg1 * 2;
+		print 0;
+		print a;
+	}
+
+	private void print3() {
+		print 3;
+	}
+}
+
+public class Main {
+
+	public static void main(String args[]) {
+		int a = 1;
+		int m = 1;
+	}
+}

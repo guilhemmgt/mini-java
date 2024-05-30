@@ -1,0 +1,40 @@
+class A {
+
+    private int a;
+
+	public A(){
+		this.a = 0;
+	}
+
+    public void setA(int f_a){
+        this.a = f_a;
+    }
+
+    public int getA(){
+        return a;
+    }
+}
+
+class B extends A{
+
+	public B(int p1){
+		this.a = p1;
+	}
+
+	public B(int p1, int p2){
+		this.a = p1 + p2;
+	}
+
+    public int acarre(){
+        setA(a*a);
+        int res = getA()
+        return res;
+    }
+}
+
+public class Main {
+
+	public static void main(String args[]) {
+		print 6;
+	}
+}
