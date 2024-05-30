@@ -1,0 +1,11 @@
+;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@14ae5a5
+main
+POP (0) 0
+;fr.n7.stl.block.ast.instruction.declaration.ConstructorDeclaration@7f31245a
+B
+POP (0) 0
+;fr.n7.stl.block.ast.instruction.declaration.ConstructorDeclaration@6d6f6e28
+A
+POP (0) 0
+HALT
+

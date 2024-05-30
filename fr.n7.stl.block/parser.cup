@@ -361,6 +361,17 @@ Attribute ::=
 			RESULT = new AttributeDeclaration(identifiant.getLeft(), _type, null, false, false);
 		:}
 		|
+		Type:type Identifiant:identifiant UL_Egal Expression:valeur UL_Point_Virgule
+		{:
+			Type _type = identifiant.getRight();
+				if (_type == null) {
+					_type = type;
+				} else {
+					_type = ((PartialType)_type).complete( type );
+ 				}
+			RESULT = new AttributeDeclaration(identifiant.getLeft(), _type, valeur, false, true);
+		:}
+		|
 		UL_De_Classe Type:type Identifiant:identifiant UL_Egal Expression:valeur UL_Point_Virgule
 		{:
 			Type _type = identifiant.getRight();
