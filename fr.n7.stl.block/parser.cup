@@ -606,6 +606,10 @@ Affectable ::= UL_Identificateur:nom
 				{:
 					RESULT = new VariableAssignment( nom );
 				:}
+			| UL_Moi UL_Point UL_Identificateur:nom
+				{:
+					RESULT = new AttributeAssignment( nom );
+				:}
 			//TODO
 			| UL_Moi
 				{:

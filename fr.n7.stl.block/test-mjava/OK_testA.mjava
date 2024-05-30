@@ -9,7 +9,7 @@ class A {
 class B extends A {
 
     public B() {
-        a = 2;
+        this.a = 2;
     }
 
 }
