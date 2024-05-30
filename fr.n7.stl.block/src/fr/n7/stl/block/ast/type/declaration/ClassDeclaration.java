@@ -206,9 +206,12 @@ public class ClassDeclaration implements Declaration, Scope<ClassElement>{
 	}
 
 	public boolean resolve(HierarchicalScope<Declaration> _scope) {
+		boolean _result = true;
+
 		if (inheritedClassType != null) {
 			// On récupère la classe dont on hérite (ClassDeclaration)
 			String className = this.inheritedClassType.getName();
+			System.out.println("[EXTENDS] heriting from " + className + " to " + this.name);
 			Declaration classNameGet = _scope.get(className);
 			if (!(classNameGet instanceof ClassDeclaration)) {
 				Logger.error("(ClassDeclaration) La classe " + className + " n'existe pas.");
@@ -223,15 +226,15 @@ public class ClassDeclaration implements Declaration, Scope<ClassElement>{
 			}
 			// On collect et on resolve
 			for (ClassElement e : heritedElements) {
-				e.collectCE(_scope);
+				_result = _result && e.collectCE(this.locals);
 			}
+			System.out.println("[EXTENDS] collected");
 			for (ClassElement e : heritedElements) {
-				e.resolveCE(_scope);
+				_result = _result && e.resolveCE(this.locals);
 			}
-			System.out.println("[EXTENDS] " + heritedElements.size() + " ce added from " + className + " to " + this.name);
+			System.out.println("[EXTENDS] " + heritedElements.size() + " ce herited from " + className + " to " + this.name);
 		}
 
-		boolean _result = true;
 		for (ClassElement e : this.elements) {
 			_result = _result && e.resolveCE(this.locals);
 		}
