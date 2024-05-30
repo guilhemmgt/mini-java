@@ -28,7 +28,8 @@ public class SymbolTable implements HierarchicalScope<Declaration> {
 	
 	private Scope<Declaration> context;
 
-	public static MethodDeclaration methodDeclaration;
+	public MethodDeclaration methodDeclaration = null;
+	public ConstructorDeclaration constructorDeclaration = null;
 
 	public SymbolTable() {
 		this( null );

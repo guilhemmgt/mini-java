@@ -20,7 +20,7 @@ public class ConstructorDeclaration implements ClassElement, Type {
 	private Block corps;
 
 	// Table des symboles spécifiques aux paramètres
-	private HierarchicalScope<Declaration> locals;
+	private SymbolTable locals;
 
 	public ConstructorDeclaration(String name, List<ParameterDeclaration> parameters, Block corps) {
 		this.entete = new Signature(null, name, parameters);
@@ -56,7 +56,7 @@ public class ConstructorDeclaration implements ClassElement, Type {
 	public boolean resolveCE(HierarchicalScope<Declaration> _scope) {
 		//throw new UnsupportedOperationException("Unimplemented method 'resolveCE'");
 		//TODO : vérifier que suffit de faire que sur le corps
-		return this.corps.resolve(_scope);
+		return this.corps.resolve(this.locals);
 	}
 
 	@Override
@@ -64,6 +64,7 @@ public class ConstructorDeclaration implements ClassElement, Type {
 		if (_scope.accepts(this)) {
 			_scope.register(this);
 			this.locals = new SymbolTable (_scope);
+			this.locals.constructorDeclaration = this;
 			
 			for(ParameterDeclaration pad : this.entete.getParametres()) {
 				this.locals.register(pad);

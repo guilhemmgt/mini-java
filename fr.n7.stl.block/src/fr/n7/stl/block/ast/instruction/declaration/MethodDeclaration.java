@@ -24,7 +24,7 @@ public class MethodDeclaration implements ClassElement {
 	private AccessRight typeAcces = null;
 
 	// Table des symboles spécifiques aux paramètres
-	private HierarchicalScope<Declaration> locals;
+	private SymbolTable locals;
 
 	public MethodDeclaration(Signature entete, Block corps, boolean isFinal, boolean isStatic, boolean isAbstract) {
 		this.entete = entete;
@@ -63,7 +63,7 @@ public class MethodDeclaration implements ClassElement {
 		//throw new UnsupportedOperationException("Unimplemented method 'resolveCE'");
 		boolean	resolved = true;
 		if (this.corps != null) {
-			resolved = this.corps.resolve(_scope);
+			resolved = this.corps.resolve(this.locals);
 		}
 		return resolved;
 	}
@@ -73,6 +73,7 @@ public class MethodDeclaration implements ClassElement {
 		if (_scope.accepts(this)) {
 			_scope.register(this);
 			this.locals = new SymbolTable (_scope);
+			this.locals.methodDeclaration = this;
 			
 			for(ParameterDeclaration pad : this.entete.getParametres()) {
 				this.locals.register(pad);

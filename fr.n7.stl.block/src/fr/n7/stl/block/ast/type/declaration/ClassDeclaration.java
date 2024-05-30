@@ -175,41 +175,7 @@ public class ClassDeclaration implements Declaration, Scope<ClassElement>{
 		}
 		return _result + "}";
 	}
-/*
-	@Override
-	public boolean equalsTo(Type _other) {
-		throw new SemanticsUndefinedException( "equalsTo is undefined in ClassType.");
-	}
 
-	@Override
-	public boolean compatibleWith(Type _other) {
-		// même classe + on regarde l'héritage
-		throw new SemanticsUndefinedException( "compatibleWith is undefined in ClassType.");
-	}
-
-	@Override
-	public Type merge(Type _other) {
-		throw new SemanticsUndefinedException( "merge is undefined in ClassType.");
-	}
-
-	@Override
-	public int length() {
-		int _length = 0;
-		for (ClassElement e : this.elements) {
-			_length += e.getType().length();
-		}
-		return _length;
-	}
-
-	@Override
-	public boolean resolve(HierarchicalScope<Declaration> _scope) {
-		boolean _result = true;
-		for (ClassElement e : this.elements) {
-			_result = _result && e.resolveCE(_scope);
-		}
-		return _result;
-	}	
-*/
 	public boolean collect(HierarchicalScope<Declaration> _scope) {
 		if(_scope.accepts(this)){
 			_scope.register(this);
@@ -229,7 +195,7 @@ public class ClassDeclaration implements Declaration, Scope<ClassElement>{
 	public boolean resolve(HierarchicalScope<Declaration> _scope) {
 		boolean _result = true;
 		for (ClassElement e : this.elements) {
-			_result = _result && e.resolveCE(_scope);
+			_result = _result && e.resolveCE(this.locals);
 		}
 		return _result;
 	}	
