@@ -228,6 +228,7 @@ public class ClassDeclaration implements Declaration, Scope<ClassElement>{
 			for (ClassElement e : heritedElements) {
 				e.resolveCE(_scope);
 			}
+			System.out.println("[EXTENDS] " + heritedElements.size() + " ce added from " + className + " to " + this.name);
 		}
 
 		boolean _result = true;
