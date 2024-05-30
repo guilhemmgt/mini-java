@@ -1,5 +1,5 @@
 ;int a = 0;
-;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@677327b6
+;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@4c873330
 main
 PUSH 1
 LOADL 0
@@ -10,7 +10,7 @@ LOADA 1[SB]
 STOREI (1)
 ;int b = a;
 PUSH 1
-;fr.n7.stl.block.ast.expression.accessible.VariableAccess@1540e19d
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@7229724f
 LOAD (1) 1[SB]
 STORE (1) 2[SB]
 POP (0) 2

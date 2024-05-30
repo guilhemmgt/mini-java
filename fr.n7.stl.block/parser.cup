@@ -418,7 +418,7 @@ Method ::=
 		| 
 		UL_Abstrait Signature:entete UL_Point_Virgule
 		{:
-			RESULT = new MethodDeclaration(entete, null, false, false, true);
+			RESULT = new MethodDeclaration(entete, new Block(new ArrayList<Instruction>()), false, false, true);
 		:}
 		;
 		

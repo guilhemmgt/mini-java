@@ -21,7 +21,7 @@ public class MethodDeclaration implements ClassElement {
 	private boolean isFinal;
 	private boolean isStatic;
 	private boolean isAbstract;
-	private AccessRight typeAcces = null;
+	private AccessRight typeAcces = AccessRight.PUBLIC;
 
 	// Table des symboles spécifiques aux paramètres
 	private SymbolTable locals;
@@ -121,13 +121,6 @@ public class MethodDeclaration implements ClassElement {
 		//throw new UnsupportedOperationException("Unimplemented method 'getCode'");
 		List<ParameterDeclaration> parameters = this.entete.getParametres();
 		Fragment frag = _factory.createFragment();
-	
-
-		// TODO : A verifier mais je pense pas qu'il faut load ici les paramètres mais plutôt au moment
-		// où on les utilise -> voir où
-		// for(ParameterDeclaration pad : parameters) {
-		// 	frag.add(_factory.createLoad(Register.LB, 0, pad.getType().length()));
-		// }
 
 		//On vérifie si le corps n'est pas null (méthode abstraite)
 		if (this.corps != null) {
