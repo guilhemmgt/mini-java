@@ -64,7 +64,9 @@ public class ConstructorDeclaration implements ClassElement, Type {
 		if (_scope.accepts(this)) {
 			_scope.register(this);
 			this.locals = new SymbolTable (_scope);
-			this.locals.constructorDeclaration = this;
+
+			SymbolTable.constructorDeclaration = this;
+			SymbolTable.methodDeclaration = null;
 			
 			for(ParameterDeclaration pad : this.entete.getParametres()) {
 				this.locals.register(pad);

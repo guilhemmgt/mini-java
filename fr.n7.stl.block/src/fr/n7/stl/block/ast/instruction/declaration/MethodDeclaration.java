@@ -60,7 +60,6 @@ public class MethodDeclaration implements ClassElement {
 
 	@Override
 	public boolean resolveCE(HierarchicalScope<Declaration> _scope) {
-		//throw new UnsupportedOperationException("Unimplemented method 'resolveCE'");
 		boolean	resolved = true;
 		if (this.corps != null) {
 			resolved = this.corps.resolve(this.locals);
@@ -73,7 +72,9 @@ public class MethodDeclaration implements ClassElement {
 		if (_scope.accepts(this)) {
 			_scope.register(this);
 			this.locals = new SymbolTable (_scope);
-			this.locals.methodDeclaration = this;
+
+			SymbolTable.constructorDeclaration = null;
+			SymbolTable.methodDeclaration = this;
 			
 			for(ParameterDeclaration pad : this.entete.getParametres()) {
 				this.locals.register(pad);

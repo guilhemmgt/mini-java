@@ -5,11 +5,15 @@ package fr.n7.stl.block.ast.instruction;
 
 import fr.n7.stl.block.ast.SemanticsUndefinedException;
 import fr.n7.stl.block.ast.expression.Expression;
+import fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration;
 import fr.n7.stl.block.ast.scope.Declaration;
 import fr.n7.stl.block.ast.scope.HierarchicalScope;
+import fr.n7.stl.block.ast.scope.SymbolTable;
+import fr.n7.stl.block.ast.type.Type;
 import fr.n7.stl.tam.ast.Fragment;
 import fr.n7.stl.tam.ast.Register;
 import fr.n7.stl.tam.ast.TAMFactory;
+import fr.n7.stl.util.Logger;
 
 /**
  * Implementation of the Abstract Syntax Tree node for a return instruction.
@@ -17,6 +21,7 @@ import fr.n7.stl.tam.ast.TAMFactory;
  *
  */
 public class Return implements Instruction {
+	private MethodDeclaration methodDeclaration;
 
 	protected Expression value;
 
@@ -37,6 +42,11 @@ public class Return implements Instruction {
 	 */
 	@Override
 	public boolean collectAndBackwardResolve(HierarchicalScope<Declaration> _scope) {
+		this.methodDeclaration = SymbolTable.methodDeclaration;
+		if (this.methodDeclaration == null) {
+			Logger.error("(Return) Pas de MethodDeclaration dans le scope.");
+			return false;
+		}
 		return this.value.collectAndBackwardResolve(_scope);
 	}
 	
@@ -53,8 +63,9 @@ public class Return implements Instruction {
 	 */
 	@Override
 	public boolean checkType() {
-		throw new SemanticsUndefinedException("Semantics checkType undefined in Return.");
-		
+		Type valueType = this.value.getType();
+		Type returnType = this.methodDeclaration.getType();
+		return valueType.compatibleWith(returnType);
 	}
 
 	/* (non-Javadoc)
