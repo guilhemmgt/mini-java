@@ -1,0 +1,53 @@
+;int a = 1;
+;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@6b884d57
+main
+PUSH 1
+LOADL 1
+STORE (1) 1[SB]
+;int m = 1;
+PUSH 1
+LOADL 1
+STORE (1) 2[SB]
+POP (0) 2
+;print 3;
+;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@38af3868
+print3
+LOADL 3
+SUBR IOut
+POP (0) 0
+;print 2;
+;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@77459877
+m
+LOADL 2
+SUBR IOut
+POP (0) 0
+;int a = (arg1 * 2);
+;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@72ea2f77
+m
+PUSH 1
+;(arg1 * 2)
+LOAD (1) 0[LB]
+LOADL 2
+SUBR IMul
+STORE (1) 2[SB]
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@5b2133b1
+;print a;
+LOAD (1) 2[SB]
+SUBR IOut
+POP (0) 1
+;int a = 1;
+;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@33c7353a
+m
+PUSH 1
+LOADL 1
+STORE (1) 2[SB]
+;int m = 1;
+PUSH 1
+LOADL 1
+STORE (1) 3[SB]
+;print 1;
+LOADL 1
+SUBR IOut
+POP (0) 2
+HALT
+

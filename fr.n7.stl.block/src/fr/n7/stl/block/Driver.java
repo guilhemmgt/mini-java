@@ -8,79 +8,64 @@ class Driver {
 
 		Parser parser = null;
 		if (args.length == 0) {
-			String tests_vrais_prefixe = "vrai-test-";
-			String tests_faux_prefixe = "faux-test-";
+			String tests_ok_suffixe = "_OK";
+			String tests_ko_suffixe = "_KO";
 			String tests_suffixe = ".mjava";
+			String path = "./test-mjava/";
 
-			boolean lancer_tests_vrais = false;
-			boolean lancer_tests_faux = false;
-			boolean lancer_tests_prof = false;
-			boolean lancer_tests_mJava = true;
+			boolean lancer_ok = true;
+			boolean lancer_ko = false;
 
-			File[] dirFiles = new File("./test-mjava/").listFiles();
+			File[] dirFiles = new File(path).listFiles();
+			int ok_succes = 0, ok_echec = 0;
+			int ko_succes = 0, ko_echec = 0;
 
-			if (lancer_tests_mJava) {
+			if (lancer_ok) {
 				for (File file : dirFiles) {
 					String name = file.getName();
-					if (name.startsWith("parser0") && name.endsWith(tests_suffixe)) {
-						System.out.println("\n=== TEST "
-								+ name.substring(0, name.length() - tests_suffixe.length())
+					if (name.endsWith(tests_ok_suffixe + tests_suffixe)) {
+						System.out.println("\n=== OK "
+								+ name.substring(0, name.length() - (tests_ok_suffixe + tests_suffixe).length())
 								+ " ===");
-						parser = new Parser("./test-mjava/" + name);
 						try {
+							parser = new Parser(path + name);
 							parser.parse();
+							ok_succes++;
 						} catch (Exception e) {
 							e.printStackTrace();
+							ok_echec++;
 						}
 					}
 				}
 			}
 
-			if (lancer_tests_prof) {
+			if (lancer_ko) {
 				for (File file : dirFiles) {
 					String name = file.getName();
-					if (name.startsWith("test0") && name.endsWith(tests_suffixe)) {
-						parser = new Parser("./test-block/" + name);
+					if (name.endsWith(tests_ko_suffixe + tests_suffixe)) {
+						System.out.println("\n=== KO "
+								+ name.substring(0, name.length() - (tests_ko_suffixe + tests_suffixe).length())
+								+ " ===");
 						try {
+							parser = new Parser(path + name);
 							parser.parse();
+							ko_succes++;
 						} catch (Exception e) {
 							e.printStackTrace();
+							ko_echec++;
 						}
 					}
 				}
 			}
 
-			if (lancer_tests_vrais) {
-				for (File file : dirFiles) {
-					String name = file.getName();
-					if (name.startsWith(tests_vrais_prefixe) && name.endsWith(tests_suffixe)) {
-						System.out.println("\n=== TEST VRAI "
-								+ name.substring(tests_vrais_prefixe.length(), name.length() - tests_suffixe.length())
-								+ " ===");
-						parser = new Parser("./test-block/" + name);
-						parser.parse();
-					}
-				}
-			}
-
-			if (lancer_tests_faux) {
-				for (File file : dirFiles) {
-					String name = file.getName();
-					if (name.startsWith(tests_faux_prefixe) && name.endsWith(tests_suffixe)) {
-						System.out.println("\n=== TEST FAUX "
-								+ name.substring(tests_faux_prefixe.length(), name.length() - tests_suffixe.length())
-								+ " ===");
-						parser = new Parser(name);
-						try {
-							parser.parse();
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
-					}
-				}
-			}
+			System.out.println("\n--------------------");
+			if(lancer_ok)
+				System.out.println("OK: " + (ok_succes + ok_echec) + " tests, " + ok_succes + " succès, " + ok_echec + " échecs.");
+			if (lancer_ko)
+				System.out.println("KO: " + (ok_succes + ok_echec) + " tests, " + ko_echec + " échecs, " + ko_succes + " succès.");
 
 		} else {
+			// lancer des tests précis
 			for (String name : args) {
 				parser = new Parser(name);
 				parser.parse();

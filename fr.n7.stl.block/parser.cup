@@ -231,7 +231,7 @@ Program ::= Elements:elements
 					System.out.println(GREEN + "code generated" +RESET);
 
 					try {
-						File tamFile = new File (parser.name + ".tam");
+						File tamFile = new File (parser.name.replace("./test-mjava/", "./test-mjava/tam/") + ".tam");
 						PrintStream stream = new PrintStream(new FileOutputStream(tamFile));
 						stream.println(code);
 					} catch (Exception e) {
