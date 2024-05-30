@@ -35,8 +35,12 @@ class B extends A{
 		print a;
 	}
 
-	private void print3() {
-		print 3;
+	private int int3() {
+		return 3;
+	}
+
+	private int int3(int i) {
+		return 3;
 	}
 }
 
