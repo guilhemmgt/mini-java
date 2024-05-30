@@ -47,7 +47,9 @@ public class ClassType implements Type {
 
 	@Override
 	public boolean compatibleWith(Type _other) {
-		throw new SemanticsUndefinedException( "compatibleWith is undefined in ClassType.");
+		boolean eq = this.equals(_other);
+		boolean eqParent = this.declaration != null && this.declaration.getInheritedClass() != null && this.declaration.getInheritedClass().getType().compatibleWith(_other);
+		return eq || eqParent;
 	}
 
 	@Override
@@ -58,6 +60,9 @@ public class ClassType implements Type {
 
 	@Override
 	public int length() {
+		// récupérer tous les attributs de la classdeclaration
+		// soit on interroge le scope (un peu chiant)
+		// soit on rajoute des attributs List<Attribute/Method/ConstructorDeclaration> dans ClassDeclaration
 		throw new SemanticsUndefinedException( "length is undefined in ClassType.");
 	}
 

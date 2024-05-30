@@ -67,6 +67,10 @@ public class ClassDeclaration implements Declaration, Scope<ClassElement>{
 		return locals;
 	}
 
+	public ClassDeclaration getInheritedClass () {
+		return inheritedClass;
+	}
+
 	@Override
 	public ClassElement get(String _name) {
 		boolean _found = false;
