@@ -1,11 +1,11 @@
-;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@6e5e91e4
+;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@7cca494b
 main
 POP (0) 0
 ;int b = a;
-;fr.n7.stl.block.ast.instruction.declaration.ConstructorDeclaration@30946e09
+;fr.n7.stl.block.ast.instruction.declaration.ConstructorDeclaration@3b9a45b3
 A
 PUSH 1
-;fr.n7.stl.block.ast.expression.accessible.AttributeAccess@2cdf8d8a
+;fr.n7.stl.block.ast.expression.accessible.AttributeAccess@7ba4f24f
 LOAD (1) 1[SB]
 STORE (1) 1[SB]
 ; a  = 2;

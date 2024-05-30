@@ -1,5 +1,5 @@
 ;int a = 1;
-;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@2d38eb89
+;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@9807454
 main
 PUSH 1
 LOADL 1
@@ -10,13 +10,13 @@ LOADL 1
 STORE (1) 2[SB]
 POP (0) 2
 ;print 3;
-;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@5fa7e7ff
+;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@3d494fbf
 print3
 LOADL 3
 SUBR IOut
 POP (0) 0
 ;int a = (arg1 * 2);
-;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@27f8302d
+;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@133314b
 m
 PUSH 1
 ;(arg1 * 2)
@@ -27,13 +27,13 @@ STORE (1) 2[SB]
 ;print 0;
 LOADL 0
 SUBR IOut
-;fr.n7.stl.block.ast.expression.accessible.VariableAccess@4629104a
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@1ddc4ec2
 ;print a;
 LOAD (1) 2[SB]
 SUBR IOut
 POP (0) 1
 ;print 0;
-;fr.n7.stl.block.ast.instruction.declaration.ConstructorDeclaration@4d76f3f8
+;fr.n7.stl.block.ast.instruction.declaration.ConstructorDeclaration@b1bc7ed
 B
 LOADL 0
 SUBR IOut
@@ -45,7 +45,7 @@ LOAD (1) 0[LB]
 SUBR IOut
 POP (0) 0
 ;print 0;
-;fr.n7.stl.block.ast.instruction.declaration.ConstructorDeclaration@2d8e6db6
+;fr.n7.stl.block.ast.instruction.declaration.ConstructorDeclaration@7cd84586
 B
 LOADL 0
 SUBR IOut
@@ -54,7 +54,7 @@ LOAD (1) 0[LB]
 SUBR IOut
 POP (0) 0
 ;int a = (arg1 * 2);
-;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@4534b60d
+;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@1b2c6ec2
 m
 PUSH 1
 ;(arg1 * 2)
@@ -65,13 +65,13 @@ STORE (1) 6[SB]
 ;print 0;
 LOADL 0
 SUBR IOut
-;fr.n7.stl.block.ast.expression.accessible.VariableAccess@23ab930d
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@30dae81
 ;print a;
 LOAD (1) 6[SB]
 SUBR IOut
 POP (0) 1
 ;int a = 1;
-;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@3fa77460
+;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@4edde6e5
 m
 PUSH 1
 LOADL 1
@@ -88,7 +88,7 @@ LOADL 1
 SUBR IOut
 POP (0) 2
 ;print 0;
-;fr.n7.stl.block.ast.instruction.declaration.ConstructorDeclaration@619a5dff
+;fr.n7.stl.block.ast.instruction.declaration.ConstructorDeclaration@70177ecd
 A
 LOADL 0
 SUBR IOut

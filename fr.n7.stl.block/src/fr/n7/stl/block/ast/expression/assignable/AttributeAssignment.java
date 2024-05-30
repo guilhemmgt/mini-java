@@ -50,7 +50,7 @@ public class AttributeAssignment extends AbstractIdentifier implements Assignabl
 				this.declaration = ((AttributeDeclaration) _declaration);
 				return true;
 			} else {
-				Logger.error("The declaration for " + this.name + " is of the wrong kind (" + _declaration.getClass().getName() + "."); // pas le droit d'affecter une const, une fonction, ...
+				Logger.error("The declaration for " + this.name + " is of the wrong kind (" + _declaration.getClass().getName() + ")."); // pas le droit d'affecter une const, une fonction, ...
 				return false;
 			}
 		} else {
