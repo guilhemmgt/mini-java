@@ -98,7 +98,7 @@ non terminal Expression 					Expression;
 non terminal AssignableExpression		Affectable;
 non terminal List<ClassDeclaration>		Elements;
 non terminal ClassDeclaration 			Main, Class ;
-non terminal ClassDeclaration							SingleInherits ;
+non terminal ClassType							SingleInherits ;
 non terminal List<ClassElement>			ClassElements ;
 non terminal ClassElement 				ClassElement ;
 non terminal AttributeDeclaration		Attribute;
@@ -286,10 +286,9 @@ SingleInherits ::= /* Lambda */
 			RESULT = null;
 		:}
 		|
-		UL_Herite UL_Identificateur:identifiant 
+		UL_Herite ClassType:classType 
 		{:
-			// TODO
-			RESULT = null;
+			RESULT = classType;
 		:}
 		;
 

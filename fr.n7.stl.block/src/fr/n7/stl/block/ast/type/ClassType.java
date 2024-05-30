@@ -48,7 +48,7 @@ public class ClassType implements Type {
 	@Override
 	public boolean compatibleWith(Type _other) {
 		boolean eq = this.equals(_other);
-		boolean eqParent = this.declaration != null && this.declaration.getInheritedClass() != null && this.declaration.getInheritedClass().getType().compatibleWith(_other);
+		boolean eqParent = this.declaration != null && this.declaration.getInheritedClassType() != null && this.declaration.getInheritedClassType().compatibleWith(_other);
 		return eq || eqParent;
 	}
 

@@ -82,6 +82,14 @@ public class AttributeDeclaration implements ClassElement {
 		return res;
 	}
 
+	public Register getRegister() {
+		throw new UnsupportedOperationException("Unimplemented method 'getRegister'");
+	}
+	
+	public int getOffset() {
+		throw new UnsupportedOperationException("Unimplemented method 'getOffset'");
+	}
+
 	@Override
 	public int allocateMemory(Register _register, int offset) {
 		//throw new UnsupportedOperationException("Unimplemented method 'allocateMemory'");
