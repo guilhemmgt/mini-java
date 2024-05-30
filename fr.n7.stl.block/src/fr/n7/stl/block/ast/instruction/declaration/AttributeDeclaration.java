@@ -19,6 +19,8 @@ public class AttributeDeclaration implements ClassElement {
 	private boolean isFinal;
 	private boolean isStatic;
 	private AccessRight typeAcces = null;
+	private Register register;
+	private int offset;
 
 	public AttributeDeclaration(String name, Type type, Expression value, boolean isFinal, boolean isStatic) {
 		this.name = name;
@@ -83,16 +85,20 @@ public class AttributeDeclaration implements ClassElement {
 	}
 
 	public Register getRegister() {
-		throw new UnsupportedOperationException("Unimplemented method 'getRegister'");
+		//throw new UnsupportedOperationException("Unimplemented method 'getRegister'");
+		return this.register;
 	}
 	
 	public int getOffset() {
-		throw new UnsupportedOperationException("Unimplemented method 'getOffset'");
+		//throw new UnsupportedOperationException("Unimplemented method 'getOffset'");
+		return this.offset;
 	}
 
 	@Override
 	public int allocateMemory(Register _register, int offset) {
 		//throw new UnsupportedOperationException("Unimplemented method 'allocateMemory'");
+		this.register = _register;
+		this.offset = offset;
 		return type.length();
 	}
 
