@@ -64,6 +64,7 @@ public class ClassType implements Type {
 		// soit on interroge le scope (un peu chiant)
 		// soit on rajoute des attributs List<Attribute/Method/ConstructorDeclaration> dans ClassDeclaration
 		throw new SemanticsUndefinedException( "length is undefined in ClassType.");
+
 	}
 
 	@Override

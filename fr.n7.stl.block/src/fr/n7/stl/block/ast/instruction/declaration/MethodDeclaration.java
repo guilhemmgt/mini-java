@@ -22,6 +22,7 @@ public class MethodDeclaration implements ClassElement {
 	private boolean isStatic;
 	private boolean isAbstract;
 	private AccessRight typeAcces = AccessRight.PUBLIC;
+	private int taille;
 
 	// Table des symboles spécifiques aux paramètres
 	private SymbolTable locals;
@@ -113,6 +114,7 @@ public class MethodDeclaration implements ClassElement {
 		if (this.corps != null){
 			this.corps.allocateMemory(_register, offset+taille);
 		}
+		this.taille = taille;
 		return taille;
 	}
 
@@ -130,4 +132,10 @@ public class MethodDeclaration implements ClassElement {
 		}
 		return frag;
 	}
+
+	public int getTaille() {
+		return taille;
+	}
+
+	
 }
