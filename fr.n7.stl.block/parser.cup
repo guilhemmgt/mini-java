@@ -148,80 +148,84 @@ Program ::= Elements:elements
 				boolean do_memory = true;
 				boolean do_code = true;
 
-				boolean collect_succeeded = true;
-				boolean resolve_succeeded = true;
-				boolean type_succeeded = true;
+				System.out.println(GREEN + "parsing succeeded" +RESET);
 
 				// Collect
 				if (do_collect) {
-					System.out.println("Starting collect ...");
 					for (ClassDeclaration elem : elements) {
 						System.out.println("Class " + elem.getName());
-						if (!elem.collect(tds)) {
-							collect_succeeded = false;
+						try {
+							elem.collect(tds);
+						} catch (Exception e) {
+							e.printStackTrace();
 							Logger.error(RED + "Collect failed !" +RESET);
 							break;
 						}
 					}
-				}
-
-				if (collect_succeeded) {
 					System.out.println(GREEN + "collect succeeded" +RESET);
 				}
+				
 
 				// Resolve
-				if (collect_succeeded && do_resolve) {
-					System.out.println("Starting resolve ...");
+				if (do_resolve) {
 					for (ClassDeclaration elem : elements) {
 						System.out.println("Class " + elem.getName());
-						if (!elem.resolve(tds)) {
-							resolve_succeeded = false;
+						try {
+							elem.resolve(tds);
+						} catch (Exception e) {
+							e.printStackTrace();
 							Logger.error(RED + "Resolve failed !" +RESET);
 							break;
 						}
 					}
-				}
-
-				if (resolve_succeeded) {
 					System.out.println(GREEN + "resolve succeeded" + RESET);
 				}
+				
 
 				// Type
 				if (do_type) {
-					System.out.println("Starting check_type ...");
 					for (ClassDeclaration elem : elements) {
 						System.out.println("Class " + elem.getName());
-						if (!elem.checkType()) {
-							type_succeeded = false;
-							Logger.error(RED + "CheckType failed !" +RESET);
+						try {
+							elem.checkType();
+						} catch (Exception e) {
+							e.printStackTrace();
+							Logger.error(RED + "Type failed !" +RESET);
 							break;
 						}
 					}
+					System.out.println(GREEN + "type succeeded" +RESET);
 				}
-
-				if (type_succeeded) {
-					System.out.println(GREEN + "check_type succeeded" +RESET);
-				}
+				
 
 				// Allocate Memory
 				if (do_memory) {
-					System.out.println("Starting allocateMemory ...");
 					int i = 0;
 					for (ClassDeclaration elem : elements) {
 						System.out.println("Class " + elem.getName());
-						//TODO : Vérifier si i ou i+1
-						i = elem.allocateMemory(Register.SB, i); 
+						try {
+							//TODO : Vérifier si i ou i+1
+							i = elem.allocateMemory(Register.SB, i); 
+						} catch (Exception e) {
+							e.printStackTrace();
+							Logger.error(RED + "Memory failed !" +RESET);
+							break;
 						}
+					}
 					System.out.println(GREEN + "memory allocated" +RESET);
 				}
 
 				// Code Generation
 				if (do_code) {
-					System.out.println("Starting getCode ...");
 					int i = 0;
 					for (ClassDeclaration elem : elements) {
 						System.out.println("Class " + elem.getName());
-						code.append(elem.getCode(tamFactory));
+						try {
+							code.append(elem.getCode(tamFactory));
+						} catch (Exception e) {
+							e.printStackTrace();
+							Logger.error(RED + "Code generation failed !" +RESET);
+						}
 					}
 					code.add(tamFactory.createHalt());
 					System.out.println(GREEN + "code generated" +RESET);
@@ -230,9 +234,11 @@ Program ::= Elements:elements
 						File tamFile = new File (parser.name + ".tam");
 						PrintStream stream = new PrintStream(new FileOutputStream(tamFile));
 						stream.println(code);
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
+					} catch (Exception e) {
+						e.printStackTrace();
+						Logger.error(RED + "Writing code failed !" +RESET);
+					}
+					System.out.println(GREEN + "code written" +RESET);
 				}
 			:}
 		;
