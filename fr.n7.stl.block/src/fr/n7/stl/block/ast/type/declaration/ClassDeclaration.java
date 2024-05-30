@@ -30,6 +30,7 @@ public class ClassDeclaration implements Declaration, Scope<ClassElement>{
 	private HierarchicalScope<Declaration> locals;
 	private List<ClassElement> elements;
 	private boolean isAbstract;
+	private boolean isFinal;
 	private String name;
 	private ClassType inheritedClassType; // null si pas héritée
 	private ClassDeclaration inheritedClass; // pas de valeur avant resolve
@@ -43,10 +44,11 @@ public class ClassDeclaration implements Declaration, Scope<ClassElement>{
 	 * @param _constructors Sequence of methods to initialize the content of the class type.
 	 * @param _isAbstract Boolean valued at true if the class is abstract 
 	 */
-	public ClassDeclaration(String _name, Iterable<ClassElement> _elements, boolean _isAbstract, ClassType inheritedClassType) {
+	public ClassDeclaration(String _name, Iterable<ClassElement> _elements, boolean _isAbstract, ClassType inheritedClassType, boolean isFinal) {
 		this.name = _name;
 		this.isAbstract = _isAbstract;
 		this.inheritedClassType = inheritedClassType;
+		this.isFinal = isFinal;
 
 		this.elements = new LinkedList<ClassElement>();
 		for (ClassElement _element : _elements) {
