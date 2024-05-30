@@ -1,22 +1,15 @@
 class A {
+    public int a;
 
     public A () {
-        int i = 4;
-    }
-
-    private int test(){
-        return 4;
-    }
-
-    private void appel() {
-        int i = test();
+        int b = a;
+        this.a = 2;
     }
 }
 
 public class Main {
 
-    public static void main (int a) {
-
+    public static void main (String args) {
     }
 
 }

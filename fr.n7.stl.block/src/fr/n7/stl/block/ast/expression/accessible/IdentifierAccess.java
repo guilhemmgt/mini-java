@@ -6,6 +6,7 @@ package fr.n7.stl.block.ast.expression.accessible;
 import fr.n7.stl.block.ast.expression.AbstractIdentifier;
 import fr.n7.stl.block.ast.SemanticsUndefinedException;
 import fr.n7.stl.block.ast.expression.AbstractAccess;
+import fr.n7.stl.block.ast.instruction.declaration.AttributeDeclaration;
 import fr.n7.stl.block.ast.instruction.declaration.ConstantDeclaration;
 import fr.n7.stl.block.ast.instruction.declaration.ConstructorDeclaration;
 import fr.n7.stl.block.ast.instruction.declaration.ParameterDeclaration;
@@ -58,6 +59,9 @@ public class IdentifierAccess extends AbstractIdentifier implements AccessibleEx
 			if (_declaration instanceof VariableDeclaration) {
 				this.expression = new VariableAccess((VariableDeclaration) _declaration);
 			}
+			if (_declaration instanceof AttributeDeclaration) {
+				this.expression = new AttributeAccess((AttributeDeclaration) _declaration);
+			}
 		}
 		return true;
 	}
@@ -89,9 +93,11 @@ public class IdentifierAccess extends AbstractIdentifier implements AccessibleEx
 					} else if (_declaration instanceof ConstructorDeclaration) {
 						//this.expression = new ConstructorCall((ClassType) _declaration, );
 						return true;
-				
+					} else if (_declaration instanceof AttributeDeclaration) {
+						this.expression = new AttributeAccess((AttributeDeclaration) _declaration);
+						return true;
 					} else {
-						Logger.error("The declaration for " + this.name + " is of the wrong kind.");
+						Logger.error("(IdentifierAccess) The declaration for " + this.name + " is of the wrong kind (" + _declaration.getClass().getSimpleName() + ").");
 						return false;
 					}						
 					}

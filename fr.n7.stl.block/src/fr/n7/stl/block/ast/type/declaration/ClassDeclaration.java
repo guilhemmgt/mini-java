@@ -1,20 +1,24 @@
 package fr.n7.stl.block.ast.type.declaration;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
 import fr.n7.stl.block.ast.SemanticsUndefinedException;
+import fr.n7.stl.block.ast.expression.Expression;
 import fr.n7.stl.block.ast.instruction.ClassElement;
 import fr.n7.stl.block.ast.instruction.Instruction;
 import fr.n7.stl.block.ast.instruction.declaration.AttributeDeclaration;
 import fr.n7.stl.block.ast.instruction.declaration.ConstructorDeclaration;
 import fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration;
+import fr.n7.stl.block.ast.instruction.declaration.ParameterDeclaration;
 import fr.n7.stl.block.ast.instruction.declaration.Signature;
 import fr.n7.stl.block.ast.scope.Declaration;
 import fr.n7.stl.block.ast.scope.HierarchicalScope;
 import fr.n7.stl.block.ast.scope.Scope;
 import fr.n7.stl.block.ast.scope.SymbolTable;
+import fr.n7.stl.block.ast.type.AccessRight;
 import fr.n7.stl.block.ast.type.ClassType;
 import fr.n7.stl.block.ast.type.Type;
 import fr.n7.stl.tam.ast.Fragment;
@@ -27,7 +31,8 @@ public class ClassDeclaration implements Declaration, Scope<ClassElement>{
 	private List<ClassElement> elements;
 	private boolean isAbstract;
 	private String name;
-	private ClassDeclaration inheritedClass; // null si pas héritée
+	private ClassType inheritedClassType; // null si pas héritée
+	private ClassDeclaration inheritedClass; // pas de valeur avant resolve
 	private int size;
 
 	/**
@@ -38,10 +43,10 @@ public class ClassDeclaration implements Declaration, Scope<ClassElement>{
 	 * @param _constructors Sequence of methods to initialize the content of the class type.
 	 * @param _isAbstract Boolean valued at true if the class is abstract 
 	 */
-	public ClassDeclaration(String _name, Iterable<ClassElement> _elements, boolean _isAbstract, ClassDeclaration inheritedClass) {
+	public ClassDeclaration(String _name, Iterable<ClassElement> _elements, boolean _isAbstract, ClassType inheritedClassType) {
 		this.name = _name;
 		this.isAbstract = _isAbstract;
-		this.inheritedClass = inheritedClass;
+		this.inheritedClassType = inheritedClassType;
 
 		this.elements = new LinkedList<ClassElement>();
 		for (ClassElement _element : _elements) {
@@ -64,11 +69,15 @@ public class ClassDeclaration implements Declaration, Scope<ClassElement>{
 	}
 
 	public HierarchicalScope<Declaration> getLocals() {
-		return locals;
+		return this.locals;
 	}
 
-	public ClassDeclaration getInheritedClass () {
-		return inheritedClass;
+	public List<ClassElement> getElements () {
+		return this.elements;
+	}
+
+	public ClassType getInheritedClassType () {
+		return this.inheritedClassType;
 	}
 
 	@Override
@@ -197,6 +206,30 @@ public class ClassDeclaration implements Declaration, Scope<ClassElement>{
 	}
 
 	public boolean resolve(HierarchicalScope<Declaration> _scope) {
+		if (inheritedClassType != null) {
+			// On récupère la classe dont on hérite (ClassDeclaration)
+			String className = this.inheritedClassType.getName();
+			Declaration classNameGet = _scope.get(className);
+			if (!(classNameGet instanceof ClassDeclaration)) {
+				Logger.error("(ClassDeclaration) La classe " + className + " n'existe pas.");
+				return false;
+			}
+			this.inheritedClass = (ClassDeclaration) classNameGet;
+			// On récupère tous les classelements auxquels on aura accès
+			List<ClassElement> heritedElements = new ArrayList<ClassElement>();
+			for (ClassElement e : this.inheritedClass.getElements()) {
+				if (e.getTypeAcces() == AccessRight.PROTEGE || e.getTypeAcces() == AccessRight.PUBLIC)
+					heritedElements.add(e);
+			}
+			// On collect et on resolve
+			for (ClassElement e : heritedElements) {
+				e.collectCE(_scope);
+			}
+			for (ClassElement e : heritedElements) {
+				e.resolveCE(_scope);
+			}
+		}
+
 		boolean _result = true;
 		for (ClassElement e : this.elements) {
 			_result = _result && e.resolveCE(this.locals);

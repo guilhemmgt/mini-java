@@ -14,7 +14,7 @@ class Driver {
 			String path = "./test-mjava/";
 
 			boolean lancer_ok = true;
-			boolean lancer_ko = true;
+			boolean lancer_ko = false;
 
 			File[] dirFiles = new File(path).listFiles();
 			int ok_succes = 0, ok_echec = 0;

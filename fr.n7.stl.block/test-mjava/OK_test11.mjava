@@ -1,0 +1,22 @@
+class A {
+
+    public A () {
+        int i = 4;
+    }
+
+    private int test(){
+        return 4;
+    }
+
+    private void appel() {
+        int i = test();
+    }
+}
+
+public class Main {
+
+    public static void main (int a) {
+
+    }
+
+}

@@ -98,7 +98,7 @@ non terminal Expression 					Expression;
 non terminal AssignableExpression		Affectable;
 non terminal List<ClassDeclaration>		Elements;
 non terminal ClassDeclaration 			Main, Class ;
-non terminal ClassDeclaration							SingleInherits ;
+non terminal ClassType							SingleInherits ;
 non terminal List<ClassElement>			ClassElements ;
 non terminal ClassElement 				ClassElement ;
 non terminal AttributeDeclaration		Attribute;
@@ -286,10 +286,9 @@ SingleInherits ::= /* Lambda */
 			RESULT = null;
 		:}
 		|
-		UL_Herite UL_Identificateur:identifiant 
+		UL_Herite ClassType:classType 
 		{:
-			// TODO
-			RESULT = null;
+			RESULT = classType;
 		:}
 		;
 
@@ -360,6 +359,17 @@ Attribute ::=
 					_type = ((PartialType)_type).complete( type );
  				}
 			RESULT = new AttributeDeclaration(identifiant.getLeft(), _type, null, false, false);
+		:}
+		|
+		Type:type Identifiant:identifiant UL_Egal Expression:valeur UL_Point_Virgule
+		{:
+			Type _type = identifiant.getRight();
+				if (_type == null) {
+					_type = type;
+				} else {
+					_type = ((PartialType)_type).complete( type );
+ 				}
+			RESULT = new AttributeDeclaration(identifiant.getLeft(), _type, valeur, false, true);
 		:}
 		|
 		UL_De_Classe Type:type Identifiant:identifiant UL_Egal Expression:valeur UL_Point_Virgule
@@ -606,6 +616,10 @@ Expressions ::= Expressions:expressions UL_Virgule Expression:expression
 Affectable ::= UL_Identificateur:nom
 				{:
 					RESULT = new VariableAssignment( nom );
+				:}
+			| UL_Moi UL_Point UL_Identificateur:nom
+				{:
+					RESULT = new AttributeAssignment( nom );
 				:}
 			//TODO
 			| UL_Moi
