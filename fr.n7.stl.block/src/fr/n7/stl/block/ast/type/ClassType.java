@@ -68,25 +68,15 @@ public class ClassType implements Type {
 
 	@Override
 	public boolean resolve(HierarchicalScope<Declaration> _scope) {
-		throw new SemanticsUndefinedException( "resolve is undefined in ClassType.");
-		/*
-		if (this.declaration == null) {
-			if (_scope.knows(this.name)) {
-				try {
-					TypeDeclaration _declaration = (TypeDeclaration) _scope.get(this.name);
-					this.declaration = _declaration;
-					return true;
-				} catch (ClassCastException e) {
-					Logger.error("The declaration for " + this.name + " is of the wrong kind (TypeDeclaration vs " + (_scope.get(this.name).getClass().getName()) + ").");
-					return false;
-				}
-			} else {
-				Logger.error("The identifier " + this.name + " has not been found.");
-				return false;
-			}
-		} else {
-			return true;
+		Declaration declaration = _scope.get(this.name);
+		if (!(declaration instanceof ClassDeclaration)) {
+			Logger.error("(ClassType) La classe " + this.name + " n'existe pas");
+			return false;
 		}
-		*/
+		this.declaration = (ClassDeclaration) declaration;
+
+		boolean resolve = this.declaration.resolve(_scope);
+
+		return resolve;
 	}
 }
