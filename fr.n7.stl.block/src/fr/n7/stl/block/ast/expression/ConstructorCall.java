@@ -65,6 +65,7 @@ public class ConstructorCall implements Expression {
 			return false;
 		}
 		ClassDeclaration classDeclaration = (ClassDeclaration) classNameGet;
+		HierarchicalScope<Declaration> classLocals = classDeclaration.getLocals();
 
 		// On calcule la signature du constructeur
 		List<ParameterDeclaration> parameterDeclarations = new ArrayList<ParameterDeclaration>();
@@ -73,8 +74,8 @@ public class ConstructorCall implements Expression {
 		}
 		Signature signature = new Signature(null, classDeclaration.getName(), parameterDeclarations);
 
-		// On récupère le constructeur correspondant dans la classe (ConstructorDeclaration)
-		Declaration signatureGet = _scope.get(signature);
+		// On récupère le constructeur correspondant dans la classe (ConstructorDeclaration) depuis le scope de la classe
+		Declaration signatureGet = classLocals.get(signature);
 		if(!(signatureGet instanceof ConstructorDeclaration)) {
 			Logger.error("(ContructorCall) Le constructeur " + signature + " n'existe pas pour la classe " + classDeclaration.getName() + ".");
 			return false;

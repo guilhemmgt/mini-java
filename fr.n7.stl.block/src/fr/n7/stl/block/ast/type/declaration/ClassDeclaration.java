@@ -63,6 +63,10 @@ public class ClassDeclaration implements Declaration, Scope<ClassElement>{
 		this.isAbstract = isAbstract;
 	}
 
+	public HierarchicalScope<Declaration> getLocals() {
+		return locals;
+	}
+
 	@Override
 	public ClassElement get(String _name) {
 		boolean _found = false;
