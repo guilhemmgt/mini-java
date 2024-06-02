@@ -53,7 +53,13 @@ public class AttributeAssignment extends AbstractIdentifier implements Assignabl
 			if (ce instanceof AttributeDeclaration) {
 				AttributeDeclaration ad = (AttributeDeclaration) ce;
 				if (ad.getName().equals(this.name)) {
-					this.declaration = ad;
+					if (ad.isFinal()) {
+						Logger.error("Un attribut final ne peut pas être modifié.");
+						return false;	
+					}
+					else {						
+						this.declaration = ad;
+					}
 				}
 			}
 		}

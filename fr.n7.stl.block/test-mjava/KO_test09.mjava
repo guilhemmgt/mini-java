@@ -1,0 +1,15 @@
+class A {
+    private static final int i = 3;
+
+    public m() {
+        this.i = 5;
+    }
+
+
+}
+
+public class Main {
+
+    public static void main (String arg) {
+    }
+}

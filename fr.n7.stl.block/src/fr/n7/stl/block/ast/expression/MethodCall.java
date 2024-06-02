@@ -7,6 +7,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import fr.n7.stl.block.ast.SemanticsUndefinedException;
+import fr.n7.stl.block.ast.instruction.Instruction;
 import fr.n7.stl.block.ast.instruction.declaration.FunctionDeclaration;
 import fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration;
 import fr.n7.stl.block.ast.scope.Declaration;
@@ -16,7 +17,7 @@ import fr.n7.stl.tam.ast.Fragment;
 import fr.n7.stl.tam.ast.Register;
 import fr.n7.stl.tam.ast.TAMFactory;
 
-public class MethodCall implements Expression {
+public class MethodCall implements Expression, Instruction {
 
 	protected MethodDeclaration methode;
 	protected List<Expression> arguments;
@@ -94,5 +95,17 @@ public class MethodCall implements Expression {
 		}
 		frag.add(_factory.createCall(this.methode.getName(), Register.SB));
 		return frag;
+	}
+
+	@Override
+	public boolean checkType() {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'checkType'");
+	}
+
+	@Override
+	public int allocateMemory(Register _register, int _offset) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'allocateMemory'");
 	}
 }

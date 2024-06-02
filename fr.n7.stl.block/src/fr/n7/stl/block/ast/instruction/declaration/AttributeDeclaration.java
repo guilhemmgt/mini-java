@@ -40,6 +40,48 @@ public class AttributeDeclaration implements ClassElement {
 		return type;
 	}
 
+
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setType(Type type) {
+		this.type = type;
+	}
+
+	public Expression getValue() {
+		return value;
+	}
+
+	public void setValue(Expression value) {
+		this.value = value;
+	}
+
+	public boolean isFinal() {
+		return isFinal;
+	}
+
+	public void setFinal(boolean isFinal) {
+		this.isFinal = isFinal;
+	}
+
+	public boolean isStatic() {
+		return isStatic;
+	}
+
+	public void setStatic(boolean isStatic) {
+		this.isStatic = isStatic;
+	}
+
+	public void setRegister(Register register) {
+		this.register = register;
+	}
+
+	public void setOffset(int offset) {
+		this.offset = offset;
+	}
+
 	@Override
 	public AccessRight getTypeAcces() {
 		return typeAcces;
