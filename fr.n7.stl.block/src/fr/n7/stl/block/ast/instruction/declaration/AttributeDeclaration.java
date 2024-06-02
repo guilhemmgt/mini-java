@@ -18,7 +18,7 @@ public class AttributeDeclaration implements ClassElement {
 	private Expression value;
 	private boolean isFinal;
 	private boolean isStatic;
-	private AccessRight typeAcces = null;
+	private AccessRight typeAcces = AccessRight.PUBLIC;
 	private Register register;
 	private int offset;
 

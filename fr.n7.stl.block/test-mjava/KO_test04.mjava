@@ -1,3 +1,5 @@
+//Erreur signalée : m existe déjà dans le scope (ne peut pas surcharger avec les mêmes arguments)
+
 class A {
 	
 	public void m() {
