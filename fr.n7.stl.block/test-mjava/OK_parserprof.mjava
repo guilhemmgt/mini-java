@@ -1,6 +1,4 @@
-// test {
-//	int i = 1;
-// }
+// KO collect : NullPointerException MethodDeclaration
 
 class A {
 

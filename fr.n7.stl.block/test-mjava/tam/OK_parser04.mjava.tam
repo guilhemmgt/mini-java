@@ -1,5 +1,5 @@
 ;int a = 0;
-;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@6f496d9f
+;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@3764951d
 main_(String [])
 PUSH 1
 LOADL 0
@@ -10,45 +10,45 @@ LOADA 1[SB]
 STOREI (1)
 ;int b = a;
 PUSH 1
-;fr.n7.stl.block.ast.expression.accessible.VariableAccess@5b480cf9
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@6ff3c5b5
 LOAD (1) 1[SB]
 STORE (1) 2[SB]
 POP (0) 2
-;fr.n7.stl.block.ast.instruction.declaration.ConstructorDeclaration@723279cf
+;fr.n7.stl.block.ast.instruction.declaration.ConstructorDeclaration@4b1210ee
 B
 POP (0) 0
-;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@10f87f48
+;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@4d7e1886
 abc_int
 RETURN (1) 1
 POP (0) 0
-;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@b4c966a
+;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@3cd1a2f1
 abc
 RETURN (1) 0
 POP (0) 0
-;fr.n7.stl.block.ast.instruction.declaration.ConstructorDeclaration@2f4d3709
+;fr.n7.stl.block.ast.instruction.declaration.ConstructorDeclaration@2f0e140b
 B
 POP (0) 0
-;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@4e50df2e
+;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@7440e464
 m
 POP (0) 0
-;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@1d81eb93
+;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@49476842
 n_int
 RETURN (1) 1
 POP (0) 0
-;fr.n7.stl.block.ast.instruction.declaration.ConstructorDeclaration@7291c18f
+;fr.n7.stl.block.ast.instruction.declaration.ConstructorDeclaration@78308db1
 A
 POP (0) 0
-;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@34a245ab
+;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@27c170f0
 m
 RETURN (1) 0
 POP (0) 0
-;fr.n7.stl.block.ast.instruction.declaration.ConstructorDeclaration@7cc355be
+;fr.n7.stl.block.ast.instruction.declaration.ConstructorDeclaration@5451c3a8
 A
 POP (0) 0
-;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@6e8cf4c6
+;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@2626b418
 m
 POP (0) 0
-;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@12edcd21
+;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@5a07e868
 n_int
 RETURN (1) 1
 POP (0) 0

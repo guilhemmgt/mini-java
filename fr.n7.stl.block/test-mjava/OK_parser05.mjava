@@ -1,3 +1,4 @@
+// KO Allocate memoy, length undefined in ClassType
 class A {
     protected int n(int i) {
         return i;

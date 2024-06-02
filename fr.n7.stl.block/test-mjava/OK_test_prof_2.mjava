@@ -1,3 +1,4 @@
+// KO à cause de Null Pointer Exception, corps est null
 class A {
 	
 	public void m() {

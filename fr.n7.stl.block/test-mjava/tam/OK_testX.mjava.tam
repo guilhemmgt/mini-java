@@ -1,5 +1,5 @@
 ;int a = 1;
-;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@5fa7e7ff
+;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@b4c966a
 main_(String [])
 PUSH 1
 LOADL 1
@@ -9,16 +9,16 @@ PUSH 1
 LOADL 1
 STORE (1) 2[SB]
 POP (0) 2
-;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@4629104a
+;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@2f4d3709
 int3_int
 RETURN (1) 1
 POP (0) 0
-;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@27f8302d
+;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@4e50df2e
 int3
 RETURN (1) 0
 POP (0) 0
 ;print 0;
-;fr.n7.stl.block.ast.instruction.declaration.ConstructorDeclaration@4d76f3f8
+;fr.n7.stl.block.ast.instruction.declaration.ConstructorDeclaration@1d81eb93
 B
 LOADL 0
 SUBR IOut
@@ -30,7 +30,7 @@ LOAD (1) 0[LB]
 SUBR IOut
 POP (0) 0
 ;print 0;
-;fr.n7.stl.block.ast.instruction.declaration.ConstructorDeclaration@2d8e6db6
+;fr.n7.stl.block.ast.instruction.declaration.ConstructorDeclaration@7291c18f
 B
 LOADL 0
 SUBR IOut
@@ -39,7 +39,7 @@ LOAD (1) 0[LB]
 SUBR IOut
 POP (0) 0
 ;int a = (arg1 * 2);
-;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@4534b60d
+;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@7cc355be
 m_int
 PUSH 1
 ;(arg1 * 2)
@@ -50,13 +50,13 @@ STORE (1) 6[SB]
 ;print 0;
 LOADL 0
 SUBR IOut
-;fr.n7.stl.block.ast.expression.accessible.VariableAccess@23ab930d
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@34a245ab
 ;print a;
 LOAD (1) 6[SB]
 SUBR IOut
 POP (0) 1
 ;int a = 1;
-;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@3fa77460
+;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@6e8cf4c6
 m
 PUSH 1
 LOADL 1
@@ -73,7 +73,7 @@ LOADL 1
 SUBR IOut
 POP (0) 2
 ;print 0;
-;fr.n7.stl.block.ast.instruction.declaration.ConstructorDeclaration@619a5dff
+;fr.n7.stl.block.ast.instruction.declaration.ConstructorDeclaration@12edcd21
 A
 LOADL 0
 SUBR IOut

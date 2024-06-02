@@ -1,3 +1,4 @@
+// KO Collect : NullPointerException MethodDeclaration
 class A {
 
     public A () {

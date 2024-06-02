@@ -1,5 +1,5 @@
 ;int a = 0;
-;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@7699a589
+;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@61bbe9ba
 main_(String [])
 PUSH 1
 LOADL 0
@@ -10,14 +10,14 @@ LOADA 1[SB]
 STOREI (1)
 ;int b = a;
 PUSH 1
-;fr.n7.stl.block.ast.expression.accessible.VariableAccess@3b9a45b3
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@6e0be858
 LOAD (1) 1[SB]
 STORE (1) 2[SB]
 POP (0) 2
-;fr.n7.stl.block.ast.instruction.declaration.ConstructorDeclaration@58372a00
+;fr.n7.stl.block.ast.instruction.declaration.ConstructorDeclaration@610455d6
 A
 POP (0) 0
-;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@4dd8dc3
+;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@511d50c0
 m_int
 POP (0) 0
 HALT

@@ -1,3 +1,4 @@
+// parser KO 
 class A {
     public static A instance;
 }

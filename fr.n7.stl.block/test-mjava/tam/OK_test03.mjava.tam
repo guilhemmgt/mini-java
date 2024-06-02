@@ -1,5 +1,5 @@
 ;int a = 1;
-;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@49c2faae
+;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@3f99bd52
 main_(String [])
 PUSH 1
 LOADL 1
@@ -10,7 +10,7 @@ LOADL 1
 STORE (1) 2[SB]
 POP (0) 2
 ;int a = (arg1 * 2);
-;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@5197848c
+;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@3a71f4dd
 m_int
 PUSH 1
 ;(arg1 * 2)
@@ -18,13 +18,13 @@ LOAD (1) 0[LB]
 LOADL 2
 SUBR IMul
 STORE (1) 2[SB]
-;fr.n7.stl.block.ast.expression.accessible.VariableAccess@1d56ce6a
+;fr.n7.stl.block.ast.expression.accessible.VariableAccess@4f023edb
 ;print a;
 LOAD (1) 2[SB]
 SUBR IOut
 POP (0) 1
 ;int a = 1;
-;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@17f052a3
+;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@7adf9f5f
 m
 PUSH 1
 LOADL 1

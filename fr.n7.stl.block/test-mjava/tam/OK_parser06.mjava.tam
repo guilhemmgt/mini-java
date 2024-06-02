@@ -1,10 +1,10 @@
-;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@4edde6e5
+;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@2f92e0f4
 main_(String [])
 POP (0) 0
-;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@70177ecd
+;fr.n7.stl.block.ast.instruction.declaration.MethodDeclaration@28a418fc
 m
 POP (0) 0
-;fr.n7.stl.block.ast.instruction.declaration.ConstructorDeclaration@1e80bfe8
+;fr.n7.stl.block.ast.instruction.declaration.ConstructorDeclaration@5305068a
 A
 POP (0) 0
 HALT

@@ -1,4 +1,4 @@
-
+// KO resolve : B n'arrive pas à accéder à l'attribut hérité b
 class A {
     public int b = 1;
     
