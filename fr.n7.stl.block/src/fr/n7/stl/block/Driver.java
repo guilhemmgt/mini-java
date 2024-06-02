@@ -8,12 +8,12 @@ class Driver {
 
 		Parser parser = null;
 		if (args.length == 0) {
-			String tests_ok_prefixe = "OK_";
-			String tests_ko_prefixe = "KO_test09";
+			String tests_ok_prefixe = "OK_testA";
+			String tests_ko_prefixe = "KO_test10";
 			String tests_suffixe = ".mjava";
 			String path = "./test-mjava/";
 
-			boolean lancer_ok = false;
+			boolean lancer_ok = true;
 			boolean lancer_ko = true;
 
 			File[] dirFiles = new File(path).listFiles();

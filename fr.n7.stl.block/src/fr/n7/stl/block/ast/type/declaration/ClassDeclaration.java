@@ -209,6 +209,52 @@ public class ClassDeclaration implements Declaration, Scope<ClassElement>{
 		}
 	}
 
+	
+
+	public void setLocals(HierarchicalScope<Declaration> locals) {
+		this.locals = locals;
+	}
+
+	public void setElements(List<ClassElement> elements) {
+		this.elements = elements;
+	}
+
+	public boolean isAbstract() {
+		return isAbstract;
+	}
+
+	public boolean isFinal() {
+		return isFinal;
+	}
+
+	public void setFinal(boolean isFinal) {
+		this.isFinal = isFinal;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setInheritedClassType(ClassType inheritedClassType) {
+		this.inheritedClassType = inheritedClassType;
+	}
+
+	public ClassDeclaration getInheritedClass() {
+		return inheritedClass;
+	}
+
+	public void setInheritedClass(ClassDeclaration inheritedClass) {
+		this.inheritedClass = inheritedClass;
+	}
+
+	public int getSize() {
+		return size;
+	}
+
+	public void setSize(int size) {
+		this.size = size;
+	}
+
 	public boolean resolve(HierarchicalScope<Declaration> _scope) {
 		boolean _result = true;
 
@@ -219,6 +265,9 @@ public class ClassDeclaration implements Declaration, Scope<ClassElement>{
 			Declaration classNameGet = _scope.get(className);
 			if (!(classNameGet instanceof ClassDeclaration)) {
 				Logger.error("(ClassDeclaration) La classe " + className + " n'existe pas.");
+				return false;
+			} else if (((ClassDeclaration) classNameGet).isFinal()) {
+				Logger.error("(ClassDeclaration) La classe " + className + " est final.");
 				return false;
 			}
 			this.inheritedClass = (ClassDeclaration) classNameGet;
