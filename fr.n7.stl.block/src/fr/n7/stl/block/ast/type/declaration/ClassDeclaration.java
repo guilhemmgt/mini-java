@@ -54,6 +54,7 @@ public class ClassDeclaration implements Declaration, Scope<ClassElement>{
 		for (ClassElement _element : _elements) {
 			this.elements.add(_element);
 		}
+		
 	}
 
 	/**

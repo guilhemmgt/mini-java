@@ -13,11 +13,10 @@ class A {
 class B extends A {
 
     public B() {
-        this.a = 2;
+        this.a = 12;
     }
 
     public B(int a){
-        this.a = a*2;
     }
 
 }

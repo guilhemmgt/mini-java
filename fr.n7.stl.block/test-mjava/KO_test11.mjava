@@ -1,0 +1,16 @@
+
+abstract class A {
+    public int b = 1;
+    
+    public A() {
+    
+    }
+}
+
+public class Main {
+
+    public static void main (String args) {
+        A instance = new A();
+    }
+
+}

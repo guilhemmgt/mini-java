@@ -63,6 +63,9 @@ public class ConstructorCall implements Expression {
 		if (!(classNameGet instanceof ClassDeclaration)) {
 			Logger.error("(ContructorCall) La classe " + className + " n'existe pas.");
 			return false;
+		} else if (((ClassDeclaration) classNameGet).isAbstract()) {
+			Logger.error("Tentative d'instanciation de " + className +" : une classe abstraite ne peut pas être instanciée");
+			return false;	
 		}
 		ClassDeclaration classDeclaration = (ClassDeclaration) classNameGet;
 		HierarchicalScope<Declaration> classLocals = classDeclaration.getLocals();
