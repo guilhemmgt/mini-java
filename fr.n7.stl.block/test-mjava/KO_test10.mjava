@@ -1,3 +1,5 @@
+// Erreur signalée : on ne peut pas hériter d'une classe notée final
+
 final class A {
     private static final int i = 3;
 
@@ -7,7 +9,7 @@ final class A {
 }
 
 class B extends A {
-    
+
 }
 
 public class Main {

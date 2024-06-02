@@ -1,3 +1,4 @@
+// Erreur signalée : une classe abstraite ne peut pas être instanciée
 
 abstract class A {
     public int b = 1;

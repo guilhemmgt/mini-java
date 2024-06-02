@@ -1,3 +1,5 @@
+//Erreur signalée : tente d'accéder à une classe inexistante
+
 class A {
 	
 	public A(){
